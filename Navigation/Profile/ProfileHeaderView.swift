@@ -85,6 +85,8 @@ class ProfileHeaderView: UIView {
     @objc func isPressed() {
         // Меняем текст
         userStatus.text = statusText
+        // Выводим новый статус
+        print(userStatus.text == "" ? "No status set" : userStatus.text!)
     }
     
     // Функция для нового статуса
