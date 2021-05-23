@@ -44,13 +44,13 @@ class ProfileHeaderView: UIView {
         profileImage.clipsToBounds = true
         
         // Красота для userName
-        userName.frame = CGRect(x: profileImage.frame.maxX + 32, y: self.safeAreaInsets.top + 27, width: self.frame.width - self.safeAreaInsets.left - self.safeAreaInsets.right - 48 - profileImage.frame.maxX, height: 20)
+        userName.frame = CGRect(x: profileImage.frame.maxX + 16, y: self.safeAreaInsets.top + 27, width: self.frame.width - self.safeAreaInsets.left - self.safeAreaInsets.right - 48 - profileImage.frame.maxX, height: 20)
         userName.text = "Gavryusha the Cat"
         userName.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         userName.textColor = .black
 
         // Красота для userStatus
-        userStatus.frame = CGRect(x: profileImage.frame.maxX + 32, y: self.safeAreaInsets.top + 27 + userName.frame.height + 16, width: self.frame.width - self.safeAreaInsets.left - self.safeAreaInsets.right - profileImage.frame.maxX - 48, height: 14)
+        userStatus.frame = CGRect(x: profileImage.frame.maxX + 16, y: self.safeAreaInsets.top + 27 + userName.frame.height + 16, width: self.frame.width - self.safeAreaInsets.left - self.safeAreaInsets.right - profileImage.frame.maxX - 48, height: 14)
         userStatus.text = "pew pew madafakas"
         userStatus.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         userStatus.textColor = .gray
@@ -68,7 +68,7 @@ class ProfileHeaderView: UIView {
         statusButton.addTarget(self, action: #selector(isPressed), for: .touchUpInside)
         
         // Красота для statusField
-        statusField.frame = CGRect(x: profileImage.frame.maxX + 32, y: statusButton.frame.minY - 16 - statusField.frame.height, width: self.frame.width - self.safeAreaInsets.left - self.safeAreaInsets.right - 48 - profileImage.frame.maxX, height: 40)
+        statusField.frame = CGRect(x: profileImage.frame.maxX + 16, y: statusButton.frame.minY - 16 - statusField.frame.height, width: self.frame.width - self.safeAreaInsets.left - self.safeAreaInsets.right - 48 - profileImage.frame.width, height: 40)
         statusField.layer.backgroundColor = UIColor.white.cgColor
         statusField.layer.borderWidth = 1
         statusField.layer.borderColor = UIColor.black.cgColor
