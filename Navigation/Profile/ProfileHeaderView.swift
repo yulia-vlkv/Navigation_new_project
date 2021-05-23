@@ -14,6 +14,7 @@ class ProfileHeaderView: UIView {
     private let userName = UILabel()
     private let userStatus = UILabel()
     private let statusButton = UIButton()
+    private let statusField = UITextField()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,6 +24,7 @@ class ProfileHeaderView: UIView {
         addSubview(userName)
         addSubview(userStatus)
         addSubview(statusButton)
+        addSubview(statusField)
     }
     
     required init?(coder: NSCoder) {
@@ -41,19 +43,20 @@ class ProfileHeaderView: UIView {
         profileImage.clipsToBounds = true
         
         // Красота для userName
-        userName.frame = CGRect(x: profileImage.frame.maxX + 32, y: self.safeAreaInsets.top + 27, width: 300, height: 50)
+        //// self.frame.width - self.safeAreaInsets.left - self.safeAreaInsets.right - 48 - profileImage.frame.maxX
+        userName.frame = CGRect(x: profileImage.frame.maxX + 32, y: self.safeAreaInsets.top + 27, width: self.frame.width - self.safeAreaInsets.left - self.safeAreaInsets.right - 48 - profileImage.frame.maxX, height: 20)
         userName.text = "Gavryusha the Cat"
         userName.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         userName.textColor = .black
 
         // Красота для userStatus
-        userStatus.frame = CGRect(x: Int(profileImage.frame.maxX) + 32, y: Int(statusButton.frame.minY) - 34 - Int(userStatus.frame.height), width: Int(self.frame.width - 32 - 16 - profileImage.frame.width), height: 14)
-        userStatus.text = "Meh..."
+        userStatus.frame = CGRect(x: Int(profileImage.frame.maxX) + 32, y: Int(self.safeAreaInsets.top) + 27 + Int(userName.frame.height) + 16, width: Int(self.frame.width - self.safeAreaInsets.left - self.safeAreaInsets.right - profileImage.frame.maxX - 48), height: 14)
+        userStatus.text = "pew pew madafakas"
         userStatus.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         userStatus.textColor = .gray
 
         // Красота для statusButton
-        statusButton.frame = CGRect(x: Int(self.safeAreaInsets.left) + 16, y: Int(profileImage.frame.maxY) + 16, width: Int(self.frame.width) - 32, height: 50)
+        statusButton.frame = CGRect(x: Int(self.safeAreaInsets.left) + 16, y: Int(profileImage.frame.maxY) + 16, width: Int(self.bounds.width - self.safeAreaInsets.left - self.safeAreaInsets.right)  - 32, height: 50)
         statusButton.setTitle("Show status", for: .normal)
         statusButton.setTitleColor(.white, for: .normal)
         statusButton.layer.backgroundColor = UIColor.blue.cgColor
@@ -63,6 +66,16 @@ class ProfileHeaderView: UIView {
         statusButton.layer.shadowOpacity = 0.7
         // Обработка нажатия на кнопку
         statusButton.addTarget(self, action: #selector(isPressed), for: .touchUpInside)
+        
+        // Красота для statusField
+        statusField.frame = CGRect(x: profileImage.frame.maxX + 32, y: statusButton.frame.minY - 16 - statusField.frame.height, width: self.frame.width - self.safeAreaInsets.left - self.safeAreaInsets.right - 48 - profileImage.frame.maxX, height: 40)
+        statusField.layer.backgroundColor = UIColor.white.cgColor
+        statusField.layer.borderWidth = 1
+        statusField.layer.borderColor = UIColor.black.cgColor
+        statusField.layer.cornerRadius = 12
+        statusField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        statusField.textColor = .black
+        statusField.textAlignment = .natural
         
     }
     // Функция для обработки нажатия на кнопку
