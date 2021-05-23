@@ -15,6 +15,7 @@ class ProfileHeaderView: UIView {
     private let userStatus = UILabel()
     private let statusButton = UIButton()
     private let statusField = UITextField()
+    private var statusText: String = ""
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,20 +44,19 @@ class ProfileHeaderView: UIView {
         profileImage.clipsToBounds = true
         
         // Красота для userName
-        //// self.frame.width - self.safeAreaInsets.left - self.safeAreaInsets.right - 48 - profileImage.frame.maxX
         userName.frame = CGRect(x: profileImage.frame.maxX + 32, y: self.safeAreaInsets.top + 27, width: self.frame.width - self.safeAreaInsets.left - self.safeAreaInsets.right - 48 - profileImage.frame.maxX, height: 20)
         userName.text = "Gavryusha the Cat"
         userName.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         userName.textColor = .black
 
         // Красота для userStatus
-        userStatus.frame = CGRect(x: Int(profileImage.frame.maxX) + 32, y: Int(self.safeAreaInsets.top) + 27 + Int(userName.frame.height) + 16, width: Int(self.frame.width - self.safeAreaInsets.left - self.safeAreaInsets.right - profileImage.frame.maxX - 48), height: 14)
+        userStatus.frame = CGRect(x: profileImage.frame.maxX + 32, y: self.safeAreaInsets.top + 27 + userName.frame.height + 16, width: self.frame.width - self.safeAreaInsets.left - self.safeAreaInsets.right - profileImage.frame.maxX - 48, height: 14)
         userStatus.text = "pew pew madafakas"
         userStatus.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         userStatus.textColor = .gray
 
         // Красота для statusButton
-        statusButton.frame = CGRect(x: Int(self.safeAreaInsets.left) + 16, y: Int(profileImage.frame.maxY) + 16, width: Int(self.bounds.width - self.safeAreaInsets.left - self.safeAreaInsets.right)  - 32, height: 50)
+        statusButton.frame = CGRect(x: self.safeAreaInsets.left + 16, y: profileImage.frame.maxY + 16, width: self.bounds.width - self.safeAreaInsets.left - self.safeAreaInsets.right - 32, height: 50)
         statusButton.setTitle("Show status", for: .normal)
         statusButton.setTitleColor(.white, for: .normal)
         statusButton.layer.backgroundColor = UIColor.blue.cgColor
@@ -76,13 +76,21 @@ class ProfileHeaderView: UIView {
         statusField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         statusField.textColor = .black
         statusField.textAlignment = .natural
-        
+        statusField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: statusField.frame.height))
+        statusField.leftViewMode = .always
+        statusField.placeholder = "Today I feel like..."
+        statusField.addTarget(self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
     }
     // Функция для обработки нажатия на кнопку
     @objc func isPressed() {
-        // Заглушка на случай, если статус не указан
-        print(userStatus.text ?? "No status set")
-        
+        // Меняем текст
+        userStatus.text = statusText
+    }
+    
+    // Функция для нового статуса
+    @objc func statusTextChanged(_ textField: UITextField) {
+        // Передаем текст из statusField переменной
+        statusText = String(textField.text!)
     }
     
 }
