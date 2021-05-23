@@ -41,16 +41,27 @@ class ProfileHeaderView: UIView {
         profileImage.clipsToBounds = true
         
         // Красота для userName
-        userName.frame = CGRect(x: profileImage.frame.maxX + 16, y: self.safeAreaInsets.top + 27, width: 300, height: 50)
+        userName.frame = CGRect(x: profileImage.frame.maxX + 32, y: self.safeAreaInsets.top + 27, width: 300, height: 50)
         userName.text = "Gavryusha the Cat"
         userName.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         userName.textColor = .black
 
-//        // Красота для userStatus
-//        userStatus.frame = CGRect(x: <#T##Int#>, y: <#T##Int#>, width: <#T##Int#>, height: <#T##Int#>)
-//
-//        // Красота для statusButton
-//        statusButton.frame = CGRect(x: <#T##Int#>, y: <#T##Int#>, width: <#T##Int#>, height: <#T##Int#>)
+        // Красота для userStatus
+        userStatus.frame = CGRect(x: Int(profileImage.frame.maxX) + 32, y: Int(statusButton.frame.minY) - 34 - Int(userStatus.frame.height), width: Int(self.frame.width - 32 - 16 - profileImage.frame.width), height: 14)
+        userStatus.text = "Meh..."
+        userStatus.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        userStatus.textColor = .gray
+
+        // Красота для statusButton
+        statusButton.frame = CGRect(x: Int(self.safeAreaInsets.left) + 16, y: Int(profileImage.frame.maxY) + 16, width: Int(self.frame.width) - 32, height: 50)
+        statusButton.setTitle("Show status", for: .normal)
+        statusButton.setTitleColor(.white, for: .normal)
+        statusButton.layer.backgroundColor = UIColor.blue.cgColor
+        statusButton.layer.cornerRadius = 14
+        statusButton.layer.shadowColor = UIColor.black.cgColor
+        statusButton.layer.shadowOffset = CGSize(width: 4, height: 4)
+        statusButton.layer.shadowOpacity = 0.7
+//        statusButton.addTarget(self, action: #selector(isPressed), for: .touchUpInside)
         
     }
 
