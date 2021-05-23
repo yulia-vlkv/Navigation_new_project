@@ -61,9 +61,15 @@ class ProfileHeaderView: UIView {
         statusButton.layer.shadowColor = UIColor.black.cgColor
         statusButton.layer.shadowOffset = CGSize(width: 4, height: 4)
         statusButton.layer.shadowOpacity = 0.7
-//        statusButton.addTarget(self, action: #selector(isPressed), for: .touchUpInside)
+        // Обработка нажатия на кнопку
+        statusButton.addTarget(self, action: #selector(isPressed), for: .touchUpInside)
         
     }
-
-
+    // Функция для обработки нажатия на кнопку
+    @objc func isPressed() {
+        // Заглушка на случай, если статус не указан
+        print(userStatus.text ?? "No status set")
+        
+    }
+    
 }
