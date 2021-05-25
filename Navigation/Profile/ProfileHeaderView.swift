@@ -57,7 +57,7 @@ class ProfileHeaderView: UIView {
         // Красота для statusButton
         statusButton.setTitle("Set status", for: .normal)
         statusButton.setTitleColor(.white, for: .normal)
-        statusButton.layer.backgroundColor = UIColor.blue.cgColor
+        statusButton.layer.backgroundColor = UIColor.systemBlue.cgColor
         statusButton.layer.cornerRadius = 14
         statusButton.layer.shadowColor = UIColor.black.cgColor
         statusButton.layer.shadowOffset = CGSize(width: 4, height: 4)
