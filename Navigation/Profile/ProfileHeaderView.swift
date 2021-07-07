@@ -15,7 +15,7 @@ class ProfileHeaderView: UIView {
     private let userStatus = UILabel()
     private let statusButton = UIButton()
     private let statusField = UITextField()
-    private var statusText: String = ""
+    private var statusText: String = String()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -95,14 +95,12 @@ class ProfileHeaderView: UIView {
     @objc func isPressed() {
         // Меняем текст
         userStatus.text = statusText
-        // Выводим новый статус
-        print(userStatus.text == "" ? "No status set" : userStatus.text!)
     }
     
     // Функция для нового статуса
     @objc func statusTextChanged(_ textField: UITextField) {
         // Передаем текст из statusField переменной
-        statusText = String(textField.text!)
+        statusText = statusField.text ?? "No status"
     }
     
 }
