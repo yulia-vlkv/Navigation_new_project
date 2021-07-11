@@ -102,9 +102,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         mainView.addSubview(logInButton)
         
         logInButton.setBackgroundImage(bluePixel, for: .normal)
-        logInButton.setBackgroundImage(bluePixel, for: .selected)
-        logInButton.setBackgroundImage(bluePixel, for: .highlighted)
-        logInButton.setBackgroundImage(bluePixel, for: .disabled)
+        let selectedPixel: UIImage = (bluePixel?.alpha(0.8))!
+        logInButton.setBackgroundImage(selectedPixel, for: .selected)
+        logInButton.setBackgroundImage(selectedPixel, for: .highlighted)
+        logInButton.setBackgroundImage(selectedPixel, for: .disabled)
         logInButton.layer.cornerRadius = 10
         logInButton.layer.masksToBounds = true
         logInButton.setTitle("Log In", for: .normal)
@@ -119,18 +120,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
              logInButton.leadingAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
              logInButton.trailingAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
              logInButton.heightAnchor.constraint(equalToConstant: 50)])
-        
-//        loginButton.setBackgroundImage(pixelNormal, for: .normal)
-//        loginButton.setBackgroundImage(pixelSelected, for: .selected)
-//        loginButton.setBackgroundImage(pixelSelected, for: .highlighted)
-//        loginButton.setBackgroundImage(pixelSelected, for: .disabled)
-//
-//        loginButton.addTarget(self, action: #selector(tapButtonProfile), for: .touchUpInside)
-    
     }
     
     @objc private func tapLogInButton() {
-        let controller = storyboard?.instantiateViewController(identifier: "ProfileVC")
+        let controller = storyboard?.instantiateViewController(identifier: "ProfileViewController")
         navigationController?.pushViewController(controller!, animated: false)
     }
     
@@ -171,6 +164,15 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         scroll.contentInset.bottom = .zero
         scroll.verticalScrollIndicatorInsets = .zero
     }
+
 }
 
-
+extension UIImage {
+    func alpha(_ value: CGFloat) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        draw(at: CGPoint.zero, blendMode: .normal, alpha: value)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+}
