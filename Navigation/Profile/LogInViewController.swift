@@ -79,6 +79,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         logInFieldSetUI(field: logIn)
         logIn.layer.borderWidth = 0.5
         logIn.placeholder = "Email or phone"
+        logIn.returnKeyType = UIReturnKeyType.done
         logIn.delegate = self
         
         logIn.translatesAutoresizingMaskIntoConstraints = false
@@ -91,6 +92,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         logInFieldSetUI(field: password)
         password.isSecureTextEntry = true
         password.placeholder = "Password"
+        password.returnKeyType = UIReturnKeyType.done
         password.delegate = self
         
         password.translatesAutoresizingMaskIntoConstraints = false
@@ -138,54 +140,28 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         field.returnKeyType = UIReturnKeyType.done
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-//    }
-//
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-//    }
-//
-//    @objc fileprivate func keyboardWillShow(notification: NSNotification) {
-//        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-//
-//            scroll.contentInset.bottom = keyboardSize.height
-//            scroll.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-//        }
-//    }
-//
-//    @objc fileprivate func keyboardWillHide(notification: NSNotification) {
-//        scroll.contentInset.bottom = .zero
-//        scroll.verticalScrollIndicatorInsets = .zero
-//    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
+
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
+
     @objc fileprivate func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            
+
             scroll.contentInset.bottom = keyboardSize.height
             scroll.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
         }
     }
-    
+
     @objc fileprivate func keyboardWillHide(notification: NSNotification) {
         scroll.contentInset.bottom = .zero
         scroll.verticalScrollIndicatorInsets = .zero
@@ -199,5 +175,12 @@ extension UIImage {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return newImage!
+    }
+}
+
+extension LogInViewController {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
