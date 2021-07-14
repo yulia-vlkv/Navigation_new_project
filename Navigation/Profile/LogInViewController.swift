@@ -10,99 +10,75 @@ import UIKit
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
-    private let scroll = UIScrollView()
-    private let mainView = UIView()
-    private let logo = UIImageView()
-    private let logInView = UIView()
-    private let logIn = UITextField()
-    private let password = UITextField()
-    private let logInButton = UIButton()
-    private let bluePixel = UIImage(named: "bluePixel")
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        view.backgroundColor = .white
-        self.navigationController?.navigationBar.isHidden = true
-        
-        view.addSubview(scroll)
-        
-        scroll.translatesAutoresizingMaskIntoConstraints = false
+    private let scroll: UIScrollView = {
+        let scroll = UIScrollView()
         scroll.backgroundColor = .white
-        NSLayoutConstraint.activate(
-            [scroll.topAnchor.constraint(equalTo: view.topAnchor),
-             scroll.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-             scroll.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-             scroll.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-             scroll.heightAnchor.constraint(equalTo: view.heightAnchor),
-             scroll.widthAnchor.constraint(equalTo: view.widthAnchor)])
-        
-        scroll.addSubview(mainView)
-        
-        mainView.translatesAutoresizingMaskIntoConstraints = false
-        mainView.backgroundColor = .white
-        NSLayoutConstraint.activate(
-            [mainView.topAnchor.constraint(equalTo: scroll.topAnchor),
-             mainView.bottomAnchor.constraint(equalTo: scroll.bottomAnchor),
-             mainView.leadingAnchor.constraint(equalTo: scroll.leadingAnchor),
-             mainView.trailingAnchor.constraint(equalTo: scroll.trailingAnchor),
-             mainView.heightAnchor.constraint(equalTo: scroll.heightAnchor),
-             mainView.widthAnchor.constraint(equalTo: scroll.widthAnchor)])
-        
-        mainView.addSubview(logo)
-        
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        return scroll
+    }()
+
+    private let mainView: UIView = {
+            let mainView = UIView()
+            mainView.backgroundColor = .white
+            mainView.translatesAutoresizingMaskIntoConstraints = false
+            return mainView
+    }()
+    
+    private let logo: UIImageView = {
+        let logo = UIImageView()
         logo.image = UIImage(named: "logoVK")
         logo.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [logo.widthAnchor.constraint(equalToConstant: 100),
-             logo.heightAnchor.constraint(equalToConstant: 100),
-             logo.centerXAnchor.constraint(equalTo: self.mainView.centerXAnchor),
-             logo.topAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.topAnchor, constant: 120)])
-        
-        mainView.addSubview(logInView)
-        
+        return logo
+    }()
+    
+    private let logInView: UIView = {
+        let logInView = UIView()
         logInView.layer.cornerRadius = 10
         logInView.layer.borderWidth = 0.5
         logInView.layer.borderColor = UIColor.lightGray.cgColor
-        self.logInView.clipsToBounds = true
-        
+        logInView.clipsToBounds = true
         logInView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [logInView.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 120),
-             logInView.leadingAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-             logInView.trailingAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-             logInView.heightAnchor.constraint(equalToConstant: 100)])
-        
-        logInView.addSubview(logIn)
-        
-        logInFieldSetUI(field: logIn)
-        logIn.layer.borderWidth = 0.5
-        logIn.placeholder = "Email or phone"
-        logIn.returnKeyType = UIReturnKeyType.done
-        logIn.delegate = self
-        
-        logIn.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [logIn.heightAnchor.constraint(equalToConstant: 50),
-             logIn.topAnchor.constraint(equalTo: self.logInView.topAnchor),
-             logIn.widthAnchor.constraint(equalTo: self.logInView.widthAnchor)])
-
-        logInView.addSubview(password)
-        logInFieldSetUI(field: password)
-        password.isSecureTextEntry = true
-        password.placeholder = "Password"
-        password.returnKeyType = UIReturnKeyType.done
-        password.delegate = self
-        
-        password.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [password.heightAnchor.constraint(equalToConstant: 50),
-             password.bottomAnchor.constraint(equalTo: self.logInView.bottomAnchor),
-             password.widthAnchor.constraint(equalTo: self.logInView.widthAnchor)])
-        
-        mainView.addSubview(logInButton)
-        
+        return logInView
+    }()
+    
+    private let logIn: UITextField = {
+        let textField = UITextField()
+        textField.font = UIFont.systemFont(ofSize: 16)
+        textField.textColor = .black
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField .frame.height))
+        textField.leftViewMode = .always
+        textField.autocapitalizationType = .none
+        textField.clipsToBounds = true
+        textField.placeholder = "Email or phone"
+        textField.returnKeyType = UIReturnKeyType.done
+        textField.layer.backgroundColor = UIColor.systemGray6.cgColor
+        textField.tintColor = UIColor(named: "periwinkleBlue")
+        textField.layer.borderColor = UIColor.lightGray.cgColor
+        textField.layer.borderWidth = 0.5
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    private let password: UITextField = {
+        let textField = UITextField()
+        textField.font = UIFont.systemFont(ofSize: 16)
+        textField.textColor = .black
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField .frame.height))
+        textField.leftViewMode = .always
+        textField.autocapitalizationType = .none
+        textField.clipsToBounds = true
+        textField.isSecureTextEntry = true
+        textField.placeholder = "Password"
+        textField.returnKeyType = UIReturnKeyType.done
+        textField.layer.backgroundColor = UIColor.systemGray6.cgColor
+        textField.tintColor = UIColor(named: "periwinkleBlue")
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    private let logInButton: UIButton = {
+        let bluePixel = UIImage(named: "bluePixel")
+        let logInButton = UIButton(type: .system)
         logInButton.setBackgroundImage(bluePixel, for: .normal)
         let selectedPixel: UIImage = (bluePixel?.alpha(0.8))!
         logInButton.setBackgroundImage(selectedPixel, for: .selected)
@@ -114,32 +90,81 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         logInButton.setTitleColor(.white, for: .normal)
         logInButton.titleLabel?.font = UIFont(name: "default", size: 16)
         logInButton.addTarget(self, action: #selector(tapLogInButton), for: .touchUpInside)
-    
-        
         logInButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(
-            [logInButton.topAnchor.constraint(equalTo: logInView.bottomAnchor, constant: 16),
-             logInButton.leadingAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-             logInButton.trailingAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-             logInButton.heightAnchor.constraint(equalToConstant: 50)])
-    }
+        return logInButton
+    }()
     
     @objc private func tapLogInButton() {
         let controller = storyboard?.instantiateViewController(identifier: "ProfileViewController")
         navigationController?.pushViewController(controller!, animated: false)
     }
     
-    func logInFieldSetUI(field: UITextField){
-        field.layer.backgroundColor = UIColor.systemGray6.cgColor
-        field.tintColor = UIColor(named: "periwinkleBlue")
-        field.layer.borderColor = UIColor.lightGray.cgColor
-        field.textColor = .black
-        field.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        field.autocapitalizationType = .none
-        field.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
-        field.returnKeyType = UIReturnKeyType.done
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationController?.navigationBar.isHidden = true
+        logIn.delegate = self
+        password.delegate = self
+        setupViews()
+    }
+
+    private func setupViews() {
+        
+        view.addSubview(scroll)
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        
+        scroll.addSubview(mainView)
+        
+        mainView.addSubview(logo)
+        mainView.addSubview(logInView)
+        mainView.addSubview(logInButton)
+        
+        logInView.addSubview(logIn)
+        logInView.addSubview(password)
+
+        let constraints = [
+            scroll.topAnchor.constraint(equalTo: view.topAnchor),
+            scroll.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scroll.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scroll.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scroll.heightAnchor.constraint(equalTo: view.heightAnchor),
+            scroll.widthAnchor.constraint(equalTo: view.widthAnchor),
+            
+            mainView.topAnchor.constraint(equalTo: scroll.topAnchor),
+            mainView.bottomAnchor.constraint(equalTo: scroll.bottomAnchor),
+            mainView.leadingAnchor.constraint(equalTo: scroll.leadingAnchor),
+            mainView.trailingAnchor.constraint(equalTo: scroll.trailingAnchor),
+            mainView.heightAnchor.constraint(equalTo: scroll.heightAnchor),
+            mainView.widthAnchor.constraint(equalTo: scroll.widthAnchor),
+            
+            logo.widthAnchor.constraint(equalToConstant: 100),
+            logo.heightAnchor.constraint(equalToConstant: 100),
+            logo.centerXAnchor.constraint(equalTo: self.mainView.centerXAnchor),
+            logo.topAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.topAnchor, constant: 120),
+            
+            logInView.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 120),
+            logInView.leadingAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            logInView.trailingAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            logInView.heightAnchor.constraint(equalToConstant: 100),
+            
+            logIn.heightAnchor.constraint(equalToConstant: 50),
+            logIn.topAnchor.constraint(equalTo: self.logInView.topAnchor),
+            logIn.widthAnchor.constraint(equalTo: self.logInView.widthAnchor),
+            
+            password.heightAnchor.constraint(equalToConstant: 50),
+            password.bottomAnchor.constraint(equalTo: self.logInView.bottomAnchor),
+            password.widthAnchor.constraint(equalTo: self.logInView.widthAnchor),
+            
+            logInButton.topAnchor.constraint(equalTo: logInView.bottomAnchor, constant: 16),
+            logInButton.leadingAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            logInButton.trailingAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            logInButton.heightAnchor.constraint(equalToConstant: 50)
+        ]
+
+        NSLayoutConstraint.activate(constraints)
     }
     
+    // MARK: Keyboard
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -167,7 +192,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         scroll.verticalScrollIndicatorInsets = .zero
     }
 }
-
+// MARK: extension for alpha
 extension UIImage {
     func alpha(_ value: CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
@@ -177,7 +202,7 @@ extension UIImage {
         return newImage!
     }
 }
-
+// MARK: extension for keyboard magic
 extension LogInViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
