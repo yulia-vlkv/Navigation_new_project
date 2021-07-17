@@ -13,21 +13,21 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     private let scroll: UIScrollView = {
         let scroll = UIScrollView()
         scroll.backgroundColor = .white
-        scroll.translatesAutoresizingMaskIntoConstraints = false
+        scroll.toAutoLayout()
         return scroll
     }()
 
     private let mainView: UIView = {
             let mainView = UIView()
             mainView.backgroundColor = .white
-            mainView.translatesAutoresizingMaskIntoConstraints = false
+            mainView.toAutoLayout()
             return mainView
     }()
     
     private let logo: UIImageView = {
         let logo = UIImageView()
         logo.image = UIImage(named: "logoVK")
-        logo.translatesAutoresizingMaskIntoConstraints = false
+        logo.toAutoLayout()
         return logo
     }()
     
@@ -37,7 +37,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         logInView.layer.borderWidth = 0.5
         logInView.layer.borderColor = UIColor.lightGray.cgColor
         logInView.clipsToBounds = true
-        logInView.translatesAutoresizingMaskIntoConstraints = false
+        logInView.toAutoLayout()
         return logInView
     }()
     
@@ -55,7 +55,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         textField.tintColor = UIColor(named: "periwinkleBlue")
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.toAutoLayout()
         return textField
     }()
     
@@ -72,7 +72,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         textField.returnKeyType = UIReturnKeyType.done
         textField.layer.backgroundColor = UIColor.systemGray6.cgColor
         textField.tintColor = UIColor(named: "periwinkleBlue")
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.toAutoLayout()
         return textField
     }()
     
@@ -90,7 +90,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         logInButton.setTitleColor(.white, for: .normal)
         logInButton.titleLabel?.font = UIFont(name: "default", size: 16)
         logInButton.addTarget(self, action: #selector(tapLogInButton), for: .touchUpInside)
-        logInButton.translatesAutoresizingMaskIntoConstraints = false
+        logInButton.toAutoLayout()
         return logInButton
     }()
     
@@ -111,7 +111,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     private func setupViews() {
         
         view.addSubview(scroll)
-        scroll.translatesAutoresizingMaskIntoConstraints = false
+        scroll.toAutoLayout()
         
         scroll.addSubview(mainView)
         
@@ -192,6 +192,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         scroll.verticalScrollIndicatorInsets = .zero
     }
 }
+
 // MARK: extension for alpha
 extension UIImage {
     func alpha(_ value: CGFloat) -> UIImage {
@@ -207,5 +208,12 @@ extension LogInViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+// MARK: extension toAutoLayout
+extension UIView {
+    func toAutoLayout() {
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
 }

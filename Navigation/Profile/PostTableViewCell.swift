@@ -10,5 +10,7 @@ import UIKit
 
 class PostTableViewCell: UITableViewCell {
     
-    
+    var post: PostVK {
+        
+    }
 }
