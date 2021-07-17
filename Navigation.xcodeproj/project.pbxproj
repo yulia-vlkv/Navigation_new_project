@@ -20,6 +20,7 @@
 		EF25DCB626A02A6E00577166 /* allPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB526A02A6E00577166 /* allPosts.swift */; };
 		EF25DCB826A02AFC00577166 /* PostVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB726A02AFC00577166 /* PostVK.swift */; };
 		EF25DCBA26A02BBA00577166 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB926A02BBA00577166 /* PostTableViewCell.swift */; };
+		EF25DCBD26A2FCAA00577166 /* ProfileTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCBC26A2FCAA00577166 /* ProfileTableHeaderView.swift */; };
 		EFCC66B12658E3C20090CD73 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC66B02658E3C20090CD73 /* ProfileViewController.swift */; };
 		EFCC66B32658E4070090CD73 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC66B22658E4070090CD73 /* ProfileHeaderView.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 		EF25DCB526A02A6E00577166 /* allPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allPosts.swift; sourceTree = "<group>"; };
 		EF25DCB726A02AFC00577166 /* PostVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVK.swift; sourceTree = "<group>"; };
 		EF25DCB926A02BBA00577166 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		EF25DCBC26A2FCAA00577166 /* ProfileTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHeaderView.swift; sourceTree = "<group>"; };
 		EFCC66B02658E3C20090CD73 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EFCC66B22658E4070090CD73 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,6 +97,7 @@
 				EFCC66B02658E3C20090CD73 /* ProfileViewController.swift */,
 				EFCC66B22658E4070090CD73 /* ProfileHeaderView.swift */,
 				EF25DCB32691CD2500577166 /* LogInViewController.swift */,
+				EF25DCBC26A2FCAA00577166 /* ProfileTableHeaderView.swift */,
 				EF25DCB526A02A6E00577166 /* allPosts.swift */,
 				EF25DCB726A02AFC00577166 /* PostVK.swift */,
 				EF25DCB926A02BBA00577166 /* PostTableViewCell.swift */,
@@ -174,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF25DCB42691CD2500577166 /* LogInViewController.swift in Sources */,
+				EF25DCBD26A2FCAA00577166 /* ProfileTableHeaderView.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,

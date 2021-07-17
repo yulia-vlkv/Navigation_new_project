@@ -18,7 +18,7 @@ struct allPosts {
     
     
     Начал замечать странные паттерны: соотношение просмотров и лайков какое-то подозрительное...
-    """, image: "playingMonopoly", likes: 64, views: 128),
+    """, image: "scientistСat", likes: 64, views: 128),
         PostVK(author: "Gavryusha the Cat", description: "Играл в монополию. Скучно, я всегда выигрываю.", image: "playingMonopoly", likes: 32, views: 64),
         PostVK(author: "Gavryusha the Cat", description: "Нарисовал шедевр. Масло плохо оттирается от лапок. В следующий раз буду использовать только акрил.", image: "myPainting", likes: 16, views: 32),
         PostVK(author: "Gavryusha the Cat", description: """
