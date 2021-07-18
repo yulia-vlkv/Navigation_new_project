@@ -21,6 +21,11 @@
 		EF25DCB826A02AFC00577166 /* PostVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB726A02AFC00577166 /* PostVK.swift */; };
 		EF25DCBA26A02BBA00577166 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB926A02BBA00577166 /* PostTableViewCell.swift */; };
 		EF25DCBD26A2FCAA00577166 /* ProfileTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCBC26A2FCAA00577166 /* ProfileTableHeaderView.swift */; };
+		EF25DCC126A4626300577166 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCC026A4626300577166 /* PhotosCollectionViewCell.swift */; };
+		EF25DCC326A462D000577166 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCC226A462D000577166 /* PhotosViewController.swift */; };
+		EF25DCC626A466A600577166 /* allPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCC526A466A600577166 /* allPhotos.swift */; };
+		EF25DCC826A46A4900577166 /* ImageVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCC726A46A4900577166 /* ImageVK.swift */; };
+		EF25DCCA26A4754A00577166 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCC926A4754A00577166 /* PhotosTableViewCell.swift */; };
 		EFCC66B12658E3C20090CD73 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC66B02658E3C20090CD73 /* ProfileViewController.swift */; };
 		EFCC66B32658E4070090CD73 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC66B22658E4070090CD73 /* ProfileHeaderView.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +47,11 @@
 		EF25DCB726A02AFC00577166 /* PostVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVK.swift; sourceTree = "<group>"; };
 		EF25DCB926A02BBA00577166 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		EF25DCBC26A2FCAA00577166 /* ProfileTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableHeaderView.swift; sourceTree = "<group>"; };
+		EF25DCC026A4626300577166 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		EF25DCC226A462D000577166 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		EF25DCC526A466A600577166 /* allPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allPhotos.swift; sourceTree = "<group>"; };
+		EF25DCC726A46A4900577166 /* ImageVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageVK.swift; sourceTree = "<group>"; };
+		EF25DCC926A4754A00577166 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		EFCC66B02658E3C20090CD73 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EFCC66B22658E4070090CD73 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,11 +105,16 @@
 			isa = PBXGroup;
 			children = (
 				EFCC66B02658E3C20090CD73 /* ProfileViewController.swift */,
+				EF25DCC926A4754A00577166 /* PhotosTableViewCell.swift */,
+				EF25DCC226A462D000577166 /* PhotosViewController.swift */,
+				EF25DCC026A4626300577166 /* PhotosCollectionViewCell.swift */,
 				EFCC66B22658E4070090CD73 /* ProfileHeaderView.swift */,
 				EF25DCB32691CD2500577166 /* LogInViewController.swift */,
 				EF25DCBC26A2FCAA00577166 /* ProfileTableHeaderView.swift */,
 				EF25DCB526A02A6E00577166 /* allPosts.swift */,
+				EF25DCC526A466A600577166 /* allPhotos.swift */,
 				EF25DCB726A02AFC00577166 /* PostVK.swift */,
+				EF25DCC726A46A4900577166 /* ImageVK.swift */,
 				EF25DCB926A02BBA00577166 /* PostTableViewCell.swift */,
 			);
 			path = Profile;
@@ -176,14 +191,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF25DCC626A466A600577166 /* allPhotos.swift in Sources */,
 				EF25DCB42691CD2500577166 /* LogInViewController.swift in Sources */,
 				EF25DCBD26A2FCAA00577166 /* ProfileTableHeaderView.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
+				EF25DCCA26A4754A00577166 /* PhotosTableViewCell.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
+				EF25DCC826A46A4900577166 /* ImageVK.swift in Sources */,
 				060782CA250CEE7200A87020 /* Post.swift in Sources */,
 				EFCC66B12658E3C20090CD73 /* ProfileViewController.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
+				EF25DCC126A4626300577166 /* PhotosCollectionViewCell.swift in Sources */,
+				EF25DCC326A462D000577166 /* PhotosViewController.swift in Sources */,
 				EF25DCB626A02A6E00577166 /* allPosts.swift in Sources */,
 				EF25DCB826A02AFC00577166 /* PostVK.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
