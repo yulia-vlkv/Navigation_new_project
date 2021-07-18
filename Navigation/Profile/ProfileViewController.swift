@@ -59,17 +59,13 @@ extension ProfileViewController: UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch section {
-        case 0:
-            let headerView = ProfileHeaderView()
-            return headerView
-        default:
-            return nil
+        if section == 0 {
+            return ProfileHeaderView()
         }
+        return nil
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
 }
