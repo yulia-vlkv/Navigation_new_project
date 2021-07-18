@@ -123,14 +123,11 @@ class ProfileHeaderView: UIView {
     
     // Функция для обработки нажатия на кнопку
     @objc func isPressed() {
-        // Меняем текст
         userStatus.text = statusText
     }
     
     // Функция для нового статуса
     @objc func statusTextChanged(_ textField: UITextField) {
-        // Передаем текст из statusField переменной
         statusText = statusField.text ?? "No status"
     }
-    
 }
