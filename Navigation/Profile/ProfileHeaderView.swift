@@ -10,86 +10,116 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
-    private let profileImage = UIImageView()
-    private let userName = UILabel()
-    private let userStatus = UILabel()
-    private let statusButton = UIButton()
-    private let statusField = UITextField()
+    private let profileImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "angryCat")
+        image.contentMode = .scaleAspectFill
+        image.layer.borderWidth = 3
+        image.layer.cornerRadius = 55
+        image.layer.borderColor = UIColor.white.cgColor
+        image.clipsToBounds = true
+        image.toAutoLayout()
+        return image
+    }()
+    
+    private let userName: UILabel = {
+        let label = UILabel()
+        label.text = "Gavryusha the Cat"
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.textColor = .black
+        label.toAutoLayout()
+        return label
+    }()
+    
+    private let userStatus: UILabel = {
+        let label = UILabel()
+        label.text = "pew pew madafakas"
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.textColor = .gray
+        label.toAutoLayout()
+        return label
+    }()
+    
+    private let statusButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Set status", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.backgroundColor = UIColor.systemBlue.cgColor
+        button.layer.cornerRadius = 14
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowOpacity = 0.7
+        button.toAutoLayout()
+        button.addTarget(self, action: #selector(isPressed), for: .touchUpInside)
+        return button
+    }()
+    
+    private let statusField: UITextField = {
+        let textField = UITextField()
+        
+        textField.layer.backgroundColor = UIColor.white.cgColor
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.cornerRadius = 12
+        textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        textField.textColor = .black
+        textField.textAlignment = .natural
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
+        textField.leftViewMode = .always
+        textField.placeholder = "Today I feel like..."
+        textField.toAutoLayout()
+        textField.addTarget(self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
+        return textField
+    }()
+    
     private var statusText: String = String()
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        // Добавляем UI-элементы
+    
         addSubview(profileImage)
         addSubview(userName)
         addSubview(userStatus)
         addSubview(statusButton)
         addSubview(statusField)
         
-        setUI()
-    
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setUI(){
-        // Наводим красоту в UI-элементах
-        // Красота для progileImage
-        profileImage.image = UIImage(named: "angryCat")
-        profileImage.contentMode = .scaleAspectFill
-        profileImage.layer.borderWidth = 3
-        profileImage.layer.borderColor = UIColor.white.cgColor
-        profileImage.clipsToBounds = true
+        let constraints = [
+            profileImage.topAnchor.constraint(equalTo: self.topAnchor, constant: inset),
+            profileImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: inset),
+            profileImage.heightAnchor.constraint(equalToConstant: 110),
+            profileImage.widthAnchor.constraint(equalTo: profileImage.heightAnchor),
+            
+            userName.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
+            userName.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: inset),
+            userName.heightAnchor.constraint(equalToConstant: 20),
+            userName.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -158),
+            
+            userStatus.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: inset),
+            userStatus.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: inset),
+            userStatus.heightAnchor.constraint(equalToConstant: 14),
+            userStatus.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -158),
+            
+            statusButton.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: inset),
+            statusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: inset),
+            statusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -inset),
+            statusButton.heightAnchor.constraint(equalToConstant: 40),
+            statusButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -inset),
+            
+            statusField.topAnchor.constraint(equalTo: userStatus.bottomAnchor, constant: inset),
+            statusField.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: inset),
+            statusField.heightAnchor.constraint(equalToConstant: 40),
+            statusField.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -158)
+        ]
         
-        // Красота для userName
-        userName.text = "Gavryusha the Cat"
-        userName.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        userName.textColor = .black
-
-        // Красота для userStatus
-        userStatus.text = "pew pew madafakas"
-        userStatus.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        userStatus.textColor = .gray
-
-        // Красота для statusButton
-        statusButton.setTitle("Set status", for: .normal)
-        statusButton.setTitleColor(.white, for: .normal)
-        statusButton.layer.backgroundColor = UIColor.systemBlue.cgColor
-        statusButton.layer.cornerRadius = 14
-        statusButton.layer.shadowColor = UIColor.black.cgColor
-        statusButton.layer.shadowOffset = CGSize(width: 4, height: 4)
-        statusButton.layer.shadowOpacity = 0.7
-        // Обработка нажатия на кнопку
-        statusButton.addTarget(self, action: #selector(isPressed), for: .touchUpInside)
-        
-        // Красота для statusField
-        statusField.layer.backgroundColor = UIColor.white.cgColor
-        statusField.layer.borderWidth = 1
-        statusField.layer.borderColor = UIColor.black.cgColor
-        statusField.layer.cornerRadius = 12
-        statusField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        statusField.textColor = .black
-        statusField.textAlignment = .natural
-        statusField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: statusField.frame.height))
-        statusField.leftViewMode = .always
-        // На макете не видно, есть ли placeholder, но я добавила
-        statusField.placeholder = "Today I feel like..."
-        statusField.addTarget(self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
-    
+        NSLayoutConstraint.activate(constraints)
     }
     
-    override func layoutSubviews() {
-        // Считаем фреймы
-        profileImage.frame = CGRect(x: self.safeAreaInsets.left + 16, y: self.safeAreaInsets.top + 16, width: 110, height: 110)
-        profileImage.layer.cornerRadius = profileImage.frame.size.height/2
-        userName.frame = CGRect(x: profileImage.frame.maxX + 16, y: self.safeAreaInsets.top + 27, width: self.frame.width - self.safeAreaInsets.left - self.safeAreaInsets.right - 48 - profileImage.frame.maxX, height: 20)
-        userStatus.frame = CGRect(x: profileImage.frame.maxX + 16, y: self.safeAreaInsets.top + 27 + userName.frame.height + 16, width: self.frame.width - self.safeAreaInsets.left - self.safeAreaInsets.right - profileImage.frame.maxX - 48, height: 14)
-        statusButton.frame = CGRect(x: self.safeAreaInsets.left + 16, y: profileImage.frame.maxY + 16, width: self.bounds.width - self.safeAreaInsets.left - self.safeAreaInsets.right - 32, height: 50)
-        statusField.frame = CGRect(x: profileImage.frame.maxX + 16, y: statusButton.frame.minY - 16 - statusField.frame.height, width: self.frame.width - self.safeAreaInsets.left - self.safeAreaInsets.right - 48 - profileImage.frame.width, height: 40)
-    }
+    private var inset: CGFloat { return 16 }
     
     // Функция для обработки нажатия на кнопку
     @objc func isPressed() {
