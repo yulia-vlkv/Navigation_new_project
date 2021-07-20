@@ -101,21 +101,53 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
-		EFCC66AF2658E2450090CD73 /* Profile */ = {
+		EF25DCCB26A6B85900577166 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				EF25DCB526A02A6E00577166 /* allPosts.swift */,
+				EF25DCC526A466A600577166 /* allPhotos.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		EF25DCCC26A6B87400577166 /* struct */ = {
+			isa = PBXGroup;
+			children = (
+				EF25DCB726A02AFC00577166 /* PostVK.swift */,
+				EF25DCC726A46A4900577166 /* ImageVK.swift */,
+			);
+			path = struct;
+			sourceTree = "<group>";
+		};
+		EF25DCCD26A6B8D400577166 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				EFCC66B02658E3C20090CD73 /* ProfileViewController.swift */,
 				EF25DCC926A4754A00577166 /* PhotosTableViewCell.swift */,
-				EF25DCC226A462D000577166 /* PhotosViewController.swift */,
-				EF25DCC026A4626300577166 /* PhotosCollectionViewCell.swift */,
 				EFCC66B22658E4070090CD73 /* ProfileHeaderView.swift */,
 				EF25DCB32691CD2500577166 /* LogInViewController.swift */,
 				EF25DCBC26A2FCAA00577166 /* ProfileTableHeaderView.swift */,
-				EF25DCB526A02A6E00577166 /* allPosts.swift */,
-				EF25DCC526A466A600577166 /* allPhotos.swift */,
-				EF25DCB726A02AFC00577166 /* PostVK.swift */,
-				EF25DCC726A46A4900577166 /* ImageVK.swift */,
 				EF25DCB926A02BBA00577166 /* PostTableViewCell.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		EF25DCCE26A6B8DD00577166 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				EF25DCC226A462D000577166 /* PhotosViewController.swift */,
+				EF25DCC026A4626300577166 /* PhotosCollectionViewCell.swift */,
+			);
+			path = Photos;
+			sourceTree = "<group>";
+		};
+		EFCC66AF2658E2450090CD73 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				EF25DCCD26A6B8D400577166 /* Profile */,
+				EF25DCCE26A6B8DD00577166 /* Photos */,
+				EF25DCCC26A6B87400577166 /* struct */,
+				EF25DCCB26A6B85900577166 /* Storage */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
