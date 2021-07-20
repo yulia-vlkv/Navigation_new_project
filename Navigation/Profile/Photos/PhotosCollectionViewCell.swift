@@ -19,9 +19,9 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         return image
     }()
     
-    var photo: UIImage? {
+    var photo: ImageVK? {
             didSet {
-                collectionImageView.image = photo
+                collectionImageView.image = photo?.image
             }
         }
     

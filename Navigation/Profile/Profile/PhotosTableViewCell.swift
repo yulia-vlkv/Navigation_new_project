@@ -89,10 +89,10 @@ class PhotosTableViewCell: UITableViewCell {
         contentView.addSubview(arrow)
         contentView.addSubview(pictures)
         
-        pictures.addSubview(photo1)
-        pictures.addSubview(photo2)
-        pictures.addSubview(photo3)
-        pictures.addSubview(photo4)
+        pictures.addArrangedSubview(photo1)
+        pictures.addArrangedSubview(photo2)
+        pictures.addArrangedSubview(photo3)
+        pictures.addArrangedSubview(photo4)
         
         let constraints = [
             photoLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
@@ -107,8 +107,7 @@ class PhotosTableViewCell: UITableViewCell {
             pictures.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset),
             pictures.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
             pictures.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset),
-            pictures.heightAnchor.constraint(equalToConstant: 200)
-//          (contentView.frame.size.width - inset * 2 - spacing * 3) / 4)
+            pictures.heightAnchor.constraint(equalToConstant: (contentView.frame.size.width - inset * 2 - spacing * 3) / 4)
         ]
         
         NSLayoutConstraint.activate(constraints)
