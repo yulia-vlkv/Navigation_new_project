@@ -39,41 +39,20 @@ class PhotosTableViewCell: UITableViewCell {
         return stackView
     }()
     
-    private let photo1: UIImageView = {
-        let image = UIImageView(image: #imageLiteral(resourceName: "CometNearJupitersAsteroids"))
-        image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 6
-        image.clipsToBounds = true
-        image.toAutoLayout()
-        return image
-    }()
-    
-    private let photo2: UIImageView = {
-        let image = UIImageView(image: #imageLiteral(resourceName: "FamousBlackHole"))
-        image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 6
-        image.clipsToBounds = true
-        image.toAutoLayout()
-        return image
-    }()
-    
-    private let photo3: UIImageView = {
-        let image = UIImageView(image: #imageLiteral(resourceName: "LegacyFellows"))
-        image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 6
-        image.clipsToBounds = true
-        image.toAutoLayout()
-        return image
-    }()
-    
-    private let photo4: UIImageView = {
-        let image = UIImageView(image: #imageLiteral(resourceName: "VeilNebula"))
-        image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 6
-        image.clipsToBounds = true
-        image.toAutoLayout()
-        return image
-    }()
+    // Цикл без функции не работает, не знала, как лучше оформить, поэтому оставила так.
+    // Хотела, чтобы отражались последние 4 картинки, а не первые. Добавила картинку в конец массива, вроде робит.
+    private func pickFourPictures() {
+        var picIndex = allPhotos.photoArray.count - 1
+        while picIndex > allPhotos.photoArray.count - 5 {
+            let image = UIImageView(image: allPhotos.photoArray[picIndex])
+            image.contentMode = .scaleAspectFill
+            image.layer.cornerRadius = 6
+            image.clipsToBounds = true
+            image.toAutoLayout()
+            pictures.addArrangedSubview(image)
+            picIndex -= 1
+        }
+    }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
@@ -89,10 +68,7 @@ class PhotosTableViewCell: UITableViewCell {
         contentView.addSubview(arrow)
         contentView.addSubview(pictures)
         
-        pictures.addArrangedSubview(photo1)
-        pictures.addArrangedSubview(photo2)
-        pictures.addArrangedSubview(photo3)
-        pictures.addArrangedSubview(photo4)
+        pickFourPictures()
         
         let constraints = [
             photoLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset),
@@ -115,4 +91,5 @@ class PhotosTableViewCell: UITableViewCell {
     
     private var inset: CGFloat {return 12}
     private var spacing: CGFloat {return 8}
+
 }
