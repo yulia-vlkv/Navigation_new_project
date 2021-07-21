@@ -34,4 +34,7 @@ struct allPhotos {
         UIImage(named: "VeilNebula"),
         UIImage(named: "angryCat")
     ]
+    
+    static let photoArrayReversed = Array(photoArray.reversed())
 }
+

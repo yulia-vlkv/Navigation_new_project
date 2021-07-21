@@ -13,7 +13,6 @@ class PhotosViewController: UIViewController {
     private let layout = UICollectionViewFlowLayout()
     private lazy var photoCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     private let collectionCellID = "collectionCellID"
-    private let arrayOfPhotos = allPhotos.photoArray
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,13 +49,13 @@ class PhotosViewController: UIViewController {
 
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrayOfPhotos.count
+        return allPhotos.photoArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PhotosCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCellID", for: indexPath) as! PhotosCollectionViewCell
         
-        cell.photo = allPhotos.photoArray.reversed()[indexPath.item]
+        cell.photo = allPhotos.photoArrayReversed[indexPath.item]
         return cell
     }
 }
@@ -77,5 +76,6 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
     }
+    
     private var inset: CGFloat {return 8}
 }
