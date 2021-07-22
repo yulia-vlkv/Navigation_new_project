@@ -74,11 +74,8 @@ extension ProfileViewController: UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            return ProfileHeaderView()
-        } else {
-            return nil
-        }
+        guard section == 0 else { return nil }
+        return ProfileHeaderView()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -91,9 +88,8 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            let photosVC = storyboard?.instantiateViewController(identifier: "PhotosVC") as! PhotosViewController
+            let photosVC = PhotosViewController()
             navigationController?.pushViewController(photosVC, animated: true)
-            
         } else {
             return tableView.deselectRow(at: indexPath, animated: true)
         }

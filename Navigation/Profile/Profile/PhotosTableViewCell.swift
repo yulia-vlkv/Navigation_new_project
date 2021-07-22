@@ -39,20 +39,19 @@ class PhotosTableViewCell: UITableViewCell {
         return stackView
     }()
     
-    // Цикл без функции не работает, не знала, как лучше оформить, поэтому оставила так.
-    // Хотела, чтобы отражались последние 4 картинки, а не первые. Добавила картинку в конец массива, вроде робит.
     private func pickFourPictures() {
-        var picIndex = allPhotos.photoArray.count - 1
-        while picIndex > allPhotos.photoArray.count - 5 {
-            let image = UIImageView(image: allPhotos.photoArray[picIndex])
+        for picIndex in 0...3 {
+            let image = UIImageView(image: allPhotos.photoArrayReversed[picIndex])
             image.contentMode = .scaleAspectFill
             image.layer.cornerRadius = 6
             image.clipsToBounds = true
             image.toAutoLayout()
             pictures.addArrangedSubview(image)
-            picIndex -= 1
         }
     }
+    
+    private var inset: CGFloat {return 12}
+    private var spacing: CGFloat {return 8}
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
@@ -88,8 +87,4 @@ class PhotosTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate(constraints)
     }
-    
-    private var inset: CGFloat {return 12}
-    private var spacing: CGFloat {return 8}
-
 }
