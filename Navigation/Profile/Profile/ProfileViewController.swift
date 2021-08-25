@@ -24,6 +24,13 @@ class ProfileViewController: UIViewController {
     private func setUpTableView(){
         view.addSubview(tableView)
         tableView.toAutoLayout()
+        
+        #if DEBUG
+        tableView.backgroundColor = .cyan
+        #else
+        tableView.backgroundColor = .systemGray6
+        #endif
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
