@@ -164,7 +164,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         NSLayoutConstraint.activate(constraints)
     }
     
-    // MARK: Keyboard
+// MARK: Keyboard
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
