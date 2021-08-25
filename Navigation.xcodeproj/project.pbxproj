@@ -84,6 +84,7 @@
 		060782B0250CE27700A87020 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				EFCCFEBF26D6751A007B4EBA /* Post */,
 				EFCC66AF2658E2450090CD73 /* Profile */,
 				060782B1250CE27700A87020 /* AppDelegate.swift */,
 				060782B3250CE27700A87020 /* SceneDelegate.swift */,
@@ -92,9 +93,6 @@
 				060782BA250CE27A00A87020 /* Assets.xcassets */,
 				060782BC250CE27A00A87020 /* LaunchScreen.storyboard */,
 				060782BF250CE27A00A87020 /* Info.plist */,
-				060782C5250CEB0A00A87020 /* InfoViewController.swift */,
-				060782C7250CEE5D00A87020 /* PostViewController.swift */,
-				060782C9250CEE7200A87020 /* Post.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -119,10 +117,9 @@
 		EF25DCCD26A6B8D400577166 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				EFCC66B02658E3C20090CD73 /* ProfileViewController.swift */,
-				EF25DCC926A4754A00577166 /* PhotosTableViewCell.swift */,
-				EFCC66B22658E4070090CD73 /* ProfileHeaderView.swift */,
 				EF25DCB32691CD2500577166 /* LogInViewController.swift */,
+				EFCC66B02658E3C20090CD73 /* ProfileViewController.swift */,
+				EFCC66B22658E4070090CD73 /* ProfileHeaderView.swift */,
 				EF25DCBC26A2FCAA00577166 /* ProfileTableHeaderView.swift */,
 				EF25DCB926A02BBA00577166 /* PostTableViewCell.swift */,
 			);
@@ -134,6 +131,7 @@
 			children = (
 				EF25DCC226A462D000577166 /* PhotosViewController.swift */,
 				EF25DCC026A4626300577166 /* PhotosCollectionViewCell.swift */,
+				EF25DCC926A4754A00577166 /* PhotosTableViewCell.swift */,
 			);
 			path = Photos;
 			sourceTree = "<group>";
@@ -147,6 +145,16 @@
 				EF25DCCB26A6B85900577166 /* Storage */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		EFCCFEBF26D6751A007B4EBA /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				060782C5250CEB0A00A87020 /* InfoViewController.swift */,
+				060782C7250CEE5D00A87020 /* PostViewController.swift */,
+				060782C9250CEE7200A87020 /* Post.swift */,
+			);
+			path = Post;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
