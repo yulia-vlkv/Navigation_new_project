@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileHeaderView: UIView {
     
@@ -88,38 +89,48 @@ class ProfileHeaderView: UIView {
         addSubview(statusButton)
         addSubview(statusField)
         
-        let constraints = [
-            profileImage.topAnchor.constraint(equalTo: self.topAnchor, constant: inset),
-            profileImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: inset),
-            profileImage.heightAnchor.constraint(equalToConstant: 110),
-            profileImage.widthAnchor.constraint(equalTo: profileImage.heightAnchor),
-            
-            userName.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
-            userName.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: inset),
-            userName.heightAnchor.constraint(equalToConstant: 20),
-            userName.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -158),
-            
-            userStatus.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: inset),
-            userStatus.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: inset),
-            userStatus.heightAnchor.constraint(equalToConstant: 14),
-            userStatus.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -158),
-            
-            statusButton.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: inset),
-            statusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: inset),
-            statusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -inset),
-            statusButton.heightAnchor.constraint(equalToConstant: 40),
-            statusButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -inset),
-            
-            statusField.topAnchor.constraint(equalTo: userStatus.bottomAnchor, constant: inset),
-            statusField.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: inset),
-            statusField.heightAnchor.constraint(equalToConstant: 40),
-            statusField.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -158)
-        ]
+        profileImage.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(inset)
+            make.leading.equalToSuperview().inset(inset)
+            make.height.width.equalTo(heightAndWidth)
+        }
         
-        NSLayoutConstraint.activate(constraints)
+        userName.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(topInset)
+            make.leading.equalTo(profileImage.snp.trailing).offset(inset)
+            make.trailing.equalToSuperview().inset(inset)
+            make.height.equalTo(userNameHeight)
+        }
+        
+        userStatus.snp.makeConstraints { make in
+            make.top.equalTo(userName.snp.bottom).offset(inset)
+            make.leading.equalTo(profileImage.snp.trailing).offset(inset)
+            make.trailing.equalToSuperview().inset(inset)
+            make.height.equalTo(userStatusHeight)
+        }
+        
+        statusButton.snp.makeConstraints { make in
+            make.top.equalTo(profileImage.snp.bottom).offset(inset)
+            make.leading.trailing.equalToSuperview().inset(inset)
+            make.height.equalTo(statusHeight)
+            make.bottom.equalToSuperview().inset(inset)
+        }
+        
+        statusField.snp.makeConstraints { make in
+            make.top.equalTo(userStatus.snp.bottom).offset(inset)
+            make.leading.equalTo(profileImage.snp.trailing).offset(inset)
+            make.trailing.equalToSuperview().inset(inset)
+            make.height.equalTo(statusHeight)
+        }
     }
     
     private var inset: CGFloat { return 16 }
+    private var topInset: CGFloat { return 27 }
+    private var userNameHeight: CGFloat { return 20 }
+    private var userStatusHeight: CGFloat { return 14 }
+    private var statusHeight: CGFloat { return 40 }
+    private  var heightAndWidth: CGFloat { return 110 }
+    
     
     // Функция для обработки нажатия на кнопку
     @objc func isPressed() {
