@@ -98,8 +98,28 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }()
     
     @objc private func tapLogInButton() {
-        let controller = storyboard?.instantiateViewController(identifier: "ProfileViewController")
-        navigationController?.pushViewController(controller!, animated: false)
+        #if DEBUG
+        if let userName = userNameField.text, let _ = testUserService.returnUser(userName: userName) {
+            let profileVC = ProfileViewController(userService: testUserService, userName: userName)
+            navigationController?.pushViewController(profileVC, animated: true)
+        } else {
+            showLoginAlert()
+            }
+        #else
+        if let userName = userNameField.text, let _ = someUserService.returnUser(userName: userName) {
+            let profileVC = ProfileViewController(userService: someUserService, userName: userName)
+            navigationController?.pushViewController(profileVC, animated: true)
+        } else {
+             showLoginAlert()
+        }
+        #endif
+    }
+    
+    private func showLoginAlert(){
+        let alertController = UIAlertController(title: "Error", message: "Invalid Username", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {

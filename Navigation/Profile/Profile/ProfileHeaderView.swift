@@ -11,7 +11,7 @@ import SnapKit
 
 class ProfileHeaderView: UIView {
     
-    private let profileImage: UIImageView = {
+    let profileImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "angryCat")
         image.contentMode = .scaleAspectFill
@@ -23,7 +23,7 @@ class ProfileHeaderView: UIView {
         return image
     }()
     
-    private let userName: UILabel = {
+    let userName: UILabel = {
         let label = UILabel()
         label.text = "Gavryusha the Cat"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -32,7 +32,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    private let userStatus: UILabel = {
+    let userStatus: UILabel = {
         let label = UILabel()
         label.text = "pew pew madafakas"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)

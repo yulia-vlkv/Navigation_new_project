@@ -11,7 +11,7 @@ import UIKit
 
 class TestUserService: UserService {
     
-    let testUser: User = User(userName: "Blah Blah", userImage: #imageLiteral(resourceName: "blah.jpeg"), userStatus: "Blah-blah-blah-blah-blah!!")
+    let testUser: User = User(userName: "Blah", userImage: #imageLiteral(resourceName: "blah.jpeg"), userStatus: "Blah-blah-blah-blah-blah!!")
     
     func returnUser(userName: String) -> User? {
         

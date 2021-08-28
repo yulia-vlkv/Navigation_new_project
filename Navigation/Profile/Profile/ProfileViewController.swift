@@ -13,12 +13,25 @@ class ProfileViewController: UIViewController {
     private let tableView = UITableView(frame: .zero, style: .grouped)
     private let arrayOfPosts = allPosts.postArray
     let profileHeaderView = ProfileHeaderView()
+    let userService: UserService
+    let userName: String
+    
+    init(userService: UserService, userName: String) {
+        self.userService = userService
+        self.userName = userName
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         
         setUpTableView()
+        showUserData()
     }
     
     private func setUpTableView(){
@@ -44,6 +57,14 @@ class ProfileViewController: UIViewController {
         ]
         
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    private func showUserData() {
+        if let user = self.userService.returnUser(userName: self.userName) {
+            profileHeaderView.userName.text = user.userName
+            profileHeaderView.profileImage.image = user.userImage
+            profileHeaderView.userStatus.text = user.userStatus
+        }
     }
 }
 
