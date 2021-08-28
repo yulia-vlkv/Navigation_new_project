@@ -10,6 +10,9 @@ import UIKit
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
+    let someUserService = CurrentUserService()
+    let testUserService = TestUserService()
+    
     private let scroll: UIScrollView = {
         let scroll = UIScrollView()
         scroll.backgroundColor = .white
@@ -41,7 +44,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         return logInView
     }()
     
-    private let logIn: UITextField = {
+    private let userNameField: UITextField = {
         let textField = UITextField()
         textField.font = UIFont.systemFont(ofSize: 16)
         textField.textColor = .black
@@ -103,10 +106,13 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         navigationController?.navigationBar.isHidden = true
-        logIn.delegate = self
+        userNameField.delegate = self
         password.delegate = self
         setupViews()
     }
+    
+    private var inset: CGFloat { return 16 }
+    
 
     private func setupViews() {
         
@@ -115,53 +121,46 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         scroll.addSubview(mainView)
         
-        mainView.addSubview(logo)
-        mainView.addSubview(logInView)
-        mainView.addSubview(logInButton)
+        mainView.addSubviews(logo, logInView, logInButton)
         
-        logInView.addSubview(logIn)
-        logInView.addSubview(password)
-
-        let constraints = [
-            scroll.topAnchor.constraint(equalTo: view.topAnchor),
-            scroll.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scroll.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scroll.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            scroll.heightAnchor.constraint(equalTo: view.heightAnchor),
-            scroll.widthAnchor.constraint(equalTo: view.widthAnchor),
-            
-            mainView.topAnchor.constraint(equalTo: scroll.topAnchor),
-            mainView.bottomAnchor.constraint(equalTo: scroll.bottomAnchor),
-            mainView.leadingAnchor.constraint(equalTo: scroll.leadingAnchor),
-            mainView.trailingAnchor.constraint(equalTo: scroll.trailingAnchor),
-            mainView.heightAnchor.constraint(equalTo: scroll.heightAnchor),
-            mainView.widthAnchor.constraint(equalTo: scroll.widthAnchor),
-            
-            logo.widthAnchor.constraint(equalToConstant: 100),
-            logo.heightAnchor.constraint(equalToConstant: 100),
-            logo.centerXAnchor.constraint(equalTo: self.mainView.centerXAnchor),
-            logo.topAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.topAnchor, constant: 120),
-            
-            logInView.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 120),
-            logInView.leadingAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            logInView.trailingAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            logInView.heightAnchor.constraint(equalToConstant: 100),
-            
-            logIn.heightAnchor.constraint(equalToConstant: 50),
-            logIn.topAnchor.constraint(equalTo: self.logInView.topAnchor),
-            logIn.widthAnchor.constraint(equalTo: self.logInView.widthAnchor),
-            
-            password.heightAnchor.constraint(equalToConstant: 50),
-            password.bottomAnchor.constraint(equalTo: self.logInView.bottomAnchor),
-            password.widthAnchor.constraint(equalTo: self.logInView.widthAnchor),
-            
-            logInButton.topAnchor.constraint(equalTo: logInView.bottomAnchor, constant: 16),
-            logInButton.leadingAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            logInButton.trailingAnchor.constraint(equalTo: self.mainView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            logInButton.heightAnchor.constraint(equalToConstant: 50)
-        ]
-
-        NSLayoutConstraint.activate(constraints)
+        logInView.addSubviews(userNameField, password)
+        
+        scroll.snp.makeConstraints { make in
+            make.top.bottom.leading.trailing.width.height.equalToSuperview()
+        }
+        mainView.snp.makeConstraints { make in
+            make.top.bottom.leading.trailing.width.height.equalToSuperview()
+        }
+        
+        logo.snp.makeConstraints { make in
+            make.width.height.equalTo(100)
+            make.centerX.equalTo(self.view)
+            make.top.equalTo(mainView).inset(120)
+        }
+        
+        logInView.snp.makeConstraints { make in
+            make.top.equalTo(logo).offset(220)
+            make.leading.trailing.equalTo(mainView).inset(16)
+            make.height.equalTo(100)
+        }
+        
+        userNameField.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.width.equalTo(logInView)
+            make.top.equalTo(logInView)
+        }
+        
+        password.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.width.equalTo(logInView)
+            make.bottom.equalTo(logInView)
+        }
+        
+        logInButton.snp.makeConstraints { make in
+            make.top.equalTo(logInView.snp.bottom).offset(16)
+            make.leading.trailing.equalTo(mainView).inset(16)
+            make.height.equalTo(50)
+        }
     }
     
 // MARK: Keyboard
