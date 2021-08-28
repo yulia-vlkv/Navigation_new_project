@@ -32,6 +32,7 @@
 		EFCCFEDB26D68724007B4EBA /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFCCFEC526D68724007B4EBA /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EFCCFEE326D6878C007B4EBA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C9250CEE7200A87020 /* Post.swift */; };
 		EFCCFEE926D7F2A3007B4EBA /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = EFCCFEE826D7F2A3007B4EBA /* iOSIntPackage */; };
+		EFCCFEEE26DA6662007B4EBA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCCFEED26DA6662007B4EBA /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		EFCCFEC526D68724007B4EBA /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFCCFEC726D68724007B4EBA /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		EFCCFEC826D68724007B4EBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFCCFEED26DA6662007B4EBA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		060782B0250CE27700A87020 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				EFCCFEEC26DA6652007B4EBA /* UserData */,
 				EFCCFEBF26D6751A007B4EBA /* Post */,
 				EFCC66AF2658E2450090CD73 /* Profile */,
 				060782B1250CE27700A87020 /* AppDelegate.swift */,
@@ -230,6 +233,14 @@
 				EFCCFEC826D68724007B4EBA /* Info.plist */,
 			);
 			path = StorageService;
+			sourceTree = "<group>";
+		};
+		EFCCFEEC26DA6652007B4EBA /* UserData */ = {
+			isa = PBXGroup;
+			children = (
+				EFCCFEED26DA6662007B4EBA /* User.swift */,
+			);
+			path = UserData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -406,6 +417,7 @@
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
 				EF25DCC126A4626300577166 /* PhotosCollectionViewCell.swift in Sources */,
 				EF25DCC326A462D000577166 /* PhotosViewController.swift in Sources */,
+				EFCCFEEE26DA6662007B4EBA /* User.swift in Sources */,
 				EF25DCB626A02A6E00577166 /* allPosts.swift in Sources */,
 				EF25DCB826A02AFC00577166 /* PostVK.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
