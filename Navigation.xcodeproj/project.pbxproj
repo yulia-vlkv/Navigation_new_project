@@ -32,6 +32,11 @@
 		EFCCFEDB26D68724007B4EBA /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFCCFEC526D68724007B4EBA /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EFCCFEE326D6878C007B4EBA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C9250CEE7200A87020 /* Post.swift */; };
 		EFCCFEE926D7F2A3007B4EBA /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = EFCCFEE826D7F2A3007B4EBA /* iOSIntPackage */; };
+		EFCCFEEE26DA6662007B4EBA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCCFEED26DA6662007B4EBA /* User.swift */; };
+		EFCCFEF026DA6862007B4EBA /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCCFEEF26DA6862007B4EBA /* UserService.swift */; };
+		EFCCFEF226DA6905007B4EBA /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCCFEF126DA6905007B4EBA /* CurrentUserService.swift */; };
+		EFCCFEF526DA6B5B007B4EBA /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCCFEF426DA6B5B007B4EBA /* TestUserService.swift */; };
+		EFCCFEF726DA71A5007B4EBA /* addSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCCFEF626DA71A5007B4EBA /* addSubviews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +92,11 @@
 		EFCCFEC526D68724007B4EBA /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFCCFEC726D68724007B4EBA /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		EFCCFEC826D68724007B4EBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFCCFEED26DA6662007B4EBA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EFCCFEEF26DA6862007B4EBA /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		EFCCFEF126DA6905007B4EBA /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
+		EFCCFEF426DA6B5B007B4EBA /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
+		EFCCFEF626DA71A5007B4EBA /* addSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addSubviews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +143,7 @@
 		060782B0250CE27700A87020 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				EFCCFEEC26DA6652007B4EBA /* UserData */,
 				EFCCFEBF26D6751A007B4EBA /* Post */,
 				EFCC66AF2658E2450090CD73 /* Profile */,
 				060782B1250CE27700A87020 /* AppDelegate.swift */,
@@ -163,19 +174,20 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		EF25DCCB26A6B85900577166 /* Storage */ = {
+		EF25DCCB26A6B85900577166 /* Storages */ = {
 			isa = PBXGroup;
 			children = (
 				EF25DCB526A02A6E00577166 /* allPosts.swift */,
 				EF25DCC526A466A600577166 /* allPhotos.swift */,
 			);
-			path = Storage;
+			path = Storages;
 			sourceTree = "<group>";
 		};
 		EF25DCCC26A6B87400577166 /* struct */ = {
 			isa = PBXGroup;
 			children = (
 				EF25DCB726A02AFC00577166 /* PostVK.swift */,
+				EFCCFEF626DA71A5007B4EBA /* addSubviews.swift */,
 			);
 			path = struct;
 			sourceTree = "<group>";
@@ -208,7 +220,7 @@
 				EF25DCCD26A6B8D400577166 /* Profile */,
 				EF25DCCE26A6B8DD00577166 /* Photos */,
 				EF25DCCC26A6B87400577166 /* struct */,
-				EF25DCCB26A6B85900577166 /* Storage */,
+				EF25DCCB26A6B85900577166 /* Storages */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -230,6 +242,17 @@
 				EFCCFEC826D68724007B4EBA /* Info.plist */,
 			);
 			path = StorageService;
+			sourceTree = "<group>";
+		};
+		EFCCFEEC26DA6652007B4EBA /* UserData */ = {
+			isa = PBXGroup;
+			children = (
+				EFCCFEED26DA6662007B4EBA /* User.swift */,
+				EFCCFEEF26DA6862007B4EBA /* UserService.swift */,
+				EFCCFEF126DA6905007B4EBA /* CurrentUserService.swift */,
+				EFCCFEF426DA6B5B007B4EBA /* TestUserService.swift */,
+			);
+			path = UserData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -397,16 +420,21 @@
 			files = (
 				EF25DCC626A466A600577166 /* allPhotos.swift in Sources */,
 				EF25DCB42691CD2500577166 /* LogInViewController.swift in Sources */,
+				EFCCFEF026DA6862007B4EBA /* UserService.swift in Sources */,
 				EF25DCBD26A2FCAA00577166 /* ProfileTableHeaderView.swift in Sources */,
+				EFCCFEF226DA6905007B4EBA /* CurrentUserService.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				EF25DCCA26A4754A00577166 /* PhotosTableViewCell.swift in Sources */,
+				EFCCFEF526DA6B5B007B4EBA /* TestUserService.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				EFCC66B12658E3C20090CD73 /* ProfileViewController.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
 				EF25DCC126A4626300577166 /* PhotosCollectionViewCell.swift in Sources */,
 				EF25DCC326A462D000577166 /* PhotosViewController.swift in Sources */,
+				EFCCFEEE26DA6662007B4EBA /* User.swift in Sources */,
 				EF25DCB626A02A6E00577166 /* allPosts.swift in Sources */,
+				EFCCFEF726DA71A5007B4EBA /* addSubviews.swift in Sources */,
 				EF25DCB826A02AFC00577166 /* PostVK.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
 				EFCC66B32658E4070090CD73 /* ProfileHeaderView.swift in Sources */,

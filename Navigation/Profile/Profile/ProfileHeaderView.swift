@@ -11,7 +11,7 @@ import SnapKit
 
 class ProfileHeaderView: UIView {
     
-    private let profileImage: UIImageView = {
+    let profileImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "angryCat")
         image.contentMode = .scaleAspectFill
@@ -23,7 +23,7 @@ class ProfileHeaderView: UIView {
         return image
     }()
     
-    private let userName: UILabel = {
+    let userName: UILabel = {
         let label = UILabel()
         label.text = "Gavryusha the Cat"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -32,7 +32,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    private let userStatus: UILabel = {
+    let userStatus: UILabel = {
         let label = UILabel()
         label.text = "pew pew madafakas"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -73,6 +73,13 @@ class ProfileHeaderView: UIView {
         return textField
     }()
     
+    private var inset: CGFloat { return 16 }
+    private var topInset: CGFloat { return 27 }
+    private var userNameHeight: CGFloat { return 20 }
+    private var userStatusHeight: CGFloat { return 14 }
+    private var statusHeight: CGFloat { return 40 }
+    private  var heightAndWidth: CGFloat { return 110 }
+    
     private var statusText: String = String()
     
     @available(*, unavailable)
@@ -82,12 +89,8 @@ class ProfileHeaderView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-    
-        addSubview(profileImage)
-        addSubview(userName)
-        addSubview(userStatus)
-        addSubview(statusButton)
-        addSubview(statusField)
+        
+        addSubviews(profileImage, userName, userStatus, statusButton, statusField)
         
         profileImage.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(inset)
@@ -123,14 +126,6 @@ class ProfileHeaderView: UIView {
             make.height.equalTo(statusHeight)
         }
     }
-    
-    private var inset: CGFloat { return 16 }
-    private var topInset: CGFloat { return 27 }
-    private var userNameHeight: CGFloat { return 20 }
-    private var userStatusHeight: CGFloat { return 14 }
-    private var statusHeight: CGFloat { return 40 }
-    private  var heightAndWidth: CGFloat { return 110 }
-    
     
     // Функция для обработки нажатия на кнопку
     @objc func isPressed() {
