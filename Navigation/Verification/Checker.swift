@@ -11,7 +11,7 @@ import UIKit
 
 class Checker {
     
-    static var checker = Checker()
+    static var instance = Checker()
     
     #if DEBUG
     private let login = "Test"
@@ -21,10 +21,14 @@ class Checker {
     
     private let password = "StrongPassword"
     
+    private let correctInfo = "/(login)/(password)".hash
+    
     private init() {}
     
     func checkLoginData(filledInLogin: String, filledInPassword: String) -> Bool {
-        if filledInLogin == login && filledInPassword == password {
+//        let currentInfo = "/(filledInLogin)/(filledInPassword)".hash
+//        if currentInfo == correctInfo {
+        if filledInLogin.hash == login.hash && filledInPassword.hash == password.hash {
             print("Login and password are correct")
             return true
         } else {
