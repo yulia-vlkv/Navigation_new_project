@@ -21,18 +21,20 @@ class Checker {
     
     private let password = "StrongPassword"
     
-    private let correctInfo = "/(login)/(password)".hash
-    
     private init() {}
     
     func checkLoginData(filledInLogin: String, filledInPassword: String) -> Bool {
-//        let currentInfo = "/(filledInLogin)/(filledInPassword)".hash
-//        if currentInfo == correctInfo {
-        if filledInLogin.hash == login.hash && filledInPassword.hash == password.hash {
+        let correctInfo = "\(login)\(password)".hash
+        let currentInfo = "\(filledInLogin)\(filledInPassword)".hash
+        if currentInfo == correctInfo {
             print("Login and password are correct")
+            print(currentInfo)
+            print(correctInfo)
             return true
         } else {
             print("There's a mistake")
+            print(currentInfo)
+            print(correctInfo)
             return false
         }
     }
