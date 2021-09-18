@@ -26,6 +26,8 @@
 		EF25DCC626A466A600577166 /* allPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCC526A466A600577166 /* allPhotos.swift */; };
 		EF25DCCA26A4754A00577166 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCC926A4754A00577166 /* PhotosTableViewCell.swift */; };
 		EFAFCFFE26F3915400C74923 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAFCFFD26F3915400C74923 /* Checker.swift */; };
+		EFAFD00026F5D78600C74923 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAFCFFF26F5D78600C74923 /* LoginViewControllerDelegate.swift */; };
+		EFAFD00226F5D8A000C74923 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAFD00126F5D8A000C74923 /* LoginInspector.swift */; };
 		EFCC66B12658E3C20090CD73 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC66B02658E3C20090CD73 /* ProfileViewController.swift */; };
 		EFCC66B32658E4070090CD73 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC66B22658E4070090CD73 /* ProfileHeaderView.swift */; };
 		EFCCFED726D68724007B4EBA /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = EFCCFEC726D68724007B4EBA /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -89,6 +91,8 @@
 		EF25DCC526A466A600577166 /* allPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allPhotos.swift; sourceTree = "<group>"; };
 		EF25DCC926A4754A00577166 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		EFAFCFFD26F3915400C74923 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
+		EFAFCFFF26F5D78600C74923 /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
+		EFAFD00126F5D8A000C74923 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		EFCC66B02658E3C20090CD73 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EFCC66B22658E4070090CD73 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		EFCCFEC526D68724007B4EBA /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -221,6 +225,8 @@
 			children = (
 				EF25DCB32691CD2500577166 /* LogInViewController.swift */,
 				EFAFCFFD26F3915400C74923 /* Checker.swift */,
+				EFAFCFFF26F5D78600C74923 /* LoginViewControllerDelegate.swift */,
+				EFAFD00126F5D8A000C74923 /* LoginInspector.swift */,
 			);
 			path = Verification;
 			sourceTree = "<group>";
@@ -435,6 +441,7 @@
 				EFAFCFFE26F3915400C74923 /* Checker.swift in Sources */,
 				EF25DCBD26A2FCAA00577166 /* ProfileTableHeaderView.swift in Sources */,
 				EFCCFEF226DA6905007B4EBA /* CurrentUserService.swift in Sources */,
+				EFAFD00026F5D78600C74923 /* LoginViewControllerDelegate.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				EF25DCCA26A4754A00577166 /* PhotosTableViewCell.swift in Sources */,
@@ -443,6 +450,7 @@
 				EFCC66B12658E3C20090CD73 /* ProfileViewController.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
 				EF25DCC126A4626300577166 /* PhotosCollectionViewCell.swift in Sources */,
+				EFAFD00226F5D8A000C74923 /* LoginInspector.swift in Sources */,
 				EF25DCC326A462D000577166 /* PhotosViewController.swift in Sources */,
 				EFCCFEEE26DA6662007B4EBA /* User.swift in Sources */,
 				EF25DCB626A02A6E00577166 /* allPosts.swift in Sources */,
