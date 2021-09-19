@@ -28,13 +28,9 @@ class Checker {
         let currentInfo = "\(filledInLogin)\(filledInPassword)".hash
         if currentInfo == correctInfo {
             print("Login and password are correct")
-            print(currentInfo)
-            print(correctInfo)
             return true
         } else {
             print("There's a mistake")
-            print(currentInfo)
-            print(correctInfo)
             return false
         }
     }
