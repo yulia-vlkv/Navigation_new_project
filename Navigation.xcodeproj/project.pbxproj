@@ -28,6 +28,7 @@
 		EFAFCFFE26F3915400C74923 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAFCFFD26F3915400C74923 /* Checker.swift */; };
 		EFAFD00026F5D78600C74923 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAFCFFF26F5D78600C74923 /* LoginViewControllerDelegate.swift */; };
 		EFAFD00226F5D8A000C74923 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAFD00126F5D8A000C74923 /* LoginInspector.swift */; };
+		EFAFD00426F6F0CE00C74923 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAFD00326F6F0CE00C74923 /* LoginFactory.swift */; };
 		EFCC66B12658E3C20090CD73 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC66B02658E3C20090CD73 /* ProfileViewController.swift */; };
 		EFCC66B32658E4070090CD73 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC66B22658E4070090CD73 /* ProfileHeaderView.swift */; };
 		EFCCFED726D68724007B4EBA /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = EFCCFEC726D68724007B4EBA /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -93,6 +94,7 @@
 		EFAFCFFD26F3915400C74923 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		EFAFCFFF26F5D78600C74923 /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
 		EFAFD00126F5D8A000C74923 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
+		EFAFD00326F6F0CE00C74923 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		EFCC66B02658E3C20090CD73 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EFCC66B22658E4070090CD73 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		EFCCFEC526D68724007B4EBA /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,6 +229,7 @@
 				EFAFCFFD26F3915400C74923 /* Checker.swift */,
 				EFAFCFFF26F5D78600C74923 /* LoginViewControllerDelegate.swift */,
 				EFAFD00126F5D8A000C74923 /* LoginInspector.swift */,
+				EFAFD00326F6F0CE00C74923 /* LoginFactory.swift */,
 			);
 			path = Verification;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				EFCC66B12658E3C20090CD73 /* ProfileViewController.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
+				EFAFD00426F6F0CE00C74923 /* LoginFactory.swift in Sources */,
 				EF25DCC126A4626300577166 /* PhotosCollectionViewCell.swift in Sources */,
 				EFAFD00226F5D8A000C74923 /* LoginInspector.swift in Sources */,
 				EF25DCC326A462D000577166 /* PhotosViewController.swift in Sources */,
