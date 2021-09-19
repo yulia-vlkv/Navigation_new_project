@@ -32,7 +32,7 @@ class Checker {
             return true
         } else {
             print("There's a mistake")
-            print(currentInfo, "!=", correctInfo)
+            print(currentInfo, " != ", correctInfo)
             return false
         }
     }
