@@ -10,6 +10,7 @@ import UIKit
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
+    weak var checkerDelegate: LoginViewControllerDelegate?
     weak var loginFactory: MyLoginFactory?
     
     let someUserService = CurrentUserService()
