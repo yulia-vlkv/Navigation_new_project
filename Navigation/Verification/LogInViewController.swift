@@ -82,42 +82,32 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
-    private let logInButton: UIButton = {
+    private lazy var logInButton: UIButton = {
         let bluePixel = UIImage(named: "bluePixel")
-        let logInButton = UIButton(type: .system)
-        logInButton.setBackgroundImage(bluePixel, for: .normal)
-        let selectedPixel: UIImage = (bluePixel?.alpha(0.8))!
-        logInButton.setBackgroundImage(selectedPixel, for: .selected)
-        logInButton.setBackgroundImage(selectedPixel, for: .highlighted)
-        logInButton.setBackgroundImage(selectedPixel, for: .disabled)
-        logInButton.layer.cornerRadius = 10
-        logInButton.layer.masksToBounds = true
-        logInButton.setTitle("Log In", for: .normal)
-        logInButton.setTitleColor(.white, for: .normal)
-        logInButton.titleLabel?.font = UIFont(name: "default", size: 16)
-        logInButton.addTarget(self, action: #selector(tapLogInButton), for: .touchUpInside)
-        logInButton.toAutoLayout()
-        return logInButton
-    }()
-    
-    @objc private func tapLogInButton() {
-        
-        #if DEBUG
-        let userService = TestUserService()
-        #else
-        let userService = CurrentUserService()
-        #endif
-        
-        if let username = userNameField.text,
-           let password = passwordField.text,
-           let inspector = self.loginFactory?.createLoginInspector(),
-           inspector.checkLoginTextfields(filledInLogin: username, filledInPassword: password) {
-            let profileVC = ProfileViewController(userService: userService, userName: username)
-            navigationController?.pushViewController(profileVC, animated: true)
-        } else {
-            showLoginAlert()
+        let button = CustomButton(title: "Log In", titleColor: .white, backgroungColor: nil, backgroungImage: bluePixel, cornerRadius: 10) { [self] in
+            
+            #if DEBUG
+            let userService = TestUserService()
+            #else
+            let userService = CurrentUserService()
+            #endif
+            
+            if let username = userNameField.text,
+               let password = passwordField.text,
+               let inspector = self.loginFactory?.createLoginInspector(),
+               inspector.checkLoginTextfields(filledInLogin: username, filledInPassword: password) {
+                let profileVC = ProfileViewController(userService: userService, userName: username)
+                    navigationController?.pushViewController(profileVC, animated: true)
+            } else {
+                showLoginAlert()
+            }
         }
-    }
+
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = UIFont(name: "default", size: 16)
+        
+        return button
+    }()
     
     private func showLoginAlert(){
         let alertController = UIAlertController(title: "Error", message: "Invalid Username", preferredStyle: .alert)
