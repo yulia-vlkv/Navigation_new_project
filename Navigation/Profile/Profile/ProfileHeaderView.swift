@@ -42,7 +42,13 @@ class ProfileHeaderView: UIView {
     }()
     
     private lazy var statusButton: UIButton = {
-        let button = CustomButton(title: "Set status", titleColor: .white, backgroungColor: UIColor.systemBlue, backgroungImage: nil, cornerRadius: 14) { [self] in self.userStatus.text = statusText }
+        let button = CustomButton(
+            title: "Set status",
+            titleColor: .white,
+            backgroungColor: UIColor.systemBlue,
+            backgroungImage: nil,
+            cornerRadius: 14) 
+        { [self] in self.userStatus.text = statusText }
         
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 4, height: 4)

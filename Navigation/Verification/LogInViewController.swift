@@ -48,43 +48,43 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }()
     
     private let userNameField: UITextField = {
-        let textField = UITextField()
-        textField.font = UIFont.systemFont(ofSize: 16)
-        textField.textColor = .black
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField .frame.height))
-        textField.leftViewMode = .always
-        textField.autocapitalizationType = .none
-        textField.clipsToBounds = true
-        textField.placeholder = "Email or phone"
-        textField.returnKeyType = UIReturnKeyType.done
-        textField.layer.backgroundColor = UIColor.systemGray6.cgColor
+        let textField = CustomTextField(
+            font: UIFont.systemFont(ofSize: 16),
+            textColor: .black,
+            backgroundColor: UIColor.systemGray6,
+            placeholder: "Email or phone")
+    
         textField.tintColor = UIColor(named: "periwinkleBlue")
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
-        textField.toAutoLayout()
+    
         return textField
     }()
     
     private let passwordField: UITextField = {
-        let textField = UITextField()
-        textField.font = UIFont.systemFont(ofSize: 16)
-        textField.textColor = .black
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField .frame.height))
-        textField.leftViewMode = .always
-        textField.autocapitalizationType = .none
-        textField.clipsToBounds = true
+        let textField = CustomTextField(
+            font: UIFont.systemFont(ofSize: 16),
+            textColor: .black,
+            backgroundColor: UIColor.systemGray6,
+            placeholder: "Password")
+        
         textField.isSecureTextEntry = true
-        textField.placeholder = "Password"
         textField.returnKeyType = UIReturnKeyType.done
-        textField.layer.backgroundColor = UIColor.systemGray6.cgColor
         textField.tintColor = UIColor(named: "periwinkleBlue")
-        textField.toAutoLayout()
+        
         return textField
     }()
     
     private lazy var logInButton: UIButton = {
         let bluePixel = UIImage(named: "bluePixel")
-        let button = CustomButton(title: "Log In", titleColor: .white, backgroungColor: nil, backgroungImage: bluePixel, cornerRadius: 10) { [self] in
+        let button = CustomButton(
+            title: "Log In",
+            titleColor: .white,
+            backgroungColor: nil,
+            backgroungImage: bluePixel,
+            cornerRadius: 10)
+        
+        { [self] in
             
             #if DEBUG
             let userService = TestUserService()

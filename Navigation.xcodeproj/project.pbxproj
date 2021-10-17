@@ -42,6 +42,7 @@
 		EFCCFEF526DA6B5B007B4EBA /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCCFEF426DA6B5B007B4EBA /* TestUserService.swift */; };
 		EFCCFEF726DA71A5007B4EBA /* addSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCCFEF626DA71A5007B4EBA /* addSubviews.swift */; };
 		EFE64ED0271BF9C0009C8CC2 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE64ECF271BF9C0009C8CC2 /* CustomButton.swift */; };
+		EFE64ED2271C4277009C8CC2 /* CustomTextFiled.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE64ED1271C4277009C8CC2 /* CustomTextFiled.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		EFCCFEF426DA6B5B007B4EBA /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		EFCCFEF626DA71A5007B4EBA /* addSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addSubviews.swift; sourceTree = "<group>"; };
 		EFE64ECF271BF9C0009C8CC2 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		EFE64ED1271C4277009C8CC2 /* CustomTextFiled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFiled.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 				EF25DCB726A02AFC00577166 /* PostVK.swift */,
 				EFCCFEF626DA71A5007B4EBA /* addSubviews.swift */,
 				EFE64ECF271BF9C0009C8CC2 /* CustomButton.swift */,
+				EFE64ED1271C4277009C8CC2 /* CustomTextFiled.swift */,
 			);
 			path = struct;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFE64ED2271C4277009C8CC2 /* CustomTextFiled.swift in Sources */,
 				EFE64ED0271BF9C0009C8CC2 /* CustomButton.swift in Sources */,
 				EF25DCC626A466A600577166 /* allPhotos.swift in Sources */,
 				EF25DCB42691CD2500577166 /* LogInViewController.swift in Sources */,
