@@ -14,6 +14,8 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let correctWord = CheckTextField()
+        
         func setTabBarItem(viewController: UIViewController, tabBatTitle: String, image: String) -> UINavigationController {
             let navigationVC = UINavigationController(rootViewController: viewController)
             navigationVC.tabBarItem.title = tabBatTitle
@@ -21,6 +23,6 @@ class TabBarViewController: UITabBarController {
             return navigationVC
         }
         
-        self.setViewControllers([setTabBarItem(viewController: FeedViewController(), tabBatTitle: "Feed", image: "newspaper.fill"), setTabBarItem(viewController: LogInViewController(), tabBatTitle: "Profile", image: "person.fill") ], animated: true)
+        self.setViewControllers([setTabBarItem(viewController: FeedViewController(correctWord: correctWord), tabBatTitle: "Feed", image: "newspaper.fill"), setTabBarItem(viewController: LogInViewController(), tabBatTitle: "Profile", image: "person.fill") ], animated: true)
     }
 }

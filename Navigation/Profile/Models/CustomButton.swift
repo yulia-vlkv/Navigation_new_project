@@ -30,7 +30,7 @@ final class CustomButton: UIButton {
     }
     
     @objc private func buttonIsTapped() {
-            self.buttonAction()
+        self.buttonAction()
     }
     
     required init?(coder: NSCoder) {

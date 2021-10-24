@@ -9,23 +9,35 @@
 import UIKit
 
 class InfoViewController: UIViewController {
+    
+    private let button: UIButton = {
+        let button = CustomButton(
+            title: "Detele this post",
+            titleColor: .black,
+            backgroungColor: .clear,
+            backgroungImage: nil,
+            cornerRadius: 15) {
+                
+            }
+        return button
+    } ()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .systemPink
     }
     
-    @IBAction func showAlert(_ sender: Any) {
-        let alertController = UIAlertController(title: "Удалить пост?", message: "Пост нельзя будет восстановить", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Отмена", style: .default) { _ in
+    private func showAlert(){
+        let alert = UIAlertController(title: "Delete this post?", message: "Are you sure? The post cannot be restored", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .default) { _ in
             print("Отмена")
         }
-        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { _ in
+        let delete = UIAlertAction(title: "Delete", style: .default) { _ in
             print("Удалить")
         }
-        alertController.addAction(cancelAction)
-        alertController.addAction(deleteAction)
-        self.present(alertController, animated: true, completion: nil)
+        alert.addAction(cancel)
+        alert.addAction(delete)
+        self.present(alert, animated: true, completion: nil)
     }
+    
 }
