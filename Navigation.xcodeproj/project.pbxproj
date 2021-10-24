@@ -25,6 +25,7 @@
 		EF25DCC326A462D000577166 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCC226A462D000577166 /* PhotosViewController.swift */; };
 		EF25DCC626A466A600577166 /* allPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCC526A466A600577166 /* allPhotos.swift */; };
 		EF25DCCA26A4754A00577166 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCC926A4754A00577166 /* PhotosTableViewCell.swift */; };
+		EF8B724D27256BFF0069457D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8B724C27256BFF0069457D /* TabBarController.swift */; };
 		EFAFCFFE26F3915400C74923 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAFCFFD26F3915400C74923 /* Checker.swift */; };
 		EFAFD00026F5D78600C74923 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAFCFFF26F5D78600C74923 /* LoginViewControllerDelegate.swift */; };
 		EFAFD00226F5D8A000C74923 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAFD00126F5D8A000C74923 /* LoginInspector.swift */; };
@@ -93,6 +94,7 @@
 		EF25DCC226A462D000577166 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		EF25DCC526A466A600577166 /* allPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allPhotos.swift; sourceTree = "<group>"; };
 		EF25DCC926A4754A00577166 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
+		EF8B724C27256BFF0069457D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		EFAFCFFD26F3915400C74923 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		EFAFCFFF26F5D78600C74923 /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
 		EFAFD00126F5D8A000C74923 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				060782B1250CE27700A87020 /* AppDelegate.swift */,
 				060782B3250CE27700A87020 /* SceneDelegate.swift */,
 				060782B5250CE27700A87020 /* FeedViewController.swift */,
+				EF8B724C27256BFF0069457D /* TabBarController.swift */,
 				060782B7250CE27700A87020 /* Main.storyboard */,
 				060782BA250CE27A00A87020 /* Assets.xcassets */,
 				060782BC250CE27A00A87020 /* LaunchScreen.storyboard */,
@@ -469,6 +472,7 @@
 				EFCCFEF726DA71A5007B4EBA /* addSubviews.swift in Sources */,
 				EF25DCB826A02AFC00577166 /* PostVK.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
+				EF8B724D27256BFF0069457D /* TabBarController.swift in Sources */,
 				EFCC66B32658E4070090CD73 /* ProfileHeaderView.swift in Sources */,
 				EF25DCBA26A02BBA00577166 /* PostTableViewCell.swift in Sources */,
 			);
