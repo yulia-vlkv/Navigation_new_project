@@ -7,17 +7,18 @@
 //
 
 import UIKit
+import SnapKit
 
 class InfoViewController: UIViewController {
     
-    private let button: UIButton = {
+    private lazy var button: UIButton = {
         let button = CustomButton(
             title: "Detele this post",
             titleColor: .black,
             backgroungColor: .clear,
             backgroungImage: nil,
             cornerRadius: 15) {
-                
+                self.showAlert()
             }
         return button
     } ()
@@ -25,6 +26,10 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemPink
+        view.addSubview(button)
+        button.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
     }
     
     private func showAlert(){

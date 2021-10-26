@@ -62,7 +62,7 @@ final class FeedViewController: UIViewController {
     private lazy var checkButton: UIButton = {
         let button = CustomButton(
             title: "CHECK",
-            titleColor: .white
+            titleColor: .white,
             backgroungColor: UIColor.systemBlue,
             backgroungImage: nil,
             cornerRadius: 15) { [weak self] in
@@ -80,11 +80,11 @@ final class FeedViewController: UIViewController {
         return label
     } ()
     
-    private let stackView: UIStackView = {
+    private let buttonsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
-        stackView.spacing = 20
+        stackView.spacing = 35
         stackView.alignment = .fill
         stackView.toAutoLayout()
         return stackView
@@ -118,15 +118,15 @@ final class FeedViewController: UIViewController {
     }
     
     private func setupFeedViews() {
-        view.addSubview(stackView)
+        view.addSubview(buttonsStackView)
         
-        stackView.addArrangedSubview(guessWordTextField)
-        stackView.addArrangedSubview(checkButton)
-        stackView.addArrangedSubview(checkLabel)
-        stackView.addArrangedSubview(newViewButton)
-        stackView.addArrangedSubview(modalViewButton)
+        buttonsStackView.addArrangedSubview(guessWordTextField)
+        buttonsStackView.addArrangedSubview(checkButton)
+        buttonsStackView.addArrangedSubview(checkLabel)
+        buttonsStackView.addArrangedSubview(newViewButton)
+        buttonsStackView.addArrangedSubview(modalViewButton)
         
-        stackView.snp.makeConstraints { make in
+        buttonsStackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(sideInset)
             make.top.equalToSuperview().inset(topInset)
         }

@@ -16,13 +16,18 @@ class TabBarViewController: UITabBarController {
         
         let correctWord = CheckTextField()
         
-        func setTabBarItem(viewController: UIViewController, tabBatTitle: String, image: String) -> UINavigationController {
+        func setTabBarItem(viewController: UIViewController,
+                           tabBatTitle: String,
+                           image: String) -> UINavigationController {
             let navigationVC = UINavigationController(rootViewController: viewController)
             navigationVC.tabBarItem.title = tabBatTitle
             navigationVC.tabBarItem.image = UIImage(systemName: image)
             return navigationVC
         }
         
-        self.setViewControllers([setTabBarItem(viewController: FeedViewController(correctWord: correctWord), tabBatTitle: "Feed", image: "newspaper.fill"), setTabBarItem(viewController: LogInViewController(), tabBatTitle: "Profile", image: "person.fill") ], animated: true)
+        self.setViewControllers(
+            [setTabBarItem(viewController: FeedViewController(correctWord: correctWord), tabBatTitle: "Feed", image: "newspaper.fill"),
+             setTabBarItem(viewController: LogInViewController(), tabBatTitle: "Profile", image: "person.fill") ],
+            animated: true)
     }
 }
