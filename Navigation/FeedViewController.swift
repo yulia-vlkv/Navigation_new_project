@@ -11,11 +11,13 @@ import StorageService
 import SnapKit
 
 final class FeedViewController: UIViewController {
+    
+    weak var coordinator: FeedViewCoordinator?
 
-    private let correctWord: CheckTextField
+    private let checker: CheckTextField
 
-    init(correctWord: CheckTextField) {
-        self.correctWord = correctWord
+    init(checker: CheckTextField) {
+        self.checker = checker
         super .init(nibName: nil, bundle: nil)
     }
     
@@ -104,7 +106,7 @@ final class FeedViewController: UIViewController {
     private func onCompletion() {
         
         let enteredWord = guessWordTextField.text
-        correctWord.check(word: enteredWord ?? "") { [weak self] result in
+        checker.check(word: enteredWord ?? "") { [weak self] result in
             switch  result {
             case .correct:
                 self?.checkLabel.backgroundColor = UIColor(named: "green")

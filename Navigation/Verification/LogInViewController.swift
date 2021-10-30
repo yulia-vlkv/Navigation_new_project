@@ -12,6 +12,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     weak var checkerDelegate: LoginViewControllerDelegate?
     weak var loginFactory: MyLoginFactory?
+    weak var coordinator: ProfileViewCoordinator?
     
     let someUserService = CurrentUserService()
     let testUserService = TestUserService()
