@@ -11,6 +11,17 @@ import SnapKit
 
 class InfoViewController: UIViewController {
     
+    weak var coordinator: FeedCoordinator?
+    
+    init(coordinator: FeedCoordinator){
+        super.init(nibName: nil, bundle: nil)
+        self.coordinator = coordinator
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private lazy var button: UIButton = {
         let button = CustomButton(
             title: "Detele this post",

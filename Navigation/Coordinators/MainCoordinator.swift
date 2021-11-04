@@ -9,12 +9,6 @@
 import Foundation
 import UIKit
 
-protocol Coordinator: AnyObject {
-    var childCoordinator: [Coordinator] { get set }
-    
-    func start()
-}
-
 class MainCoordinator: Coordinator {
     var childCoordinator: [Coordinator] = []
     let window: UIWindow?
@@ -42,13 +36,13 @@ class MainCoordinator: Coordinator {
                                       image: UIImage(systemName: "person.fill"),
                                       tag: 1)
 
-        let feedViewCoordinator = FeedViewCoordinator()
+        let feedViewCoordinator = FeedCoordinator()
         feedViewCoordinator.parentCoordinator = self
         childCoordinator.append(feedViewCoordinator)
         let feedViewController = feedViewCoordinator.startPush()
         feedViewController.tabBarItem = firstItem
 
-        let profileViewCoordinator = ProfileViewCoordinator()
+        let profileViewCoordinator = ProfileCoordinator()
         profileViewCoordinator.parentCoordinator = self
         childCoordinator.append(profileViewCoordinator)
         let profileViewController = profileViewCoordinator.startPush()

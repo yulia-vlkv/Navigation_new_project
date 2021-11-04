@@ -10,9 +10,14 @@ import UIKit
 import StorageService
 import SnapKit
 
-final class FeedViewController: UIViewController {
+final class FeedController: UIViewController {
     
-    weak var coordinator: FeedViewCoordinator?
+    let feedModule = ModuleFactory.feed.createModule()
+    
+    weak var coordinator: FeedCoordinator?
+    
+    var showPost: (()-> Void)?
+    var presentPost: (()-> Void)?
 
     private let checker: CheckTextField
 
@@ -32,8 +37,9 @@ final class FeedViewController: UIViewController {
             backgroungColor: UIColor.systemBlue,
             backgroungImage: nil,
             cornerRadius: 15) {
-                let vc = PostViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.showPost?()
+//                let vc = PostViewController()
+//                self.navigationController?.pushViewController(vc, animated: true)
             }
         return button
     }()
@@ -45,8 +51,9 @@ final class FeedViewController: UIViewController {
             backgroungColor: UIColor.systemBlue,
             backgroungImage: nil,
             cornerRadius: 15) {
-                let vc = InfoViewController()
-                self.navigationController?.present(vc, animated: true, completion: nil)
+//                let vc = InfoViewController()
+//                self.navigationController?.present(vc, animated: true, completion: nil)
+                self.presentPost?()
             }
         return button
     }()
