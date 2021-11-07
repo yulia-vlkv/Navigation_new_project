@@ -110,7 +110,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         if let username = userNameField.text,
            let password = passwordField.text,
-           let inspector = self.loginFactory?.createLoginInspector(),
+           let inspector = checkerDelegate,
            inspector.checkLoginTextfields(filledInLogin: username, filledInPassword: password) {
             let profileVC = ProfileViewController(userService: userService, userName: username)
             navigationController?.pushViewController(profileVC, animated: true)
