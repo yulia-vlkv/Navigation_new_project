@@ -11,7 +11,7 @@ import UIKit
 
 class Checker {
     
-    static var instance = Checker()
+    static let instance = Checker()
     
     #if DEBUG
     private let login = "Test"
