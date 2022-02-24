@@ -8,11 +8,42 @@
 
 import UIKit
 
-class LogInViewController: UIViewController, UITextFieldDelegate {
+class ProfilePresenter {
     
-    weak var checkerDelegate: LoginViewControllerDelegate?
+    private weak var view: LogInController?
+    var coordinator: ProfileCoordinator
+//    private let checker: LogInChecker
+    
+    init(view: LogInController, coordinator: ProfileCoordinator) {
+        self.view = view
+        self.coordinator = coordinator
+//        self.checker = checker
+    }
+    
+    func loggedInSuccessfully() {
+        coordinator.loggedInSuccessfully()
+    }
+    
+//    func performCheck(login: String, password: String) -> Bool {
+//        let result = checker.checkLoginData(filledInLogin: login,
+//                               filledInPassword: password)
+//        return result
+////        {result in
+////            view?.showInputResult(result)
+////        }
+////        { result in
+////            view?.showInputResult(result)
+////        }
+//    }
+}
+
+class LogInController: UIViewController, UITextFieldDelegate {
+    
+    var presenter: ProfilePresenter?
+    
+    weak var checkerDelegate: LogInControllerDelegate?
     weak var loginFactory: MyLoginFactory?
-    weak var coordinator: ProfileCoordinator?
+//    weak var coordinator: ProfileCoordinator?
     
     let someUserService = CurrentUserService()
     let testUserService = TestUserService()
@@ -83,32 +114,57 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             titleColor: .white,
             backgroungColor: nil,
             backgroungImage: bluePixel,
-            cornerRadius: 10)
-        
-        { [self] in
-            
-            #if DEBUG
-            let userService = TestUserService()
-            #else
-            let userService = CurrentUserService()
-            #endif
-            
-            if let username = userNameField.text,
-               let password = passwordField.text,
-               let inspector = checkerDelegate,
-               inspector.checkLoginTextfields(filledInLogin: username, filledInPassword: password) {
-                let profileVC = ProfileViewController(userService: userService, userName: username)
-                    navigationController?.pushViewController(profileVC, animated: true)
-            } else {
-                showLoginAlert()
+            cornerRadius: 10) {
+                self.showInputResult()
             }
-        }
+        
+//        { [self] in
+//
+//            #if DEBUG
+//            let userService = TestUserService()
+//            #else
+//            let userService = CurrentUserService()
+//            #endif
+//
+//            if let username = userNameField.text,
+//               let password = passwordField.text,
+//               let inspector = checkerDelegate,
+//               inspector.checkLoginTextfields(filledInLogin: username, filledInPassword: password) {
+//
+////                let profileVC = ProfileController(userService: userService, userName: username)
+////                    navigationController?.pushViewController(profileVC, animated: true)
+//            } else {
+//                showLoginAlert()
+//            }
+//        }
 
         button.layer.masksToBounds = true
         button.titleLabel?.font = UIFont(name: "default", size: 16)
         
         return button
     }()
+    
+    func showInputResult(){
+            
+        #if DEBUG
+        let userService = TestUserService()
+        #else
+        let userService = CurrentUserService()
+        #endif
+            
+        if let username = userNameField.text,
+            let password = passwordField.text,
+            let inspector = checkerDelegate,
+            inspector.checkLoginTextfields(filledInLogin: username, filledInPassword: password) {
+            self.presenter?.coordinator.loggedInSuccessfully()
+                
+//            self.coordinator?.loggedInSuccessfully()
+//                let profileVC = ProfileController(userService: userService, userName: username)
+//                    navigationController?.pushViewController(profileVC, animated: true)
+        } else {
+            showLoginAlert()
+        }
+    }
     
     private func showLoginAlert(){
         let alertController = UIAlertController(title: "Error", message: "Invalid Username", preferredStyle: .alert)
@@ -217,8 +273,9 @@ extension UIImage {
         return newImage!
     }
 }
+ 
 // MARK: extension for keyboard magic
-extension LogInViewController {
+extension LogInController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

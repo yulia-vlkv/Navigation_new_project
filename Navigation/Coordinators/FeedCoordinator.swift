@@ -14,7 +14,9 @@ class FeedCoordinator: Coordinator {
     weak var parentCoordinator: MainCoordinator?
     var childCoordinator: [Coordinator] = []
     var navigationController: UINavigationController
-    let checker = CheckTextField()
+    let checker = TextFieldChecker()
+    
+    let fabric = FeedViewModuleFactory()
 
     init() {
         self.navigationController = .init()
@@ -23,17 +25,19 @@ class FeedCoordinator: Coordinator {
     func start() {}
 
     func startPush() -> UINavigationController {
-        let feedViewController = FeedController(checker: checker)
-        feedViewController.coordinator = self
+        
+        let feedViewController = fabric.createModule(coordinator: self)
+//        let feedViewController = FeedController(checker: checker)
+//        feedViewController.coordinator = self
         navigationController.setViewControllers([feedViewController], animated: false)
         
-        feedViewController.showPost = { [ weak self ] in
-            self?.showPost()
-        }
-        
-        feedViewController.presentPost = { [ weak self ] in
-            self?.presentPost()
-        }
+//        feedViewController.showPost = { [ weak self ] in
+//            self?.showPost()
+//        }
+//        
+//        feedViewController.presentPost = { [ weak self ] in
+//            self?.presentPost()
+//        }
 
         return navigationController
     }
