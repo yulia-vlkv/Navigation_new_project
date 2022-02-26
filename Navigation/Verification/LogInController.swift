@@ -8,8 +8,29 @@
 
 import UIKit
 
-class LogInViewController: UIViewController, UITextFieldDelegate {
+class ProfilePresenter {
     
+    private weak var view: LogInController?
+    var coordinator: ProfileCoordinator
+    
+    init(view: LogInController, coordinator: ProfileCoordinator) {
+        self.view = view
+        self.coordinator = coordinator
+    }
+    
+    func loggedInSuccessfully() {
+        coordinator.loggedInSuccessfully()
+    }
+
+}
+
+class LogInController: UIViewController, UITextFieldDelegate {
+    
+    var presenter: ProfilePresenter?
+    
+    weak var checkerDelegate: LogInControllerDelegate?
+    weak var loginFactory: MyLoginFactory?
+
     let someUserService = CurrentUserService()
     let testUserService = TestUserService()
     
@@ -45,74 +66,66 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }()
     
     private let userNameField: UITextField = {
-        let textField = UITextField()
-        textField.font = UIFont.systemFont(ofSize: 16)
-        textField.textColor = .black
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField .frame.height))
-        textField.leftViewMode = .always
-        textField.autocapitalizationType = .none
-        textField.clipsToBounds = true
-        textField.placeholder = "Email or phone"
-        textField.returnKeyType = UIReturnKeyType.done
-        textField.layer.backgroundColor = UIColor.systemGray6.cgColor
+        let textField = CustomTextField(
+            font: UIFont.systemFont(ofSize: 16),
+            textColor: .black,
+            backgroundColor: UIColor.systemGray6,
+            placeholder: "Email or phone")
+    
         textField.tintColor = UIColor(named: "periwinkleBlue")
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
-        textField.toAutoLayout()
+    
         return textField
     }()
     
-    private let password: UITextField = {
-        let textField = UITextField()
-        textField.font = UIFont.systemFont(ofSize: 16)
-        textField.textColor = .black
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField .frame.height))
-        textField.leftViewMode = .always
-        textField.autocapitalizationType = .none
-        textField.clipsToBounds = true
+    private let passwordField: UITextField = {
+        let textField = CustomTextField(
+            font: UIFont.systemFont(ofSize: 16),
+            textColor: .black,
+            backgroundColor: UIColor.systemGray6,
+            placeholder: "Password")
+        
         textField.isSecureTextEntry = true
-        textField.placeholder = "Password"
         textField.returnKeyType = UIReturnKeyType.done
-        textField.layer.backgroundColor = UIColor.systemGray6.cgColor
         textField.tintColor = UIColor(named: "periwinkleBlue")
-        textField.toAutoLayout()
+        
         return textField
     }()
     
-    private let logInButton: UIButton = {
+    private lazy var logInButton: UIButton = {
         let bluePixel = UIImage(named: "bluePixel")
-        let logInButton = UIButton(type: .system)
-        logInButton.setBackgroundImage(bluePixel, for: .normal)
-        let selectedPixel: UIImage = (bluePixel?.alpha(0.8))!
-        logInButton.setBackgroundImage(selectedPixel, for: .selected)
-        logInButton.setBackgroundImage(selectedPixel, for: .highlighted)
-        logInButton.setBackgroundImage(selectedPixel, for: .disabled)
-        logInButton.layer.cornerRadius = 10
-        logInButton.layer.masksToBounds = true
-        logInButton.setTitle("Log In", for: .normal)
-        logInButton.setTitleColor(.white, for: .normal)
-        logInButton.titleLabel?.font = UIFont(name: "default", size: 16)
-        logInButton.addTarget(self, action: #selector(tapLogInButton), for: .touchUpInside)
-        logInButton.toAutoLayout()
-        return logInButton
+        let button = CustomButton(
+            title: "Log In",
+            titleColor: .white,
+            backgroungColor: nil,
+            backgroungImage: bluePixel,
+            cornerRadius: 10) {
+                self.showInputResult()
+            }
+
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = UIFont(name: "default", size: 16)
+        
+        return button
     }()
     
-    @objc private func tapLogInButton() {
+    func showInputResult(){
+            
         #if DEBUG
-        if let userName = userNameField.text, let _ = testUserService.returnUser(userName: userName) {
-            let profileVC = ProfileViewController(userService: testUserService, userName: userName)
-            navigationController?.pushViewController(profileVC, animated: true)
+        let userService = TestUserService()
+        #else
+        let userService = CurrentUserService()
+        #endif
+            
+        if let username = userNameField.text,
+            let password = passwordField.text,
+            let inspector = checkerDelegate,
+            inspector.checkLoginTextfields(filledInLogin: username, filledInPassword: password) {
+            self.presenter?.coordinator.loggedInSuccessfully()
         } else {
             showLoginAlert()
-            }
-        #else
-        if let userName = userNameField.text, let _ = someUserService.returnUser(userName: userName) {
-            let profileVC = ProfileViewController(userService: someUserService, userName: userName)
-            navigationController?.pushViewController(profileVC, animated: true)
-        } else {
-             showLoginAlert()
         }
-        #endif
     }
     
     private func showLoginAlert(){
@@ -127,13 +140,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         navigationController?.navigationBar.isHidden = true
         userNameField.delegate = self
-        password.delegate = self
+        passwordField.delegate = self
         setupViews()
     }
     
     private var inset: CGFloat { return 16 }
     
-
     private func setupViews() {
         
         view.addSubview(scroll)
@@ -143,7 +155,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         mainView.addSubviews(logo, logInView, logInButton)
         
-        logInView.addSubviews(userNameField, password)
+        logInView.addSubviews(userNameField, passwordField)
         
         scroll.snp.makeConstraints { make in
             make.top.bottom.leading.trailing.width.height.equalToSuperview()
@@ -170,7 +182,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             make.top.equalTo(logInView)
         }
         
-        password.snp.makeConstraints { make in
+        passwordField.snp.makeConstraints { make in
             make.height.equalTo(50)
             make.width.equalTo(logInView)
             make.bottom.equalTo(logInView)
@@ -222,8 +234,9 @@ extension UIImage {
         return newImage!
     }
 }
+ 
 // MARK: extension for keyboard magic
-extension LogInViewController {
+extension LogInController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

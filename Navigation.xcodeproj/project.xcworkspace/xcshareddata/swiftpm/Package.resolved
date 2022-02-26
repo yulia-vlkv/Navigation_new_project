@@ -3,11 +3,11 @@
     "pins": [
       {
         "package": "iOSIntPackage",
-        "repositoryURL": "https://github.com/TrueMax/iOSIntPackage",
+        "repositoryURL": "https://github.com/TrueMax/iOSIntPackage.git",
         "state": {
-          "branch": "imagepublisher",
+          "branch": null,
           "revision": "e1cc0e1b76d7cb8f770d903d85ae9ed91ae026bd",
-          "version": null
+          "version": "3.2.3"
         }
       }
     ]

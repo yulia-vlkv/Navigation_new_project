@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileController: UIViewController {
+    
+    weak var coordinator: ProfileCoordinator?
     
     private let tableView = UITableView(frame: .zero, style: .grouped)
     private let arrayOfPosts = allPosts.postArray
@@ -16,7 +18,10 @@ class ProfileViewController: UIViewController {
     let userService: UserService
     let userName: String
     
-    init(userService: UserService, userName: String) {
+    init(coordinator: ProfileCoordinator,
+         userService: UserService,
+         userName: String) {
+        self.coordinator = coordinator
         self.userService = userService
         self.userName = userName
         super.init(nibName: nil, bundle: nil)
@@ -31,7 +36,11 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         
         setUpTableView()
-        showUserData()
+//        showUserData()
+        
+        if let user = userService.returnUser(userName: userName){
+            profileHeaderView.showUserData(user: user)
+        }
     }
     
     private func setUpTableView(){
@@ -50,7 +59,7 @@ class ProfileViewController: UIViewController {
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: String(describing: PhotosTableViewCell.self))
         
         let constraints = [
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
@@ -58,18 +67,10 @@ class ProfileViewController: UIViewController {
         
         NSLayoutConstraint.activate(constraints)
     }
-    
-    private func showUserData() {
-        if let user = self.userService.returnUser(userName: self.userName) {
-            profileHeaderView.userName.text = user.userName
-            profileHeaderView.profileImage.image = user.userImage
-            profileHeaderView.userStatus.text = user.userStatus
-        }
-    }
 }
 
 // MARK: UITableViewDataSource
-extension ProfileViewController: UITableViewDataSource {
+extension ProfileController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -100,7 +101,7 @@ extension ProfileViewController: UITableViewDataSource {
 }
 
 // MARK: UITableViewDelegate
-extension ProfileViewController: UITableViewDelegate {
+extension ProfileController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == 0 else { return nil }
         return ProfileHeaderView()
