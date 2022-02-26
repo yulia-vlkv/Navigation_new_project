@@ -41,22 +41,7 @@ class FeedPresenter {
 final class FeedController: UIViewController {
     
     var presenter: FeedPresenter?
-//    weak var coordinator: FeedCoordinator?
-    
-//    var showPost: (()-> Void)?
-//    var presentPost: (()-> Void)?
-//
-//    private let checker: CheckTextField
-//
-//    init(checker: CheckTextField) {
-//        self.checker = checker
-//        super .init(nibName: nil, bundle: nil)
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
+
     private lazy var newViewButton: UIButton = {
         let button = CustomButton(
             title: "Show new post",
@@ -65,9 +50,6 @@ final class FeedController: UIViewController {
             backgroungImage: nil,
             cornerRadius: 15) {
                 self.presenter?.showPost()
-//                self.showPost?()
-//                let vc = PostViewController()
-//                self.navigationController?.pushViewController(vc, animated: true)
             }
         return button
     }()
@@ -80,9 +62,6 @@ final class FeedController: UIViewController {
             backgroungImage: nil,
             cornerRadius: 15) {
                 self.presenter?.presentPost()
-//                let vc = InfoViewController()
-//                self.navigationController?.present(vc, animated: true, completion: nil)
-//                self.presentPost?()
             }
         return button
     }()
@@ -140,22 +119,6 @@ final class FeedController: UIViewController {
         
         setupFeedViews()
     }
-    
-//    private func onCompletion() {
-//
-//        let enteredWord = guessWordTextField.text
-//        checker.check(word: enteredWord ?? "") { [weak self] result in
-//            switch  result {
-//            case .correct:
-//                self?.checkLabel.backgroundColor = UIColor(named: "green")
-//                self?.checkLabel.alpha = 1
-//            case .incorrect:
-//                self?.checkLabel.backgroundColor = UIColor(named: "red")
-//                self?.checkLabel.alpha = 1
-//            default: self?.checkLabel.backgroundColor = .clear
-//            }
-//        }
-//    }
     
     private func setupFeedViews() {
         view.addSubview(buttonsStackView)

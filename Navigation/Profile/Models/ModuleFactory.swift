@@ -21,29 +21,3 @@ protocol ModuleFactory {
     
     func createModule(coordinator: CoordinatorType) -> ViewType
 }
-
-class FeedViewModuleFactory: ModuleFactory {
-    func createModule(coordinator: FeedCoordinator) -> FeedController {
-        let feedViewController = FeedController()
-        let feedPresenter = FeedPresenter(
-            view: feedViewController,
-            coordinator: coordinator,
-            checker: TextFieldChecker()
-        )
-        feedViewController.presenter = feedPresenter
-        return feedViewController
-    }
-}
-
-class ProfileViewModuleFactory: ModuleFactory {
-    func createModule(coordinator: ProfileCoordinator) -> LogInController {
-        let profileViewController = LogInController()
-        let profilePresenter = ProfilePresenter (
-            view: profileViewController,
-            coordinator: coordinator)
-        profileViewController.presenter = profilePresenter
-        return profileViewController
-    }
-    
-}
-   

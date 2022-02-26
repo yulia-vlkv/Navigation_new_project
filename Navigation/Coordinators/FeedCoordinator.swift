@@ -27,17 +27,8 @@ class FeedCoordinator: Coordinator {
     func startPush() -> UINavigationController {
         
         let feedViewController = fabric.createModule(coordinator: self)
-//        let feedViewController = FeedController(checker: checker)
-//        feedViewController.coordinator = self
+
         navigationController.setViewControllers([feedViewController], animated: false)
-        
-//        feedViewController.showPost = { [ weak self ] in
-//            self?.showPost()
-//        }
-//        
-//        feedViewController.presentPost = { [ weak self ] in
-//            self?.presentPost()
-//        }
 
         return navigationController
     }

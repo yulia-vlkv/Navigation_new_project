@@ -40,9 +40,6 @@ class ProfileCoordinator: Coordinator, UserService {
         let profileViewController = fabric.createModule(coordinator: self)
         
         navigationController.setViewControllers([profileViewController], animated: false)
-//        let logInVC = LogInController()
-//        logInVC.coordinator = self
-//        navigationController.setViewControllers([logInVC], animated: false)
 
         return navigationController
     }
@@ -52,6 +49,6 @@ class ProfileCoordinator: Coordinator, UserService {
 extension ProfileCoordinator {
     
     func loggedInSuccessfully() {
-        self.navigationController.pushViewController(ProfileController(coordinator: self, userService: userService, userName: userName ), animated: true)
+        self.navigationController.pushViewController(ProfileController(coordinator: self, userService: userService, userName: userName), animated: true)
     }
 }

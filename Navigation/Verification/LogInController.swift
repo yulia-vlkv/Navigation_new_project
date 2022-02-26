@@ -12,29 +12,16 @@ class ProfilePresenter {
     
     private weak var view: LogInController?
     var coordinator: ProfileCoordinator
-//    private let checker: LogInChecker
     
     init(view: LogInController, coordinator: ProfileCoordinator) {
         self.view = view
         self.coordinator = coordinator
-//        self.checker = checker
     }
     
     func loggedInSuccessfully() {
         coordinator.loggedInSuccessfully()
     }
-    
-//    func performCheck(login: String, password: String) -> Bool {
-//        let result = checker.checkLoginData(filledInLogin: login,
-//                               filledInPassword: password)
-//        return result
-////        {result in
-////            view?.showInputResult(result)
-////        }
-////        { result in
-////            view?.showInputResult(result)
-////        }
-//    }
+
 }
 
 class LogInController: UIViewController, UITextFieldDelegate {
@@ -43,8 +30,7 @@ class LogInController: UIViewController, UITextFieldDelegate {
     
     weak var checkerDelegate: LogInControllerDelegate?
     weak var loginFactory: MyLoginFactory?
-//    weak var coordinator: ProfileCoordinator?
-    
+
     let someUserService = CurrentUserService()
     let testUserService = TestUserService()
     
@@ -117,26 +103,6 @@ class LogInController: UIViewController, UITextFieldDelegate {
             cornerRadius: 10) {
                 self.showInputResult()
             }
-        
-//        { [self] in
-//
-//            #if DEBUG
-//            let userService = TestUserService()
-//            #else
-//            let userService = CurrentUserService()
-//            #endif
-//
-//            if let username = userNameField.text,
-//               let password = passwordField.text,
-//               let inspector = checkerDelegate,
-//               inspector.checkLoginTextfields(filledInLogin: username, filledInPassword: password) {
-//
-////                let profileVC = ProfileController(userService: userService, userName: username)
-////                    navigationController?.pushViewController(profileVC, animated: true)
-//            } else {
-//                showLoginAlert()
-//            }
-//        }
 
         button.layer.masksToBounds = true
         button.titleLabel?.font = UIFont(name: "default", size: 16)
@@ -157,10 +123,6 @@ class LogInController: UIViewController, UITextFieldDelegate {
             let inspector = checkerDelegate,
             inspector.checkLoginTextfields(filledInLogin: username, filledInPassword: password) {
             self.presenter?.coordinator.loggedInSuccessfully()
-                
-//            self.coordinator?.loggedInSuccessfully()
-//                let profileVC = ProfileController(userService: userService, userName: username)
-//                    navigationController?.pushViewController(profileVC, animated: true)
         } else {
             showLoginAlert()
         }
@@ -184,7 +146,6 @@ class LogInController: UIViewController, UITextFieldDelegate {
     
     private var inset: CGFloat { return 16 }
     
-
     private func setupViews() {
         
         view.addSubview(scroll)

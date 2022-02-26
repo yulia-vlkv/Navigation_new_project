@@ -15,6 +15,8 @@
 		060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C5250CEB0A00A87020 /* InfoViewController.swift */; };
 		060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C7250CEE5D00A87020 /* PostViewController.swift */; };
 		613F521BCB49813FB46FFA9D /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B61463FDF1D3BEBFC38A46E /* Pods_Navigation.framework */; };
+		EF1B136A27CA24000070A9A0 /* FeedViewModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B136927CA24000070A9A0 /* FeedViewModuleFactory.swift */; };
+		EF1B136C27CA241A0070A9A0 /* ProfileViewModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B136B27CA241A0070A9A0 /* ProfileViewModuleFactory.swift */; };
 		EF1F96E7278414BF00112D0C /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = EF1F96E6278414BF00112D0C /* iOSIntPackage */; };
 		EF25DCB42691CD2500577166 /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB32691CD2500577166 /* LogInController.swift */; };
 		EF25DCB626A02A6E00577166 /* allPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB526A02A6E00577166 /* allPosts.swift */; };
@@ -89,6 +91,8 @@
 		22254A967C8FC10DA6513A88 /* Pods-Navigation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.debug.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.debug.xcconfig"; sourceTree = "<group>"; };
 		5B61463FDF1D3BEBFC38A46E /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D3A9544C94E3C70DCDEF8A /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
+		EF1B136927CA24000070A9A0 /* FeedViewModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModuleFactory.swift; sourceTree = "<group>"; };
+		EF1B136B27CA241A0070A9A0 /* ProfileViewModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModuleFactory.swift; sourceTree = "<group>"; };
 		EF25DCB32691CD2500577166 /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
 		EF25DCB526A02A6E00577166 /* allPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allPosts.swift; sourceTree = "<group>"; };
 		EF25DCB726A02AFC00577166 /* PostVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVK.swift; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 			isa = PBXGroup;
 			children = (
 				EFAE39B52732D2F500723701 /* ModuleFactory.swift */,
+				EF1B136927CA24000070A9A0 /* FeedViewModuleFactory.swift */,
+				EF1B136B27CA241A0070A9A0 /* ProfileViewModuleFactory.swift */,
 				EF25DCB726A02AFC00577166 /* PostVK.swift */,
 				EFCCFEF626DA71A5007B4EBA /* addSubviews.swift */,
 				EFE64ECF271BF9C0009C8CC2 /* CustomButton.swift */,
@@ -488,12 +494,14 @@
 				EFAE39AE272D3C1B00723701 /* MainCoordinator.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				EFCC66B12658E3C20090CD73 /* ProfileController.swift in Sources */,
+				EF1B136A27CA24000070A9A0 /* FeedViewModuleFactory.swift in Sources */,
 				EFAE39B42732C7A300723701 /* Coordinator.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
 				EFAFD00426F6F0CE00C74923 /* LoginFactory.swift in Sources */,
 				EF25DCC126A4626300577166 /* PhotosCollectionViewCell.swift in Sources */,
 				EFAFD00226F5D8A000C74923 /* LoginInspector.swift in Sources */,
 				EF25DCC326A462D000577166 /* PhotosViewController.swift in Sources */,
+				EF1B136C27CA241A0070A9A0 /* ProfileViewModuleFactory.swift in Sources */,
 				EFCCFEEE26DA6662007B4EBA /* User.swift in Sources */,
 				EF25DCB626A02A6E00577166 /* allPosts.swift in Sources */,
 				EFCCFEF726DA71A5007B4EBA /* addSubviews.swift in Sources */,
