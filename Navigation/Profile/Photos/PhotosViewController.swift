@@ -13,14 +13,28 @@ class PhotosViewController: UIViewController, ImageLibrarySubscriber {
     
     func receive(images: [UIImage]) {
         arrayOfPublishedPhotos = images
-        photoCollectionView.reloadData()
+//        photoCollectionView.reloadData()
+        
+        guard (images.count - 1) == photoCollectionView.numberOfItems(inSection: 0) else { return }
+        let indexPath = IndexPath(item: images.count - 1, section: 0)
+        photoCollectionView.insertItems(at: [indexPath])
     }
     
     private let facade = ImagePublisherFacade()
     private var arrayOfPublishedPhotos: [UIImage] = []
+    private var arrayOfPhotos = allPhotos.photoArray
     private let layout = UICollectionViewFlowLayout()
     private lazy var photoCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     private let collectionCellID = "collectionCellID"
+    private let processor = ImageProcessor()
+    
+    private let indicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(style: .large)
+        view.toAutoLayout()
+        view.isHidden = true
+        view.color = .cyan
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +46,8 @@ class PhotosViewController: UIViewController, ImageLibrarySubscriber {
         photoCollectionView.backgroundColor = .white
         setupCollectionView()
         
-        facade.addImagesWithTimer(time: 0.05, repeat: 50, userImages: allPhotos.photoArray)
+        setupIndicator()
+        processPhotos()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +77,39 @@ class PhotosViewController: UIViewController, ImageLibrarySubscriber {
         ]
         
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    private func setupIndicator(){
+        view.addSubview(indicator)
+        indicator.isHidden = false
+        indicator.startAnimating()
+        
+        let constraints = [
+            indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            indicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    private func processPhotos() {
+        var processedImages: [UIImage] = []
+        
+        processor.processImagesOnThread(sourceImages: arrayOfPhotos, filter: .colorInvert, qos: .userInteractive) { [self] processedPhotos in
+            
+            for photo in processedPhotos {
+                if let image = photo {
+                    processedImages.append(UIImage(cgImage: image))
+                    print("added photo")
+                }
+            }
+                                        
+            DispatchQueue.main.async { [self] in
+                facade.addImagesWithTimer(time: 0.8, repeat: processedPhotos.count, userImages: processedImages)
+                indicator.stopAnimating()
+                indicator.isHidden = true
+            }
+        }
     }
 }
 

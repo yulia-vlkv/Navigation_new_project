@@ -19,7 +19,7 @@ class LogInChecker {
     private let login = "Gavryusha"
     #endif
     
-    private let password = "StrongPassword"
+    private let password = "0000"
     
     init() {}
     
