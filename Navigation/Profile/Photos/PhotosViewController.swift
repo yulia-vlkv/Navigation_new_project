@@ -13,7 +13,6 @@ class PhotosViewController: UIViewController, ImageLibrarySubscriber {
     
     func receive(images: [UIImage]) {
         arrayOfPublishedPhotos = images
-//        photoCollectionView.reloadData()
         
         guard (images.count - 1) == photoCollectionView.numberOfItems(inSection: 0) else { return }
         let indexPath = IndexPath(item: images.count - 1, section: 0)
@@ -94,20 +93,34 @@ class PhotosViewController: UIViewController, ImageLibrarySubscriber {
     
     private func processPhotos() {
         var processedImages: [UIImage] = []
+        let filter = ColorFilter.noir
+        let qos = QualityOfService.userInteractive
+        let start = CFAbsoluteTimeGetCurrent()
         
-        processor.processImagesOnThread(sourceImages: arrayOfPhotos, filter: .colorInvert, qos: .userInteractive) { [self] processedPhotos in
+        processor.processImagesOnThread(sourceImages: arrayOfPhotos, filter: filter, qos: qos) { [self] processedPhotos in
             
             for photo in processedPhotos {
                 if let image = photo {
                     processedImages.append(UIImage(cgImage: image))
-                    print("added photo")
                 }
             }
                                         
             DispatchQueue.main.async { [self] in
                 facade.addImagesWithTimer(time: 0.8, repeat: processedPhotos.count, userImages: processedImages)
+                
                 indicator.stopAnimating()
                 indicator.isHidden = true
+                
+                let diff = CFAbsoluteTimeGetCurrent() - start
+                let result = String(format: "%.2f", diff)
+                print("Took \(result) seconds to process images with \(filter) filter")
+                
+                //Took 1.65 seconds to process images with colorInvert filter
+                //Took 1.63 seconds to process images with fade filter
+                //Took 1.58 seconds to process images with chrome filter
+                //Took 1.61 seconds to process images with monochrome(color: <CIColor 0x1cfd852d8 (1 0 1 1) devicergb>, intensity: 0.5) filter
+                //Took 1.89 seconds to process images with bloom(intensity: 0.2) filter
+                //Took 1.57 seconds to process images with noir filter
             }
         }
     }
