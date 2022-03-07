@@ -13,7 +13,8 @@ class ProfileViewModuleFactory: ModuleFactory {
         let profileViewController = LogInController()
         let profilePresenter = ProfilePresenter (
             view: profileViewController,
-            coordinator: coordinator)
+            coordinator: coordinator,
+            passwordPicker: BruteForce())
         profileViewController.presenter = profilePresenter
         return profileViewController
     }

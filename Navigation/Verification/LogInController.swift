@@ -12,22 +12,23 @@ class ProfilePresenter {
     
     private weak var view: LogInController?
     var coordinator: ProfileCoordinator
+    var passwordPicker: BruteForce
     
-    init(view: LogInController, coordinator: ProfileCoordinator) {
+    init(view: LogInController, coordinator: ProfileCoordinator, passwordPicker: BruteForce){
         self.view = view
         self.coordinator = coordinator
+        self.passwordPicker = passwordPicker
     }
     
     func loggedInSuccessfully() {
         coordinator.loggedInSuccessfully()
     }
-
 }
 
 class LogInController: UIViewController, UITextFieldDelegate {
     
     var presenter: ProfilePresenter?
-    
+
     weak var checkerDelegate: LogInControllerDelegate?
     weak var loginFactory: MyLoginFactory?
 
@@ -110,6 +111,61 @@ class LogInController: UIViewController, UITextFieldDelegate {
         return button
     }()
     
+    private let indicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(style: .large)
+        view.toAutoLayout()
+        view.isHidden = true
+        view.color = .systemBlue
+        return view
+    }()
+    
+    private lazy var pickPasswordButton: UIButton = {
+        let bluePixel = UIImage(named: "bluePixel")
+        let button = CustomButton(
+            title: "Pick the password",
+            titleColor: .white,
+            backgroungColor: nil,
+            backgroungImage: bluePixel,
+            cornerRadius: 10) { [self] in
+                self.bruteForce(passwordToUnlock: LogInChecker.instance.password)
+            }
+        
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = UIFont(name: "default", size: 16)
+        
+        return button
+    }()
+    
+    func bruteForce(passwordToUnlock: String) {
+        let ALLOWED_CHARACTERS:   [String] = String().printable.map { String($0) }
+        var password: String = ""
+        let group = DispatchGroup()
+        let queue = DispatchQueue(label: "backgroundQueue", qos: .background)
+        
+        self.passwordField.text?.removeAll()
+        self.indicatorToggle()
+        group.enter()
+        
+        queue.async {
+            while password != passwordToUnlock {
+                password = (self.presenter?.passwordPicker.generateBruteForce(password, fromArray: ALLOWED_CHARACTERS)) as! String
+                print(password)
+            }
+            group.leave()
+        }
+        
+        group.notify(queue: .main) { [self] in
+            self.indicatorToggle()
+            self.passwordField.text = password
+            passwordField.isSecureTextEntry = false
+        }
+    }
+    
+    func indicatorToggle(){
+        indicator.isHidden.toggle()
+        indicator.isAnimating ? indicator.stopAnimating() : indicator.startAnimating()
+    }
+    
     func showInputResult(){
             
         #if DEBUG
@@ -153,9 +209,10 @@ class LogInController: UIViewController, UITextFieldDelegate {
         
         scroll.addSubview(mainView)
         
-        mainView.addSubviews(logo, logInView, logInButton)
+        mainView.addSubviews(logo, logInView, logInButton, pickPasswordButton)
         
         logInView.addSubviews(userNameField, passwordField)
+        passwordField.addSubview(indicator)
         
         scroll.snp.makeConstraints { make in
             make.top.bottom.leading.trailing.width.height.equalToSuperview()
@@ -188,8 +245,18 @@ class LogInController: UIViewController, UITextFieldDelegate {
             make.bottom.equalTo(logInView)
         }
         
+        indicator.snp.makeConstraints { make in
+            make.centerY.centerX.equalTo(passwordField)
+        }
+        
         logInButton.snp.makeConstraints { make in
             make.top.equalTo(logInView.snp.bottom).offset(16)
+            make.leading.trailing.equalTo(mainView).inset(16)
+            make.height.equalTo(50)
+        }
+        
+        pickPasswordButton.snp.makeConstraints { make in
+            make.top.equalTo(logInButton.snp.bottom).offset(16)
             make.leading.trailing.equalTo(mainView).inset(16)
             make.height.equalTo(50)
         }
