@@ -36,12 +36,29 @@ class ProfileController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         
         setUpTableView()
-//        showUserData()
-        
+        setupTimer()
+
         if let user = userService.returnUser(userName: userName){
             profileHeaderView.showUserData(user: user)
         }
     }
+    
+    private func setupTimer(){
+        let timer = Timer.scheduledTimer(timeInterval: 6.0,
+                          target: self,
+                          selector: #selector(showReminderAlert),
+                          userInfo: nil,
+                          repeats: true)
+        RunLoop.current.add(timer, forMode: .common)
+        timer.fire()
+    }
+    
+    @objc func showReminderAlert() {
+        let alertController = UIAlertController(title: "Slow down", message: "You work too hard", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Take a break", style: .cancel)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true)
+     }
     
     private func setUpTableView(){
         view.addSubview(tableView)
