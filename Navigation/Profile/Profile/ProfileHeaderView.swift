@@ -11,6 +11,15 @@ import SnapKit
 
 class ProfileHeaderView: UIView {
     
+    let timerLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Time till break: 0"
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.textColor = .gray
+        label.toAutoLayout()
+        return label
+    }()
+    
     let profileImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "angryCat")
@@ -92,7 +101,12 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubviews(profileImage, userName, userStatus, statusButton, statusField)
+        addSubviews(timerLabel, profileImage, userName, userStatus, statusButton, statusField)
+        
+        timerLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(inset * 2)
+            make.height.equalTo(userStatusHeight)
+        }
         
         profileImage.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(inset)

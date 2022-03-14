@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ProfileController: UIViewController {
     
@@ -14,9 +15,11 @@ class ProfileController: UIViewController {
     
     private let tableView = UITableView(frame: .zero, style: .grouped)
     private let arrayOfPosts = allPosts.postArray
-    let profileHeaderView = ProfileHeaderView()
+    let profileHeader = ProfileHeaderView()
     let userService: UserService
     let userName: String
+    private var time = 10
+    private var timer: Timer?
     
     init(coordinator: ProfileCoordinator,
          userService: UserService,
@@ -39,26 +42,43 @@ class ProfileController: UIViewController {
         setupTimer()
 
         if let user = userService.returnUser(userName: userName){
-            profileHeaderView.showUserData(user: user)
+            profileHeader.showUserData(user: user)
         }
     }
     
-    private func setupTimer(){
-        let timer = Timer.scheduledTimer(timeInterval: 6.0,
-                          target: self,
-                          selector: #selector(showReminderAlert),
-                          userInfo: nil,
-                          repeats: true)
-        RunLoop.current.add(timer, forMode: .common)
-        timer.fire()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
-    @objc func showReminderAlert() {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
+    private func setupTimer(){
+        let timer = Timer.scheduledTimer(timeInterval: 1.0,
+                          target: self,
+                          selector: #selector(updateTimerLabel),
+                          userInfo: time,
+                          repeats: true)
+        RunLoop.current.add(timer, forMode: .common)
+        timer.tolerance = 0.1
+    }
+    
+    private func showReminderAlert() {
         let alertController = UIAlertController(title: "Slow down", message: "You work too hard", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Take a break", style: .cancel)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true)
      }
+    
+    @objc func updateTimerLabel(){
+        self.profileHeader.timerLabel.text = "Time till break: \(time)"
+        time -= 1
+        if time == 0 {
+            self.time = 10
+            showReminderAlert()
+        }
+    }
     
     private func setUpTableView(){
         view.addSubview(tableView)
@@ -121,7 +141,7 @@ extension ProfileController: UITableViewDataSource {
 extension ProfileController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == 0 else { return nil }
-        return ProfileHeaderView()
+        return profileHeader
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
