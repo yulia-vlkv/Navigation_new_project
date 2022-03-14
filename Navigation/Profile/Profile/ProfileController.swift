@@ -55,18 +55,32 @@ class ProfileController: UIViewController {
     }
     
     private func setupTimer(){
-        let timer = Timer.scheduledTimer(timeInterval: 1.0,
-                          target: self,
-                          selector: #selector(updateTimerLabel),
-                          userInfo: time,
-                          repeats: true)
-        RunLoop.current.add(timer, forMode: .common)
-        timer.tolerance = 0.1
+        if timer == nil {
+            let timer = Timer.scheduledTimer(timeInterval: 1.0,
+                              target: self,
+                              selector: #selector(updateTimerLabel),
+                              userInfo: time,
+                              repeats: true)
+            RunLoop.current.add(timer, forMode: .common)
+            timer.tolerance = 0.1
+            
+            self.timer = timer
+        }
+//        let timer = Timer.scheduledTimer(timeInterval: 1.0,
+//                          target: self,
+//                          selector: #selector(updateTimerLabel),
+//                          userInfo: time,
+//                          repeats: true)
+//        RunLoop.current.add(timer, forMode: .common)
+//        timer.tolerance = 0.1
     }
     
     private func showReminderAlert() {
         let alertController = UIAlertController(title: "Slow down", message: "You work too hard", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Take a break", style: .cancel)
+        let cancelAction = UIAlertAction(title: "Take a break", style: .cancel) {_ in
+            self.time = 10
+            self.setupTimer()
+        }
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true)
      }
@@ -74,8 +88,10 @@ class ProfileController: UIViewController {
     @objc func updateTimerLabel(){
         self.profileHeader.timerLabel.text = "Time till break: \(time)"
         time -= 1
-        if time == 0 {
-            self.time = 10
+        if time < 0 {
+            self.profileHeader.timerLabel.text = "Time till break: 0"
+            timer?.invalidate()
+            timer = nil
             showReminderAlert()
         }
     }
