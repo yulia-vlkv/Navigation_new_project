@@ -19,16 +19,14 @@ class LogInChecker {
     private let login = "Gavryusha"
     #endif
     
-    let password = "00"
+    let password = "000"
     
     init() {}
     
     func checkLoginData(filledInLogin: String, filledInPassword: String) -> Bool {
         if login.hash == filledInLogin.hash && password.hash == filledInPassword.hash {
-            print("Login and password are correct")
             return true
         } else {
-            print("There's a mistake")
             return false
         }
     }  

@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum AuthorizationError: Error {
+    case emptyField
+    case incorrectData
+}
+
 class ProfilePresenter {
     
     private weak var view: LogInController?
@@ -101,8 +106,16 @@ class LogInController: UIViewController, UITextFieldDelegate {
             titleColor: .white,
             backgroungColor: nil,
             backgroungImage: bluePixel,
-            cornerRadius: 10) {
-                self.showInputResult()
+            cornerRadius: 10) { [self] in
+                do {
+                    try self.performLogin()
+                } catch AuthorizationError.emptyField {
+                    self.handle(error: .emptyField)
+                } catch AuthorizationError.incorrectData {
+                    handle(error: .incorrectData)
+                } catch {
+                    showAlert(message: "Something went wrong T_T")
+                }
             }
 
         button.layer.masksToBounds = true
@@ -166,26 +179,41 @@ class LogInController: UIViewController, UITextFieldDelegate {
         indicator.isAnimating ? indicator.stopAnimating() : indicator.startAnimating()
     }
     
-    func showInputResult(){
+    func handle(error: AuthorizationError) {
+        switch error {
+        case .emptyField:
+            self.showAlert(message: "Fill in username and password")
+        case .incorrectData:
+            self.showAlert(message: "Incorrect password or username")
+        }
+    }
+    
+    func performLogin() throws {
             
         #if DEBUG
         let userService = TestUserService()
         #else
         let userService = CurrentUserService()
         #endif
-            
-        if let username = userNameField.text,
-            let password = passwordField.text,
-            let inspector = checkerDelegate,
-            inspector.checkLoginTextfields(filledInLogin: username, filledInPassword: password) {
-            self.presenter?.coordinator.loggedInSuccessfully()
-        } else {
-            showLoginAlert()
+        
+        guard userNameField.text == nil || passwordField.text != nil  else {
+            throw AuthorizationError.emptyField
         }
+        
+        guard let username = userNameField.text,
+              let password = passwordField.text,
+              let inspector = checkerDelegate,
+              inspector.checkLoginTextfields(filledInLogin: username,
+                                             filledInPassword: password) else {
+                  throw AuthorizationError.incorrectData
+              }
+        
+        self.presenter?.coordinator.loggedInSuccessfully()
+        
     }
     
-    private func showLoginAlert(){
-        let alertController = UIAlertController(title: "Error", message: "Invalid Username", preferredStyle: .alert)
+    private func showAlert(message: String){
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)

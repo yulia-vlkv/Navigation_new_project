@@ -33,7 +33,7 @@ class FeedPresenter {
     
     func performCheck(word: String) {
         checker.check(word: word) { result in
-            view?.showInputResult(result)
+            self.view?.showInputResult(result)
         }
     }
 }
@@ -135,12 +135,12 @@ final class FeedController: UIViewController {
         }
     }
     
-    func showInputResult(_ result: Result){
+    func showInputResult(_ result: Result<CheckerResult,CheckerError>){
         switch result {
-        case .correct:
+        case .success(.correct):
             checkLabel.backgroundColor = UIColor(named: "green")
             checkLabel.alpha = 1
-        case .incorrect:
+        case .failure(.incorrect):
             checkLabel.backgroundColor = UIColor(named: "red")
             checkLabel.alpha = 1
         default:
