@@ -13,11 +13,11 @@ class CurrentUserService: UserService {
     
     let someUser: User = User(userName: "Anonymous", userImage: #imageLiteral(resourceName: "logoVK"), userStatus: "No Status")
     
-    func returnUser(userName: String) -> User? {
+    func returnUser(userName: String) throws -> User {
         
         if userName == someUser.userName {
-             return someUser
-         }
-             return nil
+            return someUser
+        }
+        throw AuthorizationError.incorrectData
     }
 }

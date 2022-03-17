@@ -11,6 +11,6 @@ import UIKit
 
 protocol UserService {
     
-    func returnUser (userName: String) -> User?
+    func returnUser (userName: String) throws -> User
     
 }

@@ -41,7 +41,7 @@ class ProfileController: UIViewController {
         setUpTableView()
         setupTimer()
 
-        if let user = userService.returnUser(userName: userName){
+        if let user = try? userService.returnUser(userName: userName){
             profileHeader.showUserData(user: user)
         }
     }

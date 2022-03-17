@@ -19,8 +19,12 @@ class ProfileCoordinator: Coordinator, UserService {
     let userName = CurrentUserService().someUser.userName
     #endif
     
-    func returnUser(userName: String) -> User? {
-        return userService.returnUser(userName: userName)
+    func returnUser(userName: String) throws -> User {
+        if let user = try? userService.returnUser(userName: userName) {
+            return user
+        } else {
+            throw AuthorizationError.incorrectData
+        }
     }
     
     weak var parentCoordinator: MainCoordinator?
