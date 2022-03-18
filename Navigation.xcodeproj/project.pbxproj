@@ -18,6 +18,15 @@
 		EF1B136A27CA24000070A9A0 /* FeedViewModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B136927CA24000070A9A0 /* FeedViewModuleFactory.swift */; };
 		EF1B136C27CA241A0070A9A0 /* ProfileViewModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B136B27CA241A0070A9A0 /* ProfileViewModuleFactory.swift */; };
 		EF1B136E27D623760070A9A0 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B136D27D623760070A9A0 /* BruteForce.swift */; };
+		EF1B137427E38E250070A9A0 /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B137327E38E250070A9A0 /* AudioPlayerViewController.swift */; };
+		EF1B137627E392DD0070A9A0 /* CustomPlayerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B137527E392DD0070A9A0 /* CustomPlayerButton.swift */; };
+		EF1B137927E397570070A9A0 /* PuppetLooselyStrung_theCorrespondents.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EF1B137827E397570070A9A0 /* PuppetLooselyStrung_theCorrespondents.mp3 */; };
+		EF1B137B27E446620070A9A0 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B137A27E446620070A9A0 /* Track.swift */; };
+		EF1B137D27E446EE0070A9A0 /* TrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B137C27E446EE0070A9A0 /* TrackList.swift */; };
+		EF1B137F27E44E030070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EF1B137E27E44E030070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 */; };
+		EF1B138227E44E130070A9A0 /* IveNoMoreFucksToGive_ThomasBenjaminWild.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EF1B138027E44E130070A9A0 /* IveNoMoreFucksToGive_ThomasBenjaminWild.mp3 */; };
+		EF1B138327E44E130070A9A0 /* HandMeMyShovelImGoingIn!_WillWood.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EF1B138127E44E130070A9A0 /* HandMeMyShovelImGoingIn!_WillWood.mp3 */; };
+		EF1B138527E450860070A9A0 /* Razzmatazz_iDKHOW.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EF1B138427E450860070A9A0 /* Razzmatazz_iDKHOW.mp3 */; };
 		EF1F96E7278414BF00112D0C /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = EF1F96E6278414BF00112D0C /* iOSIntPackage */; };
 		EF25DCB42691CD2500577166 /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB32691CD2500577166 /* LogInController.swift */; };
 		EF25DCB626A02A6E00577166 /* allPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB526A02A6E00577166 /* allPosts.swift */; };
@@ -28,7 +37,6 @@
 		EF25DCC326A462D000577166 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCC226A462D000577166 /* PhotosViewController.swift */; };
 		EF25DCC626A466A600577166 /* allPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCC526A466A600577166 /* allPhotos.swift */; };
 		EF25DCCA26A4754A00577166 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCC926A4754A00577166 /* PhotosTableViewCell.swift */; };
-		EF8B724D27256BFF0069457D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8B724C27256BFF0069457D /* TabBarController.swift */; };
 		EF8B724F272585D80069457D /* TextFieldChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8B724E272585D80069457D /* TextFieldChecker.swift */; };
 		EFAE39AE272D3C1B00723701 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAE39AD272D3C1B00723701 /* MainCoordinator.swift */; };
 		EFAE39B0272D437900723701 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAE39AF272D437900723701 /* FeedCoordinator.swift */; };
@@ -95,6 +103,15 @@
 		EF1B136927CA24000070A9A0 /* FeedViewModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModuleFactory.swift; sourceTree = "<group>"; };
 		EF1B136B27CA241A0070A9A0 /* ProfileViewModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModuleFactory.swift; sourceTree = "<group>"; };
 		EF1B136D27D623760070A9A0 /* BruteForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForce.swift; sourceTree = "<group>"; };
+		EF1B137327E38E250070A9A0 /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
+		EF1B137527E392DD0070A9A0 /* CustomPlayerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerButton.swift; sourceTree = "<group>"; };
+		EF1B137827E397570070A9A0 /* PuppetLooselyStrung_theCorrespondents.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PuppetLooselyStrung_theCorrespondents.mp3; sourceTree = "<group>"; };
+		EF1B137A27E446620070A9A0 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		EF1B137C27E446EE0070A9A0 /* TrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackList.swift; sourceTree = "<group>"; };
+		EF1B137E27E44E030070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AGoodSongNeverDies_SaintMotel.mp3; sourceTree = "<group>"; };
+		EF1B138027E44E130070A9A0 /* IveNoMoreFucksToGive_ThomasBenjaminWild.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = IveNoMoreFucksToGive_ThomasBenjaminWild.mp3; sourceTree = "<group>"; };
+		EF1B138127E44E130070A9A0 /* HandMeMyShovelImGoingIn!_WillWood.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "HandMeMyShovelImGoingIn!_WillWood.mp3"; sourceTree = "<group>"; };
+		EF1B138427E450860070A9A0 /* Razzmatazz_iDKHOW.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Razzmatazz_iDKHOW.mp3; sourceTree = "<group>"; };
 		EF25DCB32691CD2500577166 /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
 		EF25DCB526A02A6E00577166 /* allPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allPosts.swift; sourceTree = "<group>"; };
 		EF25DCB726A02AFC00577166 /* PostVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVK.swift; sourceTree = "<group>"; };
@@ -104,7 +121,6 @@
 		EF25DCC226A462D000577166 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		EF25DCC526A466A600577166 /* allPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allPhotos.swift; sourceTree = "<group>"; };
 		EF25DCC926A4754A00577166 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
-		EF8B724C27256BFF0069457D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		EF8B724E272585D80069457D /* TextFieldChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldChecker.swift; sourceTree = "<group>"; };
 		EFAE39AD272D3C1B00723701 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		EFAE39AF272D437900723701 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
@@ -182,8 +198,8 @@
 				EF25DCCC26A6B87400577166 /* Models */,
 				060782B1250CE27700A87020 /* AppDelegate.swift */,
 				060782B3250CE27700A87020 /* SceneDelegate.swift */,
-				EF8B724C27256BFF0069457D /* TabBarController.swift */,
 				060782BA250CE27A00A87020 /* Assets.xcassets */,
+				EF1B137727E3972C0070A9A0 /* Music */,
 				060782BC250CE27A00A87020 /* LaunchScreen.storyboard */,
 				060782BF250CE27A00A87020 /* Info.plist */,
 			);
@@ -207,6 +223,28 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		EF1B137227E38DC80070A9A0 /* AudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				EF1B137327E38E250070A9A0 /* AudioPlayerViewController.swift */,
+				EF1B137A27E446620070A9A0 /* Track.swift */,
+				EF1B137C27E446EE0070A9A0 /* TrackList.swift */,
+			);
+			path = AudioPlayer;
+			sourceTree = "<group>";
+		};
+		EF1B137727E3972C0070A9A0 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				EF1B137827E397570070A9A0 /* PuppetLooselyStrung_theCorrespondents.mp3 */,
+				EF1B138027E44E130070A9A0 /* IveNoMoreFucksToGive_ThomasBenjaminWild.mp3 */,
+				EF1B138127E44E130070A9A0 /* HandMeMyShovelImGoingIn!_WillWood.mp3 */,
+				EF1B138427E450860070A9A0 /* Razzmatazz_iDKHOW.mp3 */,
+				EF1B137E27E44E030070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
 		EF25DCCB26A6B85900577166 /* Storages */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +264,7 @@
 				EF25DCB726A02AFC00577166 /* PostVK.swift */,
 				EFCCFEF626DA71A5007B4EBA /* addSubviews.swift */,
 				EFE64ECF271BF9C0009C8CC2 /* CustomButton.swift */,
+				EF1B137527E392DD0070A9A0 /* CustomPlayerButton.swift */,
 				EFE64ED1271C4277009C8CC2 /* CustomTextFiled.swift */,
 				EF8B724E272585D80069457D /* TextFieldChecker.swift */,
 			);
@@ -280,6 +319,7 @@
 		EFCC66AF2658E2450090CD73 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				EF1B137227E38DC80070A9A0 /* AudioPlayer */,
 				EF25DCCD26A6B8D400577166 /* Profile */,
 				EF25DCCE26A6B8DD00577166 /* Photos */,
 			);
@@ -418,8 +458,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF1B138327E44E130070A9A0 /* HandMeMyShovelImGoingIn!_WillWood.mp3 in Resources */,
 				060782BE250CE27A00A87020 /* LaunchScreen.storyboard in Resources */,
+				EF1B137F27E44E030070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 in Resources */,
 				060782BB250CE27A00A87020 /* Assets.xcassets in Resources */,
+				EF1B137927E397570070A9A0 /* PuppetLooselyStrung_theCorrespondents.mp3 in Resources */,
+				EF1B138227E44E130070A9A0 /* IveNoMoreFucksToGive_ThomasBenjaminWild.mp3 in Resources */,
+				EF1B138527E450860070A9A0 /* Razzmatazz_iDKHOW.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +530,7 @@
 				EF25DCC626A466A600577166 /* allPhotos.swift in Sources */,
 				EF25DCB42691CD2500577166 /* LogInController.swift in Sources */,
 				EFCCFEF026DA6862007B4EBA /* UserService.swift in Sources */,
+				EF1B137427E38E250070A9A0 /* AudioPlayerViewController.swift in Sources */,
 				EFAFCFFE26F3915400C74923 /* LogInChecker.swift in Sources */,
 				EF25DCBD26A2FCAA00577166 /* ProfileTableHeaderView.swift in Sources */,
 				EFAE39B2272D438600723701 /* ProfileCoordinator.swift in Sources */,
@@ -498,8 +544,10 @@
 				EFAE39AE272D3C1B00723701 /* MainCoordinator.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				EFCC66B12658E3C20090CD73 /* ProfileController.swift in Sources */,
+				EF1B137627E392DD0070A9A0 /* CustomPlayerButton.swift in Sources */,
 				EF1B136A27CA24000070A9A0 /* FeedViewModuleFactory.swift in Sources */,
 				EFAE39B42732C7A300723701 /* Coordinator.swift in Sources */,
+				EF1B137B27E446620070A9A0 /* Track.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
 				EFAFD00426F6F0CE00C74923 /* LoginFactory.swift in Sources */,
 				EF25DCC126A4626300577166 /* PhotosCollectionViewCell.swift in Sources */,
@@ -511,8 +559,8 @@
 				EFCCFEF726DA71A5007B4EBA /* addSubviews.swift in Sources */,
 				EF25DCB826A02AFC00577166 /* PostVK.swift in Sources */,
 				EFAE39B0272D437900723701 /* FeedCoordinator.swift in Sources */,
+				EF1B137D27E446EE0070A9A0 /* TrackList.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
-				EF8B724D27256BFF0069457D /* TabBarController.swift in Sources */,
 				EFCC66B32658E4070090CD73 /* ProfileHeaderView.swift in Sources */,
 				EF8B724F272585D80069457D /* TextFieldChecker.swift in Sources */,
 				EF25DCBA26A02BBA00577166 /* PostTableViewCell.swift in Sources */,

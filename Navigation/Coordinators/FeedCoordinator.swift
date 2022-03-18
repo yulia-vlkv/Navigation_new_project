@@ -13,14 +13,10 @@ import UIKit
 class FeedCoordinator: Coordinator {
     weak var parentCoordinator: MainCoordinator?
     var childCoordinator: [Coordinator] = []
-    var navigationController: UINavigationController
+    var navigationController = UINavigationController()
     let checker = TextFieldChecker()
     
     let fabric = FeedViewModuleFactory()
-
-    init() {
-        self.navigationController = .init()
-    }
 
     func start() {}
 
@@ -36,10 +32,12 @@ class FeedCoordinator: Coordinator {
 
 extension FeedCoordinator {
     func showPost(){
-        self.navigationController.pushViewController(PostViewController(coordinator: self), animated: true)
+        self.navigationController.pushViewController(PostViewController(coordinator: self),
+                                                     animated: true)
     }
     
     func presentPost(){
-        self.navigationController.present(InfoViewController(coordinator: self), animated: true)
+        self.navigationController.present(InfoViewController(coordinator: self),
+                                          animated: true)
     }
 }

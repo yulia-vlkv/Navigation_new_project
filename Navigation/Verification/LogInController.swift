@@ -13,29 +13,59 @@ enum AuthorizationError: Error {
     case incorrectData
 }
 
-class ProfilePresenter {
-    
-    private weak var view: LogInController?
-    var coordinator: ProfileCoordinator
-    var passwordPicker: BruteForce
-    
-    init(view: LogInController, coordinator: ProfileCoordinator, passwordPicker: BruteForce){
-        self.view = view
-        self.coordinator = coordinator
-        self.passwordPicker = passwordPicker
-    }
-    
-    func loggedInSuccessfully() {
-        coordinator.loggedInSuccessfully()
-    }
-}
+//class ProfilePresenter {
+//    
+//    private weak var view: LogInController?
+//    var coordinator: ProfileCoordinator
+//    var passwordPicker: BruteForce
+//    
+//    init(view: LogInController,
+//         coordinator: ProfileCoordinator,
+//         passwordPicker: BruteForce){
+//        self.view = view
+//        self.coordinator = coordinator
+//        self.passwordPicker = passwordPicker
+//    }
+//    
+//    func loggedInSuccessfully() {
+//        coordinator.loggedInSuccessfully()
+//    }
+//    
+//    func pushPhotoVC() {
+//        coordinator.pushPhotoVC()
+//    }
+//    
+//    func pushAudioVC() {
+//        coordinator.pushAudioVC()
+//    }
+//}
 
 class LogInController: UIViewController, UITextFieldDelegate {
     
     var presenter: ProfilePresenter?
-
+    weak var coordinator: ProfileCoordinator?
+//
+//    init(coordinator: ProfilePresenter){
+//        super.init(nibName: nil, bundle: nil)
+//        self.coordinator = coordinator
+//    }
+    
+//    init(coordinator: ProfileCoordinator,
+//         userService: UserService,
+//         userName: String) {
+//        self.coordinator = coordinator
+//        self.userService = userService
+//        self.userName = userName
+//        super.init(nibName: nil, bundle: nil)
+//    }
+         
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+    
     weak var checkerDelegate: LogInControllerDelegate?
     weak var loginFactory: MyLoginFactory?
+    var pushProfile: ((_ userService: UserService, _ userName: String) -> Void )?
 
     let someUserService = CurrentUserService()
     let testUserService = TestUserService()
@@ -208,6 +238,7 @@ class LogInController: UIViewController, UITextFieldDelegate {
                   throw AuthorizationError.incorrectData
               }
         
+//        pushProfile?(userService, username)
         self.presenter?.coordinator.loggedInSuccessfully()
         
     }

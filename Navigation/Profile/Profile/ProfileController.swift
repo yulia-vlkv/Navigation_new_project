@@ -9,8 +9,40 @@
 import UIKit
 import Foundation
 
+class ProfilePresenter {
+    
+    private weak var view: LogInController?
+    var coordinator: ProfileCoordinator
+    var passwordPicker: BruteForce
+    
+    init(view: LogInController,
+         coordinator: ProfileCoordinator,
+         passwordPicker: BruteForce){
+        self.view = view
+        self.coordinator = coordinator
+        self.passwordPicker = passwordPicker
+    }
+    
+//    func pushProfileVC(userService: UserService, userName: String) {
+//        coordinator.pushProfileVC(userService: userService, userName: userName)
+//    }
+    
+    func loggedInSuccessfully() {
+        coordinator.loggedInSuccessfully()
+    }
+    
+    func pushPhotoVC() {
+        coordinator.pushPhotoVC()
+    }
+    
+    func pushAudioVC() {
+        coordinator.pushAudioVC()
+    }
+}
+
 class ProfileController: UIViewController {
     
+    var presenter: ProfilePresenter?
     weak var coordinator: ProfileCoordinator?
     
     private let tableView = UITableView(frame: .zero, style: .grouped)
@@ -18,8 +50,9 @@ class ProfileController: UIViewController {
     let profileHeader = ProfileHeaderView()
     let userService: UserService
     let userName: String
-    private var time = 10
+    private var time = 30
     private var timer: Timer?
+    private let cellID = "CellID"
     
     init(coordinator: ProfileCoordinator,
          userService: UserService,
@@ -66,19 +99,12 @@ class ProfileController: UIViewController {
             
             self.timer = timer
         }
-//        let timer = Timer.scheduledTimer(timeInterval: 1.0,
-//                          target: self,
-//                          selector: #selector(updateTimerLabel),
-//                          userInfo: time,
-//                          repeats: true)
-//        RunLoop.current.add(timer, forMode: .common)
-//        timer.tolerance = 0.1
     }
     
     private func showReminderAlert() {
         let alertController = UIAlertController(title: "Slow down", message: "You work too hard", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Take a break", style: .cancel) {_ in
-            self.time = 10
+            self.time = 30
             self.setupTimer()
         }
         alertController.addAction(cancelAction)
@@ -110,6 +136,7 @@ class ProfileController: UIViewController {
         tableView.delegate = self
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: String(describing: PhotosTableViewCell.self))
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
         
         let constraints = [
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -126,22 +153,35 @@ class ProfileController: UIViewController {
 extension ProfileController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        switch section {
+        case 0:
             return 1
-        } else {
+        case 1:
+            return 1
+        default:
             return arrayOfPosts.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0:
             let cell: PhotosTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PhotosTableViewCell.self), for: indexPath) as! PhotosTableViewCell
             return cell
-        } else {
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+            cell.textLabel?.text = "Music"
+            cell.backgroundColor = .white
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+            cell.textLabel?.textColor = .black
+            cell.accessoryView = UIImageView(image: UIImage(systemName: "arrow.forward"))
+            cell.accessoryView?.tintColor = .black
+            return cell
+        default:
             let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
             cell.post = arrayOfPosts[indexPath.row]
             return cell
@@ -169,11 +209,17 @@ extension ProfileController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            let photosVC = PhotosViewController()
+        switch indexPath.section {
+        case 0:
+//            presenter?.coordinator.pushPhotoVC()
+            let photosVC = PhotosViewController(coordinator: coordinator!)
             navigationController?.pushViewController(photosVC, animated: true)
-        } else {
+        case 1:
+//            presenter?.coordinator.pushAudioVC()
+            let audioVC = AudioPlayerViewController(coordinator: coordinator!)
+            navigationController?.pushViewController(audioVC, animated: true)
+        default:
             return tableView.deselectRow(at: indexPath, animated: true)
         }
-    }
+}
 }

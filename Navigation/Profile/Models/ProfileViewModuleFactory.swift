@@ -18,5 +18,19 @@ class ProfileViewModuleFactory: ModuleFactory {
         profileViewController.presenter = profilePresenter
         return profileViewController
     }
-    
+
 }
+
+//class ProfileViewModuleFactory: ModuleFactory {
+//    func createModule(coordinator: ProfileCoordinator) -> ProfileController {
+//        let profileViewController = ProfileController()
+//        let profilePresenter = ProfilePresenter (
+//            view: profileViewController,
+//            coordinator: coordinator,
+//            passwordPicker: BruteForce())
+//        profileViewController.presenter = profilePresenter
+//        return profileViewController
+//    }
+//
+//}
+
