@@ -6,64 +6,58 @@
 //  Copyright © 2022 Artem Novichkov. All rights reserved.
 //
 
+import Foundation
 import AVFoundation
 import UIKit
 
 class AudioPlayerViewController: UIViewController {
     
-    weak var coordinator: ProfileCoordinator?
+//    weak var coordinator: ProfileCoordinator?
+//    
+//    init(coordinator: ProfileCoordinator){
+//        super.init(nibName: nil, bundle: nil)
+//        self.coordinator = coordinator
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
-    init(coordinator: ProfileCoordinator){
-        super.init(nibName: nil, bundle: nil)
-        self.coordinator = coordinator
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    var player = AVAudioPlayer()
+    static var player = AVAudioPlayer()
+    public var position: Int = 0
+    public var tracklist = TrackList.tracks
     
     private lazy var playButton: CustomPlayerButton = {
         let button = CustomPlayerButton(image: "play.fill") {
-            if self.player.isPlaying {
-                print("Already playing!")
-            } else {
-                self.player.play()
-            }
+            self.play()
         }
         return button
     }()
     
     private lazy var pauseButton: CustomPlayerButton = {
         let button = CustomPlayerButton(image: "pause.fill") {
-            if self.player.isPlaying {
-                self.player.pause()
-            } else {
-                print("Already paused!")
-            }
+            self.pause()
         }
         return button
     }()
     
     private lazy var stopButton: CustomPlayerButton = {
         let button = CustomPlayerButton(image: "stop.fill") {
-            self.player.stop()
-            self.player.currentTime = 0.0
+            self.stop()
         }
         return button
     }()
     
     private lazy var nextButton: CustomPlayerButton = {
         let button = CustomPlayerButton(image: "forward.fill") {
-            print("next track")
+            self.playNext()
         }
         return button
     }()
     
     private lazy var previousButton: CustomPlayerButton = {
         let button = CustomPlayerButton(image: "backward.fill") {
-            print("next track")
+            self.playPrevious()
         }
         return button
     }()
@@ -80,7 +74,6 @@ class AudioPlayerViewController: UIViewController {
     
     private let trackNameLabel: UILabel = {
        let label = UILabel()
-        label.text = "Puppet Loosely Strung"
         label.numberOfLines = 2
         label.textColor = .black
         label.textAlignment = .center
@@ -91,7 +84,6 @@ class AudioPlayerViewController: UIViewController {
     
     private let artistNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "The Correspondents"
         label.numberOfLines = 2
         label.textColor = .black
         label.textAlignment = .center
@@ -101,7 +93,7 @@ class AudioPlayerViewController: UIViewController {
     }()
     
     private let albumCover: UIImageView = {
-        let image = UIImageView(image: UIImage(named: "theCorrespondents"))
+        let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.layer.cornerRadius = 6
         image.clipsToBounds = true
@@ -121,20 +113,33 @@ class AudioPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.navigationBar.isHidden = false
-        navigationItem.title = "Music"
-        navigationController?.navigationBar.topItem?.title = "Back"
-        
+      
         prepareToPlay()
         setupUI()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+//        player.stop()
+    }
+    
+    @objc func playerDidFinishPlaying(note: NSNotification) {
+        self.playNext()
+    }
     
     private func prepareToPlay() {
+        
+        let track = tracklist[position]
+        albumCover.image = track.albumCover
+        trackNameLabel.text = track.trackName
+        artistNameLabel.text = track.artistName
+        let url = Bundle.main.url(forResource: track.fileID, withExtension: "mp3")!
+        
         do {
-            player = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "PuppetLooselyStrung_theCorrespondents", ofType: "mp3")!))
-            player.prepareToPlay()
+            AudioPlayerViewController.player = try AVAudioPlayer(contentsOf: url)
+            AudioPlayerViewController.player.prepareToPlay()
+            AudioPlayerViewController.player.play()
         }
         catch {
             print(error)
@@ -175,5 +180,50 @@ class AudioPlayerViewController: UIViewController {
         ]
         
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    private func play() {
+        if AudioPlayerViewController.player.isPlaying {
+            print("Already playing!")
+        } else {
+            AudioPlayerViewController.player.play()
+        }
+    }
+    
+    private func pause() {
+        if AudioPlayerViewController.player.isPlaying {
+            AudioPlayerViewController.player.pause()
+        } else {
+            print("Already paused!")
+        }
+    }
+    
+    private func stop() {
+        AudioPlayerViewController.player.stop()
+        AudioPlayerViewController.player.currentTime = 0.0
+    }
+    
+    private func playNext() {
+        if position + 1 < tracklist.count {
+            position += 1
+            prepareToPlay()
+            play()
+        } else {
+            position = 0
+            prepareToPlay()
+            play()
+        }
+    }
+    
+    private func playPrevious(){
+        if position != 0 {
+            position -= 1
+            prepareToPlay()
+            play()
+        } else {
+            position = tracklist.count - 1
+            prepareToPlay()
+            play()
+        }
     }
 }

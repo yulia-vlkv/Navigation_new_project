@@ -35,8 +35,8 @@ class ProfilePresenter {
         coordinator.pushPhotoVC()
     }
     
-    func pushAudioVC() {
-        coordinator.pushAudioVC()
+    func pushMusicVC() {
+        coordinator.pushMusicVC()
     }
 }
 
@@ -211,15 +211,15 @@ extension ProfileController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-//            presenter?.coordinator.pushPhotoVC()
+            //            presenter?.coordinator.pushPhotoVC()
             let photosVC = PhotosViewController(coordinator: coordinator!)
             navigationController?.pushViewController(photosVC, animated: true)
         case 1:
-//            presenter?.coordinator.pushAudioVC()
-            let audioVC = AudioPlayerViewController(coordinator: coordinator!)
-            navigationController?.pushViewController(audioVC, animated: true)
+            //            presenter?.coordinator.pushAudioVC()
+            let musicVC = MusicViewController()
+            navigationController?.pushViewController(musicVC, animated: true)
         default:
             return tableView.deselectRow(at: indexPath, animated: true)
         }
-}
+    }
 }

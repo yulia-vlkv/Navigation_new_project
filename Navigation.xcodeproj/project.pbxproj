@@ -23,10 +23,11 @@
 		EF1B137927E397570070A9A0 /* PuppetLooselyStrung_theCorrespondents.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EF1B137827E397570070A9A0 /* PuppetLooselyStrung_theCorrespondents.mp3 */; };
 		EF1B137B27E446620070A9A0 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B137A27E446620070A9A0 /* Track.swift */; };
 		EF1B137D27E446EE0070A9A0 /* TrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B137C27E446EE0070A9A0 /* TrackList.swift */; };
-		EF1B137F27E44E030070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EF1B137E27E44E030070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 */; };
 		EF1B138227E44E130070A9A0 /* IveNoMoreFucksToGive_ThomasBenjaminWild.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EF1B138027E44E130070A9A0 /* IveNoMoreFucksToGive_ThomasBenjaminWild.mp3 */; };
 		EF1B138327E44E130070A9A0 /* HandMeMyShovelImGoingIn!_WillWood.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EF1B138127E44E130070A9A0 /* HandMeMyShovelImGoingIn!_WillWood.mp3 */; };
 		EF1B138527E450860070A9A0 /* Razzmatazz_iDKHOW.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EF1B138427E450860070A9A0 /* Razzmatazz_iDKHOW.mp3 */; };
+		EF1B138727E49CBC0070A9A0 /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B138627E49CBC0070A9A0 /* MusicViewController.swift */; };
+		EF1B138B27E4AFF10070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EF1B138A27E4AFF10070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 */; };
 		EF1F96E7278414BF00112D0C /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = EF1F96E6278414BF00112D0C /* iOSIntPackage */; };
 		EF25DCB42691CD2500577166 /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB32691CD2500577166 /* LogInController.swift */; };
 		EF25DCB626A02A6E00577166 /* allPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB526A02A6E00577166 /* allPosts.swift */; };
@@ -108,10 +109,11 @@
 		EF1B137827E397570070A9A0 /* PuppetLooselyStrung_theCorrespondents.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PuppetLooselyStrung_theCorrespondents.mp3; sourceTree = "<group>"; };
 		EF1B137A27E446620070A9A0 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		EF1B137C27E446EE0070A9A0 /* TrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackList.swift; sourceTree = "<group>"; };
-		EF1B137E27E44E030070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AGoodSongNeverDies_SaintMotel.mp3; sourceTree = "<group>"; };
 		EF1B138027E44E130070A9A0 /* IveNoMoreFucksToGive_ThomasBenjaminWild.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = IveNoMoreFucksToGive_ThomasBenjaminWild.mp3; sourceTree = "<group>"; };
 		EF1B138127E44E130070A9A0 /* HandMeMyShovelImGoingIn!_WillWood.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "HandMeMyShovelImGoingIn!_WillWood.mp3"; sourceTree = "<group>"; };
 		EF1B138427E450860070A9A0 /* Razzmatazz_iDKHOW.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Razzmatazz_iDKHOW.mp3; sourceTree = "<group>"; };
+		EF1B138627E49CBC0070A9A0 /* MusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
+		EF1B138A27E4AFF10070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AGoodSongNeverDies_SaintMotel.mp3; sourceTree = "<group>"; };
 		EF25DCB32691CD2500577166 /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
 		EF25DCB526A02A6E00577166 /* allPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allPosts.swift; sourceTree = "<group>"; };
 		EF25DCB726A02AFC00577166 /* PostVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVK.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				EF1B137327E38E250070A9A0 /* AudioPlayerViewController.swift */,
+				EF1B138627E49CBC0070A9A0 /* MusicViewController.swift */,
 				EF1B137A27E446620070A9A0 /* Track.swift */,
 				EF1B137C27E446EE0070A9A0 /* TrackList.swift */,
 			);
@@ -238,9 +241,9 @@
 			children = (
 				EF1B137827E397570070A9A0 /* PuppetLooselyStrung_theCorrespondents.mp3 */,
 				EF1B138027E44E130070A9A0 /* IveNoMoreFucksToGive_ThomasBenjaminWild.mp3 */,
+				EF1B138A27E4AFF10070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 */,
 				EF1B138127E44E130070A9A0 /* HandMeMyShovelImGoingIn!_WillWood.mp3 */,
 				EF1B138427E450860070A9A0 /* Razzmatazz_iDKHOW.mp3 */,
-				EF1B137E27E44E030070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 */,
 			);
 			path = Music;
 			sourceTree = "<group>";
@@ -460,8 +463,8 @@
 			files = (
 				EF1B138327E44E130070A9A0 /* HandMeMyShovelImGoingIn!_WillWood.mp3 in Resources */,
 				060782BE250CE27A00A87020 /* LaunchScreen.storyboard in Resources */,
-				EF1B137F27E44E030070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 in Resources */,
 				060782BB250CE27A00A87020 /* Assets.xcassets in Resources */,
+				EF1B138B27E4AFF10070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 in Resources */,
 				EF1B137927E397570070A9A0 /* PuppetLooselyStrung_theCorrespondents.mp3 in Resources */,
 				EF1B138227E44E130070A9A0 /* IveNoMoreFucksToGive_ThomasBenjaminWild.mp3 in Resources */,
 				EF1B138527E450860070A9A0 /* Razzmatazz_iDKHOW.mp3 in Resources */,
@@ -547,6 +550,7 @@
 				EF1B137627E392DD0070A9A0 /* CustomPlayerButton.swift in Sources */,
 				EF1B136A27CA24000070A9A0 /* FeedViewModuleFactory.swift in Sources */,
 				EFAE39B42732C7A300723701 /* Coordinator.swift in Sources */,
+				EF1B138727E49CBC0070A9A0 /* MusicViewController.swift in Sources */,
 				EF1B137B27E446620070A9A0 /* Track.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
 				EFAFD00426F6F0CE00C74923 /* LoginFactory.swift in Sources */,

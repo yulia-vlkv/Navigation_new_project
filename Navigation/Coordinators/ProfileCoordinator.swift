@@ -75,8 +75,8 @@ extension ProfileCoordinator {
                                                      animated: true)
     }
     
-    func pushAudioVC() {
-        self.navigationController.pushViewController(AudioPlayerViewController(coordinator: self),
+    func pushMusicVC() {
+        self.navigationController.pushViewController(MusicViewController(),
                                                      animated: true)
     }
 
