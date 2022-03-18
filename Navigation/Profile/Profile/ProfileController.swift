@@ -52,7 +52,6 @@ class ProfileController: UIViewController {
     let userName: String
     private var time = 30
     private var timer: Timer?
-    private let cellID = "CellID"
     
     init(coordinator: ProfileCoordinator,
          userService: UserService,
@@ -136,7 +135,8 @@ class ProfileController: UIViewController {
         tableView.delegate = self
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: String(describing: PhotosTableViewCell.self))
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellID_01")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellID_02")
         
         let constraints = [
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -153,7 +153,7 @@ class ProfileController: UIViewController {
 extension ProfileController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -161,6 +161,8 @@ extension ProfileController: UITableViewDataSource {
         case 0:
             return 1
         case 1:
+            return 1
+        case 2:
             return 1
         default:
             return arrayOfPosts.count
@@ -173,8 +175,17 @@ extension ProfileController: UITableViewDataSource {
             let cell: PhotosTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PhotosTableViewCell.self), for: indexPath) as! PhotosTableViewCell
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CellID_01", for: indexPath)
             cell.textLabel?.text = "Music"
+            cell.backgroundColor = .white
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+            cell.textLabel?.textColor = .black
+            cell.accessoryView = UIImageView(image: UIImage(systemName: "arrow.forward"))
+            cell.accessoryView?.tintColor = .black
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CellID_02", for: indexPath)
+            cell.textLabel?.text = "Video"
             cell.backgroundColor = .white
             cell.textLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
             cell.textLabel?.textColor = .black
@@ -218,6 +229,9 @@ extension ProfileController: UITableViewDelegate {
             //            presenter?.coordinator.pushAudioVC()
             let musicVC = MusicViewController()
             navigationController?.pushViewController(musicVC, animated: true)
+        case 2:
+            let videoVC = VideoViewController()
+            navigationController?.pushViewController(videoVC, animated: true)
         default:
             return tableView.deselectRow(at: indexPath, animated: true)
         }

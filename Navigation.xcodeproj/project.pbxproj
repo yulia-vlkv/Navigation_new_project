@@ -28,6 +28,10 @@
 		EF1B138527E450860070A9A0 /* Razzmatazz_iDKHOW.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EF1B138427E450860070A9A0 /* Razzmatazz_iDKHOW.mp3 */; };
 		EF1B138727E49CBC0070A9A0 /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B138627E49CBC0070A9A0 /* MusicViewController.swift */; };
 		EF1B138B27E4AFF10070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EF1B138A27E4AFF10070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 */; };
+		EF1B138F27E4B69E0070A9A0 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B138E27E4B69E0070A9A0 /* Video.swift */; };
+		EF1B139127E4B6CD0070A9A0 /* VideoPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B139027E4B6CD0070A9A0 /* VideoPlaylist.swift */; };
+		EF1B139327E4BBD00070A9A0 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B139227E4BBD00070A9A0 /* VideoViewController.swift */; };
+		EF1B139527E4CA0D0070A9A0 /* YoutubePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B139427E4CA0D0070A9A0 /* YoutubePlayerViewController.swift */; };
 		EF1F96E7278414BF00112D0C /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = EF1F96E6278414BF00112D0C /* iOSIntPackage */; };
 		EF25DCB42691CD2500577166 /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB32691CD2500577166 /* LogInController.swift */; };
 		EF25DCB626A02A6E00577166 /* allPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB526A02A6E00577166 /* allPosts.swift */; };
@@ -114,6 +118,10 @@
 		EF1B138427E450860070A9A0 /* Razzmatazz_iDKHOW.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Razzmatazz_iDKHOW.mp3; sourceTree = "<group>"; };
 		EF1B138627E49CBC0070A9A0 /* MusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
 		EF1B138A27E4AFF10070A9A0 /* AGoodSongNeverDies_SaintMotel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AGoodSongNeverDies_SaintMotel.mp3; sourceTree = "<group>"; };
+		EF1B138E27E4B69E0070A9A0 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		EF1B139027E4B6CD0070A9A0 /* VideoPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaylist.swift; sourceTree = "<group>"; };
+		EF1B139227E4BBD00070A9A0 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		EF1B139427E4CA0D0070A9A0 /* YoutubePlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubePlayerViewController.swift; sourceTree = "<group>"; };
 		EF25DCB32691CD2500577166 /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
 		EF25DCB526A02A6E00577166 /* allPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allPosts.swift; sourceTree = "<group>"; };
 		EF25DCB726A02AFC00577166 /* PostVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVK.swift; sourceTree = "<group>"; };
@@ -193,7 +201,6 @@
 			children = (
 				EFAE39AC272D3BF600723701 /* Coordinators */,
 				EF25DCCB26A6B85900577166 /* Storages */,
-				EFAFCFFC26F3914200C74923 /* Verification */,
 				EFCCFEEC26DA6652007B4EBA /* UserData */,
 				EFCCFEBF26D6751A007B4EBA /* Post */,
 				EFCC66AF2658E2450090CD73 /* Profile */,
@@ -225,15 +232,13 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		EF1B137227E38DC80070A9A0 /* AudioPlayer */ = {
+		EF1B137227E38DC80070A9A0 /* Multimedia */ = {
 			isa = PBXGroup;
 			children = (
-				EF1B137327E38E250070A9A0 /* AudioPlayerViewController.swift */,
-				EF1B138627E49CBC0070A9A0 /* MusicViewController.swift */,
-				EF1B137A27E446620070A9A0 /* Track.swift */,
-				EF1B137C27E446EE0070A9A0 /* TrackList.swift */,
+				EF1B138D27E4B6630070A9A0 /* VideoPlayer */,
+				EF1B138C27E4B6590070A9A0 /* AudioPlayer */,
 			);
-			path = AudioPlayer;
+			path = Multimedia;
 			sourceTree = "<group>";
 		};
 		EF1B137727E3972C0070A9A0 /* Music */ = {
@@ -246,6 +251,28 @@
 				EF1B138427E450860070A9A0 /* Razzmatazz_iDKHOW.mp3 */,
 			);
 			path = Music;
+			sourceTree = "<group>";
+		};
+		EF1B138C27E4B6590070A9A0 /* AudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				EF1B137327E38E250070A9A0 /* AudioPlayerViewController.swift */,
+				EF1B138627E49CBC0070A9A0 /* MusicViewController.swift */,
+				EF1B137A27E446620070A9A0 /* Track.swift */,
+				EF1B137C27E446EE0070A9A0 /* TrackList.swift */,
+			);
+			path = AudioPlayer;
+			sourceTree = "<group>";
+		};
+		EF1B138D27E4B6630070A9A0 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				EF1B138E27E4B69E0070A9A0 /* Video.swift */,
+				EF1B139027E4B6CD0070A9A0 /* VideoPlaylist.swift */,
+				EF1B139227E4BBD00070A9A0 /* VideoViewController.swift */,
+				EF1B139427E4CA0D0070A9A0 /* YoutubePlayerViewController.swift */,
+			);
+			path = VideoPlayer;
 			sourceTree = "<group>";
 		};
 		EF25DCCB26A6B85900577166 /* Storages */ = {
@@ -278,6 +305,7 @@
 		EF25DCCD26A6B8D400577166 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				EFAFCFFC26F3914200C74923 /* Verification */,
 				EFCC66B02658E3C20090CD73 /* ProfileController.swift */,
 				EFCC66B22658E4070090CD73 /* ProfileHeaderView.swift */,
 				EF25DCBC26A2FCAA00577166 /* ProfileTableHeaderView.swift */,
@@ -322,7 +350,7 @@
 		EFCC66AF2658E2450090CD73 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				EF1B137227E38DC80070A9A0 /* AudioPlayer */,
+				EF1B137227E38DC80070A9A0 /* Multimedia */,
 				EF25DCCD26A6B8D400577166 /* Profile */,
 				EF25DCCE26A6B8DD00577166 /* Photos */,
 			);
@@ -533,6 +561,7 @@
 				EF25DCC626A466A600577166 /* allPhotos.swift in Sources */,
 				EF25DCB42691CD2500577166 /* LogInController.swift in Sources */,
 				EFCCFEF026DA6862007B4EBA /* UserService.swift in Sources */,
+				EF1B139327E4BBD00070A9A0 /* VideoViewController.swift in Sources */,
 				EF1B137427E38E250070A9A0 /* AudioPlayerViewController.swift in Sources */,
 				EFAFCFFE26F3915400C74923 /* LogInChecker.swift in Sources */,
 				EF25DCBD26A2FCAA00577166 /* ProfileTableHeaderView.swift in Sources */,
@@ -543,9 +572,12 @@
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				EF25DCCA26A4754A00577166 /* PhotosTableViewCell.swift in Sources */,
 				EFCCFEF526DA6B5B007B4EBA /* TestUserService.swift in Sources */,
+				EF1B139127E4B6CD0070A9A0 /* VideoPlaylist.swift in Sources */,
 				EF1B136E27D623760070A9A0 /* BruteForce.swift in Sources */,
 				EFAE39AE272D3C1B00723701 /* MainCoordinator.swift in Sources */,
+				EF1B139527E4CA0D0070A9A0 /* YoutubePlayerViewController.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
+				EF1B138F27E4B69E0070A9A0 /* Video.swift in Sources */,
 				EFCC66B12658E3C20090CD73 /* ProfileController.swift in Sources */,
 				EF1B137627E392DD0070A9A0 /* CustomPlayerButton.swift in Sources */,
 				EF1B136A27CA24000070A9A0 /* FeedViewModuleFactory.swift in Sources */,
