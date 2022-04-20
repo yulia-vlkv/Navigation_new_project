@@ -13,36 +13,9 @@ enum AuthorizationError: Error {
     case incorrectData
 }
 
-//class ProfilePresenter {
-//    
-//    private weak var view: LogInController?
-//    var coordinator: ProfileCoordinator
-//    var passwordPicker: BruteForce
-//    
-//    init(view: LogInController,
-//         coordinator: ProfileCoordinator,
-//         passwordPicker: BruteForce){
-//        self.view = view
-//        self.coordinator = coordinator
-//        self.passwordPicker = passwordPicker
-//    }
-//    
-//    func loggedInSuccessfully() {
-//        coordinator.loggedInSuccessfully()
-//    }
-//    
-//    func pushPhotoVC() {
-//        coordinator.pushPhotoVC()
-//    }
-//    
-//    func pushAudioVC() {
-//        coordinator.pushAudioVC()
-//    }
-//}
-
-class LogInController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    var presenter: ProfilePresenter?
+    var presenter: LoginPresenter?
     weak var coordinator: ProfileCoordinator?
 //
 //    init(coordinator: ProfilePresenter){
@@ -170,7 +143,8 @@ class LogInController: UIViewController, UITextFieldDelegate {
             backgroungColor: nil,
             backgroungImage: bluePixel,
             cornerRadius: 10) { [self] in
-                self.bruteForce(passwordToUnlock: LogInChecker.instance.password)
+                self.presenter?.didPickPasswordPressed()
+//                self.bruteForce(passwordToUnlock: LogInChecker.instance.password)
             }
         
         button.layer.masksToBounds = true
@@ -178,31 +152,7 @@ class LogInController: UIViewController, UITextFieldDelegate {
         
         return button
     }()
-    
-    func bruteForce(passwordToUnlock: String) {
-        let ALLOWED_CHARACTERS:   [String] = String().printable.map { String($0) }
-        var password: String = ""
-        let group = DispatchGroup()
-        let queue = DispatchQueue(label: "backgroundQueue", qos: .background)
-        
-        self.passwordField.text?.removeAll()
-        self.indicatorToggle()
-        group.enter()
-        
-        queue.async {
-            while password != passwordToUnlock {
-                password = (self.presenter?.passwordPicker.generateBruteForce(password, fromArray: ALLOWED_CHARACTERS)) as! String
-                print(password)
-            }
-            group.leave()
-        }
-        
-        group.notify(queue: .main) { [self] in
-            self.indicatorToggle()
-            self.passwordField.text = password
-            passwordField.isSecureTextEntry = false
-        }
-    }
+
     
     func indicatorToggle(){
         indicator.isHidden.toggle()
@@ -362,7 +312,7 @@ extension UIImage {
 }
  
 // MARK: extension for keyboard magic
-extension LogInController {
+extension LoginViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

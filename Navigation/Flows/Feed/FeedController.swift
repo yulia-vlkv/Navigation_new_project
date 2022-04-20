@@ -10,34 +10,6 @@ import UIKit
 import StorageService
 import SnapKit
 
-class FeedPresenter {
-    private weak var view: FeedController?
-    private let coordinator: FeedCoordinator
-    private let checker: TextFieldChecker
-    
-    init(view: FeedController,
-         coordinator: FeedCoordinator,
-         checker: TextFieldChecker) {
-        self.view = view
-        self.coordinator = coordinator
-        self.checker = checker
-    }
-    
-    func showPost() {
-        coordinator.showPost()
-    }
-    
-    func presentPost() {
-        coordinator.presentPost()
-    }
-    
-    func performCheck(word: String) {
-        checker.check(word: word) { result in
-            self.view?.showInputResult(result)
-        }
-    }
-}
-
 final class FeedController: UIViewController {
     
     var presenter: FeedPresenter?

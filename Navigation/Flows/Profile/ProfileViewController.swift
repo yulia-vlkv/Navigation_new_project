@@ -9,38 +9,7 @@
 import UIKit
 import Foundation
 
-class ProfilePresenter {
-    
-    private weak var view: LogInController?
-    var coordinator: ProfileCoordinator
-    var passwordPicker: BruteForce
-    
-    init(view: LogInController,
-         coordinator: ProfileCoordinator,
-         passwordPicker: BruteForce){
-        self.view = view
-        self.coordinator = coordinator
-        self.passwordPicker = passwordPicker
-    }
-    
-//    func pushProfileVC(userService: UserService, userName: String) {
-//        coordinator.pushProfileVC(userService: userService, userName: userName)
-//    }
-    
-    func loggedInSuccessfully() {
-        coordinator.loggedInSuccessfully()
-    }
-    
-    func pushPhotoVC() {
-        coordinator.pushPhotoVC()
-    }
-    
-    func pushMusicVC() {
-        coordinator.pushMusicVC()
-    }
-}
-
-class ProfileController: UIViewController {
+class ProfileViewController: UIViewController {
     
     var presenter: ProfilePresenter?
     weak var coordinator: ProfileCoordinator?
@@ -49,22 +18,22 @@ class ProfileController: UIViewController {
     private let arrayOfPosts = allPosts.postArray
     let profileHeader = ProfileHeaderView()
     let userService: UserService
-    let userName: String
+    let userName: String = ""
     private var time = 30
     private var timer: Timer?
-    
-    init(coordinator: ProfileCoordinator,
-         userService: UserService,
-         userName: String) {
-        self.coordinator = coordinator
-        self.userService = userService
-        self.userName = userName
-        super.init(nibName: nil, bundle: nil)
-    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+//    init(coordinator: ProfileCoordinator,
+//         userService: UserService,
+//         userName: String) {
+//        self.coordinator = coordinator
+//        self.userService = userService
+//        self.userName = userName
+//        super.init(nibName: nil, bundle: nil)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,7 +119,7 @@ class ProfileController: UIViewController {
 }
 
 // MARK: UITableViewDataSource
-extension ProfileController: UITableViewDataSource {
+extension ProfileViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 4
@@ -205,7 +174,7 @@ extension ProfileController: UITableViewDataSource {
 }
 
 // MARK: UITableViewDelegate
-extension ProfileController: UITableViewDelegate {
+extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == 0 else { return nil }
         return profileHeader

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ProfileCoordinator: Coordinator, UserService {
+class ProfileCoordinator: Coordinator {
     
     #if DEBUG
     let userService = TestUserService()
@@ -58,26 +58,26 @@ extension ProfileCoordinator {
 //        let profileVC = fabric.createModule(coordinator: self)
 //        navigationController.pushViewController(profileVC, animated: true)
 //    }
-    
-    func loggedInSuccessfully() {
-        self.navigationController.pushViewController(ProfileController(coordinator: self,
-                                                                       userService: userService,
-                                                                       userName: userName),
-                                                     animated: true)
-    }
+
 //    func loggedInSuccessfully() {
-//        self.navigationController.pushViewController(ProfileController(coder: nil),
+//        self.navigationController.pushViewController(ProfileViewController(coordinator: self,
+//                                                                       userService: userService,
+//                                                                       userName: userName),
 //                                                     animated: true)
 //    }
-    
-    func pushPhotoVC() {
-        self.navigationController.pushViewController(PhotosViewController(coordinator: self),
-                                                     animated: true)
+    func loggedInSuccessfully() {
+        self.navigationController.pushViewController(ProfileViewController(), animated: true)
+//        self.navigationController.pushViewController(ProfileViewController(), animated: true)
     }
-    
-    func pushMusicVC() {
-        self.navigationController.pushViewController(MusicViewController(),
-                                                     animated: true)
-    }
+//
+//    func pushPhotoVC() {
+//        self.navigationController.pushViewController(PhotosViewController(coordinator: self),
+//                                                     animated: true)
+//    }
+//
+//    func pushMusicVC() {
+//        self.navigationController.pushViewController(MusicViewController(),
+//                                                     animated: true)
+//    }
 
 }
