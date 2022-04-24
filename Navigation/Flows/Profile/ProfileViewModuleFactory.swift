@@ -12,11 +12,13 @@ class ProfileViewModuleFactory: ModuleFactory {
     
     func createModule(coordinator: ProfileCoordinator) -> ProfileViewController {
         let profileViewController = ProfileViewController()
-        let profilePresenter = ProfilePresenter (
+        let profilePresenter = ProfilePresenter(
             view: profileViewController,
-            coordinator: coordinator
+            coordinator: coordinator,
+            userService: coordinator.userService
         )
         profileViewController.presenter = profilePresenter
+        profileViewController.coordinator = coordinator
         return profileViewController
     }
 

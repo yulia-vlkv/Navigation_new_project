@@ -10,15 +10,26 @@ import Foundation
 
 class ProfilePresenter {
     
-    private weak var view: LoginViewController?
+    private weak var view: ProfileViewController?
     var coordinator: ProfileCoordinator
+    private let userService: UserService
+    let userName: String = "" // TODO: ???
 //    var passwordPicker: BruteForce
     
-    init(view: LoginViewController,
-         coordinator: ProfileCoordinator){
+    init(view: ProfileViewController,
+         coordinator: ProfileCoordinator,
+         userService: UserService
+    ){
         self.view = view
         self.coordinator = coordinator
+        self.userService = userService
 //        self.passwordPicker = passwordPicker
+    }
+    
+    func viewDidLoad() {
+        if let user = try? userService.returnUser(userName: userName) {
+            self.view?.configure(with: user)
+        }
     }
     
 //    func pushProfileVC(userService: UserService, userName: String) {

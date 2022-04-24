@@ -12,12 +12,16 @@ import UIKit
 
 protocol LogInChecker {
     func checkLoginData(filledInLogin: String, filledInPassword: String) -> Bool
-    func check(password: String, completion: (Result<Bool, Error>) -> ())
+//    func check(password: String, completion: (Result<Bool, Error>) -> ())
+    func check(password: String) -> Bool
+    
+    func login(username: String, password: String, completion: @escaping (Result<String, Error>) -> Void)
+    // func findPass(username: String, completion: (Result<String, Error>) -> Void)
 }
 
-
+// TODO: Rename to LoginService or AuthService or etc
 class FakeLogInChecker: LogInChecker {
-    
+        
     static let sharedInstance = FakeLogInChecker()
     
     #if DEBUG
@@ -38,8 +42,23 @@ class FakeLogInChecker: LogInChecker {
         }
     }
     
-    func check(password: String, completion: (Result<Bool, Error>) -> ()) {
-        completion(.success(password == constantPassword))
+    func check(password: String) -> Bool {
+        password == constantPassword
+    }
+    
+//    func check(password: String, completion: (Result<Bool, Error>) -> ()) {
+//        completion(.success(password == constantPassword))
+//    }
+    
+    func login(username: String, password: String, completion: @escaping (Result<String, Error>) -> Void) {
+        DispatchQueue.global(qos: .default).asyncAfter(deadline: .now() + 1) {
+            if self.login.hash == username.hash &&
+                self.constantPassword.hash == password.hash {
+                completion(.success(username))
+            } else {
+                completion(.failure(AuthorizationError.incorrectData))
+            }
+        }
     }
 }
 

@@ -30,25 +30,37 @@ class ProfileCoordinator: Coordinator {
     weak var parentCoordinator: MainCoordinator?
     var childCoordinator: [Coordinator] = []
     var navigationController =  UINavigationController()
-//    var inspectorFactory = MyLoginFactory()
-    let fabric = ProfileViewModuleFactory()
+    
+    var loginFactory = MyLoginFactory()
+    let profileFactory = ProfileViewModuleFactory()
 
+    private func isUserLoggedIn() -> Bool {
+        false
+    }
+    
     func start() {}
 
     func startPush() -> UINavigationController {
         
-//        let loginVC = LogInController()
-//        loginVC.loginFactory = inspectorFactory
-//        loginVC.pushProfile = { [weak self] userService, userName in
-//            self?.pushProfileVC(userService: userService, userName: userName)
-//        }
-        
-        let profileViewController = fabric.createModule(coordinator: self)
-        
-//        navigationController.setViewControllers([loginVC], animated: false)
-        navigationController.setViewControllers([profileViewController], animated: false)
+        if self.isUserLoggedIn() {
+            showProfile()
+        } else {
+            showLogin()
+        }
 
         return navigationController
+    }
+    
+    func showProfile() {
+        let profileViewController = profileFactory.createModule(coordinator: self)
+        
+        navigationController.setViewControllers([profileViewController], animated: false)
+    }
+    
+    func showLogin() {
+        let loginViewController = loginFactory.createModule(coordinator: self)
+        
+        navigationController.setViewControllers([loginViewController], animated: false)
     }
 
 }
@@ -66,7 +78,12 @@ extension ProfileCoordinator {
 //                                                     animated: true)
 //    }
     func loggedInSuccessfully() {
-        self.navigationController.pushViewController(ProfileViewController(), animated: true)
+        self.showProfile()
+        
+//
+//
+//        let profileVC = fabric.createModule(coordinator: self)
+//        self.navigationController.pushViewController(profileVC, animated: true)
 //        self.navigationController.pushViewController(ProfileViewController(), animated: true)
     }
 //

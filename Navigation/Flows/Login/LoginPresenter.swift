@@ -28,38 +28,74 @@ class LoginPresenter {
         self.passwordPicker = passwordPicker
     }
     
-    func didLoginPressed(){
-        coordinator.loggedInSuccessfully()
+    func didLoginPressed(username: String?, password: String?) {
+        guard let username = username,
+              let password = password
+        else {
+            self.view?.handle(error: AuthorizationError.emptyField)
+            return
+        }
+        
+        login(username: username, password: password)
     }
     
-    func didPickPasswordPressed(){
-//        bruteForce(passwordToUnlock: LogInChecker.instance.password)
+    func didPickPasswordPressed(username: String?) {
+        guard let username = username
+        else {
+            self.view?.handle(error: AuthorizationError.emptyField)
+            return
+        }
+        
+        bruteForce() { password in
+            self.login(username: username, password: password)
+        }
     }
-//    
-//    private func bruteForce(passwordToUnlock: String) {
-//        let ALLOWED_CHARACTERS:   [String] = String().printable.map { String($0) }
-//        var password: String = ""
-//        let group = DispatchGroup()
-//        let queue = DispatchQueue(label: "backgroundQueue", qos: .background)
-//        
+    
+    private func login(username: String, password: String) {
+        self.view?.indicatorToggle()
+        loginChecker.login(username: username, password: password) { [weak self] result in
+            guard let self = self else { return }
+            self.view?.indicatorToggle()
+
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error): self.view?.handle(error: error)
+                case .success: self.coordinator.loggedInSuccessfully()
+                }
+            }
+        }
+    }
+    
+    private func bruteForce(completion: @escaping (_ password: String) -> Void) {
+        let ALLOWED_CHARACTERS:   [String] = String().printable.map { String($0) }
+        var password: String = ""
+        let group = DispatchGroup()
+        let queue = DispatchQueue(label: "backgroundQueue", qos: .background)
+        
 //        self.passwordField.text?.removeAll()
-//        self.indicatorToggle()
-//        group.enter()
-//        
-//        queue.async {
+        self.view?.indicatorToggle()
+        group.enter()
+        
+        queue.async {
+            repeat {
+                password = self.passwordPicker.generateBruteForce(password, fromArray: ALLOWED_CHARACTERS)
+                print(password)
+            } while !self.loginChecker.check(password: password)
+//
 //            while password != passwordToUnlock {
-//                password = (self.presenter?.passwordPicker.generateBruteForce(password, fromArray: ALLOWED_CHARACTERS)) as! String
+//                password = (self.passwordPicker.generateBruteForce(password, fromArray: ALLOWED_CHARACTERS)) as! String
 //                print(password)
 //            }
-//            group.leave()
-//        }
-//        
-//        group.notify(queue: .main) { [self] in
-//            self.indicatorToggle()
+            group.leave()
+        }
+        
+        group.notify(queue: .main) {
+            self.view?.indicatorToggle()
+            completion(password)
 //            self.passwordField.text = password
 //            passwordField.isSecureTextEntry = false
-//        }
-//    }
+        }
+    }
 }
 
 

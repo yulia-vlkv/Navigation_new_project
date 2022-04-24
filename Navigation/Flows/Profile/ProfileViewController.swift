@@ -17,14 +17,14 @@ class ProfileViewController: UIViewController {
     private let tableView = UITableView(frame: .zero, style: .grouped)
     private let arrayOfPosts = allPosts.postArray
     let profileHeader = ProfileHeaderView()
-    let userService: UserService
-    let userName: String = ""
+//    let userService: UserService
+//    let userName: String = ""
     private var time = 30
     private var timer: Timer?
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
 //    init(coordinator: ProfileCoordinator,
 //         userService: UserService,
@@ -40,11 +40,9 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         
         setUpTableView()
-        setupTimer()
+        setupTimer() // TODO: Extract to presenrter
 
-        if let user = try? userService.returnUser(userName: userName){
-            profileHeader.showUserData(user: user)
-        }
+        presenter?.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,6 +51,10 @@ class ProfileViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    
+    public func configure(with user: User) {
+        profileHeader.showUserData(user: user)
     }
     
     private func setupTimer(){

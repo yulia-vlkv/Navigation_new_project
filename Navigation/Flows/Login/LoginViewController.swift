@@ -110,15 +110,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             backgroungColor: nil,
             backgroungImage: bluePixel,
             cornerRadius: 10) { [self] in
-                do {
-                    try self.performLogin()
-                } catch AuthorizationError.emptyField {
-                    self.handle(error: .emptyField)
-                } catch AuthorizationError.incorrectData {
-                    handle(error: .incorrectData)
-                } catch {
-                    showAlert(message: "Something went wrong T_T")
-                }
+                self.presenter?.didLoginPressed(username: userNameField.text, password: passwordField.text)
             }
 
         button.layer.masksToBounds = true
@@ -143,7 +135,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             backgroungColor: nil,
             backgroungImage: bluePixel,
             cornerRadius: 10) { [self] in
-                self.presenter?.didPickPasswordPressed()
+                self.presenter?.didPickPasswordPressed(username: userNameField.text)
 //                self.bruteForce(passwordToUnlock: LogInChecker.instance.password)
             }
         
@@ -159,12 +151,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         indicator.isAnimating ? indicator.stopAnimating() : indicator.startAnimating()
     }
     
-    func handle(error: AuthorizationError) {
-        switch error {
-        case .emptyField:
-            self.showAlert(message: "Fill in username and password")
-        case .incorrectData:
-            self.showAlert(message: "Incorrect password or username")
+//    func handle(error: AuthorizationError) {
+//        switch error {
+//        case .emptyField:
+//            self.showAlert(message: "Fill in username and password")
+//        case .incorrectData:
+//            self.showAlert(message: "Incorrect password or username")
+//        }
+//    }
+    
+    func handle(error: Error) {
+        if let authError = error as? AuthorizationError {
+            switch authError {
+            case .emptyField:
+                self.showAlert(message: "Fill in username and password")
+            case .incorrectData:
+                self.showAlert(message: "Incorrect password or username")
+            }
+        } else {
+            self.showAlert(message: error.localizedDescription)
         }
     }
     
