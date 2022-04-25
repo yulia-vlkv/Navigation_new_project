@@ -9,20 +9,23 @@
 import UIKit
 import iOSIntPackage
 
-class PhotosViewController: UIViewController, ImageLibrarySubscriber {
+//ImageLibrarySubscriber
+
+class PhotosViewController: UIViewController {
     
     weak var coordinator: ProfileCoordinator?
+    var presenter: PhotosPresenter?
     
-    init(coordinator: ProfileCoordinator){
-        super.init(nibName: nil, bundle: nil)
-        self.coordinator = coordinator
-    }
+    //    init(coordinator: ProfileCoordinator){
+    //        super.init(nibName: nil, bundle: nil)
+    //        self.coordinator = coordinator
+    //    }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    //    required init?(coder: NSCoder) {
+    //        fatalError("init(coder:) has not been implemented")
+    //    }
     
-    func receive(images: [UIImage]) {
+    func configure(with images: [UIImage]) {
         arrayOfPublishedPhotos = images
         
         guard (images.count - 1) == photoCollectionView.numberOfItems(inSection: 0) else { return }
@@ -30,15 +33,15 @@ class PhotosViewController: UIViewController, ImageLibrarySubscriber {
         photoCollectionView.insertItems(at: [indexPath])
     }
     
-    private let facade = ImagePublisherFacade()
+    //    private let facade = ImagePublisherFacade()
     private var arrayOfPublishedPhotos: [UIImage] = []
-    private var arrayOfPhotos = allPhotos.photoArray
-    private let layout = UICollectionViewFlowLayout()
-    private lazy var photoCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    let layout = UICollectionViewFlowLayout()
+    lazy var photoCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     private let collectionCellID = "collectionCellID"
-    private let processor = ImageProcessor()
+    //    let processor = ImageProcessor()
+    //    var arrayOfPhotos = allPhotos.photoArray
     
-    private let indicator: UIActivityIndicatorView = {
+    let indicator: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(style: .large)
         view.toAutoLayout()
         view.isHidden = true
@@ -57,19 +60,18 @@ class PhotosViewController: UIViewController, ImageLibrarySubscriber {
         setupCollectionView()
         
         setupIndicator()
-        processPhotos()
+        self.presenter?.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        facade.subscribe(self)
+        self.presenter?.viewWillAppear()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.navigationBar.isHidden = true
-        facade.removeSubscription(for: self)
-        facade.rechargeImageLibrary()
+        self.presenter?.viewWillDisappear()
     }
     
     private func setupCollectionView(){
@@ -101,51 +103,17 @@ class PhotosViewController: UIViewController, ImageLibrarySubscriber {
         
         NSLayoutConstraint.activate(constraints)
     }
-    
-    private func processPhotos() {
-        var processedImages: [UIImage] = []
-        let filter = ColorFilter.noir
-        let qos = QualityOfService.userInteractive
-        let start = CFAbsoluteTimeGetCurrent()
-        
-        processor.processImagesOnThread(sourceImages: arrayOfPhotos, filter: filter, qos: qos) { [self] processedPhotos in
-            
-            for photo in processedPhotos {
-                if let image = photo {
-                    processedImages.append(UIImage(cgImage: image))
-                }
-            }
-                                        
-            DispatchQueue.main.async { [self] in
-                facade.addImagesWithTimer(time: 0.8, repeat: processedPhotos.count, userImages: processedImages)
-                
-                indicator.stopAnimating()
-                indicator.isHidden = true
-                
-                let diff = CFAbsoluteTimeGetCurrent() - start
-                let result = String(format: "%.2f", diff)
-                print("Took \(result) seconds to process images with \(filter) filter")
-                
-                //Took 1.65 seconds to process images with colorInvert filter
-                //Took 1.63 seconds to process images with fade filter
-                //Took 1.58 seconds to process images with chrome filter
-                //Took 1.61 seconds to process images with monochrome(color: <CIColor 0x1cfd852d8 (1 0 1 1) devicergb>, intensity: 0.5) filter
-                //Took 1.89 seconds to process images with bloom(intensity: 0.2) filter
-                //Took 1.57 seconds to process images with noir filter
-            }
-        }
-    }
 }
 
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrayOfPublishedPhotos.count
+        return self.arrayOfPublishedPhotos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PhotosCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCellID", for: indexPath) as! PhotosCollectionViewCell
         
-        cell.photo = arrayOfPublishedPhotos[indexPath.item]
+        cell.photo = self.arrayOfPublishedPhotos[indexPath.item]
         return cell
     }
 }

@@ -12,15 +12,6 @@ class TextFieldChecker {
 
     private let correctWord = "агглютинация"
     
-//    func check(word: String, completion: (Result) -> Void ) {
-//        if word == "" {
-//            completion(.empty)
-//        } else if word == correctWord {
-//            completion(.correct)
-//        } else {
-//            completion(.incorrect)
-//        }
-//    }
     func check(word: String, completion: @escaping (Result<CheckerResult,CheckerError>) -> Void ) {
         if word == correctWord {
             completion(.success(.correct))
@@ -29,21 +20,11 @@ class TextFieldChecker {
         } else {
             completion(.failure(.incorrect))
         }
-        
-//        if word == "" {
-//            completion(.empty)
-//        } else if word == correctWord {
-//            completion(.correct)
-//        } else {
-//            completion(.incorrect)
-//        }
     }
 }
 
 enum CheckerResult {
     case correct
-//    case incorrect
-//    case empty
 }
 
 enum CheckerError: Error {

@@ -56,7 +56,7 @@ class LoginPresenter {
         loginChecker.login(username: username, password: password) { [weak self] result in
             guard let self = self else { return }
             self.view?.indicatorToggle()
-
+            
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error): self.view?.handle(error: error)
@@ -72,7 +72,6 @@ class LoginPresenter {
         let group = DispatchGroup()
         let queue = DispatchQueue(label: "backgroundQueue", qos: .background)
         
-//        self.passwordField.text?.removeAll()
         self.view?.indicatorToggle()
         group.enter()
         
@@ -81,19 +80,12 @@ class LoginPresenter {
                 password = self.passwordPicker.generateBruteForce(password, fromArray: ALLOWED_CHARACTERS)
                 print(password)
             } while !self.loginChecker.check(password: password)
-//
-//            while password != passwordToUnlock {
-//                password = (self.passwordPicker.generateBruteForce(password, fromArray: ALLOWED_CHARACTERS)) as! String
-//                print(password)
-//            }
             group.leave()
         }
         
         group.notify(queue: .main) {
             self.view?.indicatorToggle()
             completion(password)
-//            self.passwordField.text = password
-//            passwordField.isSecureTextEntry = false
         }
     }
 }

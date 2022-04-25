@@ -17,30 +17,15 @@ class ProfileViewController: UIViewController {
     private let tableView = UITableView(frame: .zero, style: .grouped)
     private let arrayOfPosts = allPosts.postArray
     let profileHeader = ProfileHeaderView()
-//    let userService: UserService
-//    let userName: String = ""
     private var time = 30
     private var timer: Timer?
-    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
-//    init(coordinator: ProfileCoordinator,
-//         userService: UserService,
-//         userName: String) {
-//        self.coordinator = coordinator
-//        self.userService = userService
-//        self.userName = userName
-//        super.init(nibName: nil, bundle: nil)
-//    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         
         setUpTableView()
-        setupTimer() // TODO: Extract to presenrter
+        self.presenter?.setupTimer()
 
         presenter?.viewDidLoad()
     }
@@ -57,41 +42,17 @@ class ProfileViewController: UIViewController {
         profileHeader.showUserData(user: user)
     }
     
-    private func setupTimer(){
-        if timer == nil {
-            let timer = Timer.scheduledTimer(timeInterval: 1.0,
-                              target: self,
-                              selector: #selector(updateTimerLabel),
-                              userInfo: time,
-                              repeats: true)
-            RunLoop.current.add(timer, forMode: .common)
-            timer.tolerance = 0.1
-            
-            self.timer = timer
-        }
-    }
-    
-    private func showReminderAlert() {
+    func showReminderAlert() {
         let alertController = UIAlertController(title: "Slow down", message: "You work too hard", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Take a break", style: .cancel) {_ in
-            self.time = 30
-            self.setupTimer()
+            self.presenter?.time = 30
+            self.presenter?.setupTimer()
         }
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true)
      }
     
-    @objc func updateTimerLabel(){
-        self.profileHeader.timerLabel.text = "Time till break: \(time)"
-        time -= 1
-        if time < 0 {
-            self.profileHeader.timerLabel.text = "Time till break: 0"
-            timer?.invalidate()
-            timer = nil
-            showReminderAlert()
-        }
-    }
-    
+
     private func setUpTableView(){
         view.addSubview(tableView)
         tableView.toAutoLayout()
@@ -193,16 +154,11 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            //            presenter?.coordinator.pushPhotoVC()
-            let photosVC = PhotosViewController(coordinator: coordinator!)
-            navigationController?.pushViewController(photosVC, animated: true)
+            presenter?.coordinator.pushPhotoVC()
         case 1:
-            //            presenter?.coordinator.pushAudioVC()
-            let musicVC = MusicViewController()
-            navigationController?.pushViewController(musicVC, animated: true)
+            presenter?.coordinator.pushMusicVC()
         case 2:
-            let videoVC = VideoViewController()
-            navigationController?.pushViewController(videoVC, animated: true)
+            presenter?.coordinator.pushVideoVC()
         default:
             return tableView.deselectRow(at: indexPath, animated: true)
         }

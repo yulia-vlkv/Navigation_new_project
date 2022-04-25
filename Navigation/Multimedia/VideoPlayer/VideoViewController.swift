@@ -11,6 +11,9 @@ import YoutubeKit
 
 class VideoViewController: UIViewController {
     
+    weak var coordinator: ProfileCoordinator?
+    var presenter: VideoPresenter?
+    
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     public let playList = VideoPlaylist.playlist
     
@@ -80,16 +83,6 @@ extension VideoViewController: UITableViewDataSource, UITableViewDelegate {
         let playerVC = YouTubePlayerViewController(videoID: videoID)
         
         navigationController?.present(playerVC, animated: true, completion: nil)
-        
-//        let streamURL = URL(string: video.url)!
-//        let player = AVPlayer(url: streamURL)
-//
-//        let controller = AVPlayerViewController()
-//        controller.player = player
-//
-//        present(controller, animated: true) {
-//            player.play()
-//        }
     }
 }
 

@@ -66,35 +66,26 @@ class ProfileCoordinator: Coordinator {
 }
 
 extension ProfileCoordinator {
-//    func pushProfileVC(userService: UserService, userName: String) {
-//        let profileVC = fabric.createModule(coordinator: self)
-//        navigationController.pushViewController(profileVC, animated: true)
-//    }
-
-//    func loggedInSuccessfully() {
-//        self.navigationController.pushViewController(ProfileViewController(coordinator: self,
-//                                                                       userService: userService,
-//                                                                       userName: userName),
-//                                                     animated: true)
-//    }
+    
     func loggedInSuccessfully() {
         self.showProfile()
-        
-//
-//
-//        let profileVC = fabric.createModule(coordinator: self)
-//        self.navigationController.pushViewController(profileVC, animated: true)
-//        self.navigationController.pushViewController(ProfileViewController(), animated: true)
     }
-//
-//    func pushPhotoVC() {
-//        self.navigationController.pushViewController(PhotosViewController(coordinator: self),
-//                                                     animated: true)
-//    }
-//
-//    func pushMusicVC() {
-//        self.navigationController.pushViewController(MusicViewController(),
-//                                                     animated: true)
-//    }
 
+    func pushPhotoVC() {
+        let photosViewController = PhotosViewModuleFactory().createModule(coordinator: self)
+        self.navigationController.pushViewController(photosViewController,
+                                                     animated: true)
+    }
+
+    func pushMusicVC() {
+        let musicViewController = MusicViewModuleFactory().createModule(coordinator: self)
+        self.navigationController.pushViewController(musicViewController,
+                                                     animated: true)
+    }
+    
+    func pushVideoVC() {
+        let videoViewController = VideoViewModuleFactory().createModule(coordinator: self)
+        self.navigationController.pushViewController(videoViewController,
+                                                     animated: true)
+    }
 }

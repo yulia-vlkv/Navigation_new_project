@@ -12,6 +12,9 @@ import UIKit
 
 class MusicViewController: UIViewController {
     
+    weak var coordinator: ProfileCoordinator?
+    var presenter: MusicPresenter?
+    
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     public let trackList = TrackList.tracks
     

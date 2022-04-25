@@ -17,29 +17,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var presenter: LoginPresenter?
     weak var coordinator: ProfileCoordinator?
-//
-//    init(coordinator: ProfilePresenter){
-//        super.init(nibName: nil, bundle: nil)
-//        self.coordinator = coordinator
-//    }
-    
-//    init(coordinator: ProfileCoordinator,
-//         userService: UserService,
-//         userName: String) {
-//        self.coordinator = coordinator
-//        self.userService = userService
-//        self.userName = userName
-//        super.init(nibName: nil, bundle: nil)
-//    }
-         
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
     
     weak var checkerDelegate: LogInControllerDelegate?
     weak var loginFactory: MyLoginFactory?
     var pushProfile: ((_ userService: UserService, _ userName: String) -> Void )?
-
+    
     let someUserService = CurrentUserService()
     let testUserService = TestUserService()
     
@@ -49,12 +31,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         scroll.toAutoLayout()
         return scroll
     }()
-
+    
     private let mainView: UIView = {
-            let mainView = UIView()
-            mainView.backgroundColor = .white
-            mainView.toAutoLayout()
-            return mainView
+        let mainView = UIView()
+        mainView.backgroundColor = .white
+        mainView.toAutoLayout()
+        return mainView
     }()
     
     private let logo: UIImageView = {
@@ -80,11 +62,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             textColor: .black,
             backgroundColor: UIColor.systemGray6,
             placeholder: "Email or phone")
-    
+        
         textField.tintColor = UIColor(named: "periwinkleBlue")
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
-    
+        
         return textField
     }()
     
@@ -112,7 +94,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             cornerRadius: 10) { [self] in
                 self.presenter?.didLoginPressed(username: userNameField.text, password: passwordField.text)
             }
-
+        
         button.layer.masksToBounds = true
         button.titleLabel?.font = UIFont(name: "default", size: 16)
         
@@ -136,7 +118,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             backgroungImage: bluePixel,
             cornerRadius: 10) { [self] in
                 self.presenter?.didPickPasswordPressed(username: userNameField.text)
-//                self.bruteForce(passwordToUnlock: LogInChecker.instance.password)
+                //                self.bruteForce(passwordToUnlock: LogInChecker.instance.password)
             }
         
         button.layer.masksToBounds = true
@@ -144,21 +126,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         return button
     }()
-
+    
     
     func indicatorToggle(){
         indicator.isHidden.toggle()
         indicator.isAnimating ? indicator.stopAnimating() : indicator.startAnimating()
     }
-    
-//    func handle(error: AuthorizationError) {
-//        switch error {
-//        case .emptyField:
-//            self.showAlert(message: "Fill in username and password")
-//        case .incorrectData:
-//            self.showAlert(message: "Incorrect password or username")
-//        }
-//    }
     
     func handle(error: Error) {
         if let authError = error as? AuthorizationError {
@@ -174,12 +147,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func performLogin() throws {
-            
-        #if DEBUG
+        
+#if DEBUG
         let userService = TestUserService()
-        #else
+#else
         let userService = CurrentUserService()
-        #endif
+#endif
         
         guard userNameField.text == nil || passwordField.text != nil  else {
             throw AuthorizationError.emptyField
@@ -190,12 +163,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
               let inspector = checkerDelegate,
               inspector.checkLoginTextfields(filledInLogin: username,
                                              filledInPassword: password) else {
-                  throw AuthorizationError.incorrectData
-              }
-        
-//        pushProfile?(userService, username)
+            throw AuthorizationError.incorrectData
+        }
         self.presenter?.coordinator.loggedInSuccessfully()
-        
     }
     
     private func showAlert(message: String){
@@ -276,29 +246,29 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-// MARK: Keyboard
+    // MARK: Keyboard
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-
+        
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-
+    
     @objc fileprivate func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-
+            
             scroll.contentInset.bottom = keyboardSize.height
             scroll.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
         }
     }
-
+    
     @objc fileprivate func keyboardWillHide(notification: NSNotification) {
         scroll.contentInset.bottom = .zero
         scroll.verticalScrollIndicatorInsets = .zero
@@ -315,7 +285,7 @@ extension UIImage {
         return newImage!
     }
 }
- 
+
 // MARK: extension for keyboard magic
 extension LoginViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

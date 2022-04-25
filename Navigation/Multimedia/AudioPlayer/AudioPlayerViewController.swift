@@ -12,17 +12,6 @@ import UIKit
 
 class AudioPlayerViewController: UIViewController {
     
-//    weak var coordinator: ProfileCoordinator?
-//    
-//    init(coordinator: ProfileCoordinator){
-//        super.init(nibName: nil, bundle: nil)
-//        self.coordinator = coordinator
-//    }
-//    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
     static var player = AVAudioPlayer()
     public var position: Int = 0
     public var tracklist = TrackList.tracks
