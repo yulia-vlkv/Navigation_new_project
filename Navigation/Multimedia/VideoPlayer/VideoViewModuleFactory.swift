@@ -10,13 +10,13 @@ import Foundation
 
 class VideoViewModuleFactory: ModuleFactory{
     func createModule(coordinator: ProfileCoordinator) -> VideoViewController {
-        let videoViewController = VideoViewController()
+        let videoVC = VideoViewController()
         let videoPresenter = VideoPresenter(
-            view: videoViewController,
+            view: videoVC,
             coordinator: coordinator
         )
-        videoViewController.presenter = videoPresenter
-        videoViewController.coordinator = coordinator
-        return videoViewController
+        videoVC.presenter = videoPresenter
+        videoVC.coordinator = coordinator
+        return videoVC
     }
 }

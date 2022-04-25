@@ -10,13 +10,13 @@ import Foundation
 
 class PhotosViewModuleFactory: ModuleFactory{
     func createModule(coordinator: ProfileCoordinator) -> PhotosViewController {
-        let photosViewController = PhotosViewController()
+        let photosVC = PhotosViewController()
         let photosPresenter = PhotosPresenter(
-            view: photosViewController,
+            view: photosVC,
             coordinator: coordinator
         )
-        photosViewController.presenter = photosPresenter
-        photosViewController.coordinator = coordinator
-        return photosViewController
+        photosVC.presenter = photosPresenter
+        photosVC.coordinator = coordinator
+        return photosVC
     }
 }

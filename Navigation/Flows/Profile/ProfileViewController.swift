@@ -58,7 +58,7 @@ class ProfileViewController: UIViewController {
         tableView.toAutoLayout()
         
         #if DEBUG
-        tableView.backgroundColor = .cyan
+        tableView.backgroundColor = UIColor(named: "mint")
         #else
         tableView.backgroundColor = .systemGray6
         #endif
@@ -69,6 +69,7 @@ class ProfileViewController: UIViewController {
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: String(describing: PhotosTableViewCell.self))
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellID_01")
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellID_02")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellID_03")
         
         let constraints = [
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -85,7 +86,7 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,6 +96,8 @@ extension ProfileViewController: UITableViewDataSource {
         case 1:
             return 1
         case 2:
+            return 1
+        case 3:
             return 1
         default:
             return arrayOfPosts.count
@@ -110,7 +113,7 @@ extension ProfileViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellID_01", for: indexPath)
             cell.textLabel?.text = "Music"
             cell.backgroundColor = .white
-            cell.textLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
             cell.textLabel?.textColor = .black
             cell.accessoryView = UIImageView(image: UIImage(systemName: "arrow.forward"))
             cell.accessoryView?.tintColor = .black
@@ -119,7 +122,16 @@ extension ProfileViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellID_02", for: indexPath)
             cell.textLabel?.text = "Video"
             cell.backgroundColor = .white
-            cell.textLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+            cell.textLabel?.textColor = .black
+            cell.accessoryView = UIImageView(image: UIImage(systemName: "arrow.forward"))
+            cell.accessoryView?.tintColor = .black
+            return cell
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CellID_03", for: indexPath)
+            cell.textLabel?.text = "Audio Recorder"
+            cell.backgroundColor = .white
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
             cell.textLabel?.textColor = .black
             cell.accessoryView = UIImageView(image: UIImage(systemName: "arrow.forward"))
             cell.accessoryView?.tintColor = .black
@@ -143,6 +155,14 @@ extension ProfileViewController: UITableViewDelegate {
         return profileHeader
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 6
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return UITableView.automaticDimension
@@ -159,6 +179,8 @@ extension ProfileViewController: UITableViewDelegate {
             presenter?.coordinator.pushMusicVC()
         case 2:
             presenter?.coordinator.pushVideoVC()
+        case 3:
+            presenter?.coordinator.pushAudioRecorderVC()
         default:
             return tableView.deselectRow(at: indexPath, animated: true)
         }

@@ -88,4 +88,10 @@ extension ProfileCoordinator {
         self.navigationController.pushViewController(videoViewController,
                                                      animated: true)
     }
+    
+    func pushAudioRecorderVC(){
+        let audioRecorderViewController = AudioRecorderModuleFactory().createModule(coordinator: self)
+        self.navigationController.pushViewController(audioRecorderViewController,
+                                                     animated: true)
+    }
 }

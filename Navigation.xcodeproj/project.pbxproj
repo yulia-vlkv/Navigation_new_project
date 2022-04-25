@@ -52,6 +52,9 @@
 		EFA96435281677160011DF91 /* MusicViewModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA96434281677160011DF91 /* MusicViewModuleFactory.swift */; };
 		EFA96437281677340011DF91 /* VideoViewModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA96436281677340011DF91 /* VideoViewModuleFactory.swift */; };
 		EFA96439281677620011DF91 /* PhotosViewModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA96438281677620011DF91 /* PhotosViewModuleFactory.swift */; };
+		EFA9643C2816AA6F0011DF91 /* AudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA9643B2816AA6F0011DF91 /* AudioRecorderViewController.swift */; };
+		EFA9643E2816AAAA0011DF91 /* AudioRecorderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA9643D2816AAAA0011DF91 /* AudioRecorderPresenter.swift */; };
+		EFA964402816AAEC0011DF91 /* AudioRecorderModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA9643F2816AAEC0011DF91 /* AudioRecorderModuleFactory.swift */; };
 		EFAE39AE272D3C1B00723701 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAE39AD272D3C1B00723701 /* MainCoordinator.swift */; };
 		EFAE39B0272D437900723701 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAE39AF272D437900723701 /* FeedCoordinator.swift */; };
 		EFAE39B2272D438600723701 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAE39B1272D438600723701 /* ProfileCoordinator.swift */; };
@@ -150,6 +153,9 @@
 		EFA96434281677160011DF91 /* MusicViewModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewModuleFactory.swift; sourceTree = "<group>"; };
 		EFA96436281677340011DF91 /* VideoViewModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModuleFactory.swift; sourceTree = "<group>"; };
 		EFA96438281677620011DF91 /* PhotosViewModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModuleFactory.swift; sourceTree = "<group>"; };
+		EFA9643B2816AA6F0011DF91 /* AudioRecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewController.swift; sourceTree = "<group>"; };
+		EFA9643D2816AAAA0011DF91 /* AudioRecorderPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderPresenter.swift; sourceTree = "<group>"; };
+		EFA9643F2816AAEC0011DF91 /* AudioRecorderModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderModuleFactory.swift; sourceTree = "<group>"; };
 		EFAE39AD272D3C1B00723701 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		EFAE39AF272D437900723701 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		EFAE39B1272D438600723701 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -252,6 +258,7 @@
 		EF1B137227E38DC80070A9A0 /* Multimedia */ = {
 			isa = PBXGroup;
 			children = (
+				EFA9643A2816A7FD0011DF91 /* AudioRecorder */,
 				EF25DCCE26A6B8DD00577166 /* Photos */,
 				EF1B138D27E4B6630070A9A0 /* VideoPlayer */,
 				EF1B138C27E4B6590070A9A0 /* AudioPlayer */,
@@ -428,6 +435,16 @@
 				EFAFD00126F5D8A000C74923 /* LoginInspector.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EFA9643A2816A7FD0011DF91 /* AudioRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				EFA9643B2816AA6F0011DF91 /* AudioRecorderViewController.swift */,
+				EFA9643D2816AAAA0011DF91 /* AudioRecorderPresenter.swift */,
+				EFA9643F2816AAEC0011DF91 /* AudioRecorderModuleFactory.swift */,
+			);
+			path = AudioRecorder;
 			sourceTree = "<group>";
 		};
 		EFAFCFFC26F3914200C74923 /* Views */ = {
@@ -653,13 +670,16 @@
 				EF25DCBD26A2FCAA00577166 /* ProfileTableHeaderView.swift in Sources */,
 				EF3D5A6927E5BEFE007BF7D3 /* FeedPresenter.swift in Sources */,
 				EFA9642D28151AC20011DF91 /* MusicPresenter.swift in Sources */,
+				EFA9643E2816AAAA0011DF91 /* AudioRecorderPresenter.swift in Sources */,
 				EFAE39B2272D438600723701 /* ProfileCoordinator.swift in Sources */,
 				EFCCFEF226DA6905007B4EBA /* CurrentUserService.swift in Sources */,
 				EFAFD00026F5D78600C74923 /* LogInControllerDelegate.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedController.swift in Sources */,
 				EFA96437281677340011DF91 /* VideoViewModuleFactory.swift in Sources */,
+				EFA964402816AAEC0011DF91 /* AudioRecorderModuleFactory.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				EF25DCCA26A4754A00577166 /* PhotosTableViewCell.swift in Sources */,
+				EFA9643C2816AA6F0011DF91 /* AudioRecorderViewController.swift in Sources */,
 				EFCCFEF526DA6B5B007B4EBA /* TestUserService.swift in Sources */,
 				EF1B139127E4B6CD0070A9A0 /* VideoPlaylist.swift in Sources */,
 				EF1B136E27D623760070A9A0 /* BruteForce.swift in Sources */,

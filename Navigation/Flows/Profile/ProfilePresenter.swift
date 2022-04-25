@@ -16,7 +16,6 @@ class ProfilePresenter {
     let userName: String = "" // TODO: ???
     var time = 30
     var timer: Timer?
-//    var passwordPicker: BruteForce
     
     init(view: ProfileViewController,
          coordinator: ProfileCoordinator,
@@ -25,7 +24,6 @@ class ProfilePresenter {
         self.view = view
         self.coordinator = coordinator
         self.userService = userService
-//        self.passwordPicker = passwordPicker
     }
     
     func viewDidLoad() {

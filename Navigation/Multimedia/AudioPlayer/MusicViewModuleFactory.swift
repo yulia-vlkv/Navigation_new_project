@@ -10,13 +10,13 @@ import Foundation
 
 class MusicViewModuleFactory: ModuleFactory{
     func createModule(coordinator: ProfileCoordinator) -> MusicViewController {
-        let musicViewController = MusicViewController()
+        let musicVC = MusicViewController()
         let musicPresenter = MusicPresenter(
-            view: musicViewController,
+            view: musicVC,
             coordinator: coordinator
         )
-        musicViewController.presenter = musicPresenter
-        musicViewController.coordinator = coordinator
-        return musicViewController
+        musicVC.presenter = musicPresenter
+        musicVC.coordinator = coordinator
+        return musicVC
     }
 }
