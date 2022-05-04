@@ -45,6 +45,8 @@
 		EF3D5A6327E5BD19007BF7D3 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3D5A6227E5BD19007BF7D3 /* ProfilePresenter.swift */; };
 		EF3D5A6927E5BEFE007BF7D3 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3D5A6827E5BEFE007BF7D3 /* FeedPresenter.swift */; };
 		EF3D5A6B27E5C06D007BF7D3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3D5A6A27E5C06D007BF7D3 /* LoginPresenter.swift */; };
+		EF5894E428227371006D9A64 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5894E328227371006D9A64 /* NetworkService.swift */; };
+		EF5894E628227459006D9A64 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5894E528227459006D9A64 /* AppConfiguration.swift */; };
 		EF8B724F272585D80069457D /* TextFieldChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8B724E272585D80069457D /* TextFieldChecker.swift */; };
 		EFA9642B28151AAD0011DF91 /* VideoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA9642A28151AAD0011DF91 /* VideoPresenter.swift */; };
 		EFA9642D28151AC20011DF91 /* MusicPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA9642C28151AC10011DF91 /* MusicPresenter.swift */; };
@@ -146,6 +148,8 @@
 		EF3D5A6227E5BD19007BF7D3 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		EF3D5A6827E5BEFE007BF7D3 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
 		EF3D5A6A27E5C06D007BF7D3 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		EF5894E328227371006D9A64 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		EF5894E528227459006D9A64 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		EF8B724E272585D80069457D /* TextFieldChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldChecker.swift; sourceTree = "<group>"; };
 		EFA9642A28151AAD0011DF91 /* VideoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPresenter.swift; sourceTree = "<group>"; };
 		EFA9642C28151AC10011DF91 /* MusicPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPresenter.swift; sourceTree = "<group>"; };
@@ -372,9 +376,19 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
+		EF5894E228227349006D9A64 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				EF5894E328227371006D9A64 /* NetworkService.swift */,
+				EF5894E528227459006D9A64 /* AppConfiguration.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
 		EFA964262809AE880011DF91 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				EF5894E228227349006D9A64 /* NetworkService */,
 				EFA964272809AE940011DF91 /* Main */,
 				EF3D5A6727E5BE9C007BF7D3 /* Feed */,
 				EFCCFEBF26D6751A007B4EBA /* Post */,
@@ -663,6 +677,7 @@
 				EFCCFEF026DA6862007B4EBA /* UserService.swift in Sources */,
 				EF1B139327E4BBD00070A9A0 /* VideoViewController.swift in Sources */,
 				EF1B137427E38E250070A9A0 /* AudioPlayerViewController.swift in Sources */,
+				EF5894E628227459006D9A64 /* AppConfiguration.swift in Sources */,
 				EFA96439281677620011DF91 /* PhotosViewModuleFactory.swift in Sources */,
 				EFAFCFFE26F3915400C74923 /* LogInChecker.swift in Sources */,
 				EFA96435281677160011DF91 /* MusicViewModuleFactory.swift in Sources */,
@@ -681,6 +696,7 @@
 				EF25DCCA26A4754A00577166 /* PhotosTableViewCell.swift in Sources */,
 				EFA9643C2816AA6F0011DF91 /* AudioRecorderViewController.swift in Sources */,
 				EFCCFEF526DA6B5B007B4EBA /* TestUserService.swift in Sources */,
+				EF5894E428227371006D9A64 /* NetworkService.swift in Sources */,
 				EF1B139127E4B6CD0070A9A0 /* VideoPlaylist.swift in Sources */,
 				EF1B136E27D623760070A9A0 /* BruteForce.swift in Sources */,
 				EFAE39AE272D3C1B00723701 /* MainCoordinator.swift in Sources */,
