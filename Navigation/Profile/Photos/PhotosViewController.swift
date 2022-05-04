@@ -7,9 +7,17 @@
 //
 
 import UIKit
+import iOSIntPackage
 
-class PhotosViewController: UIViewController {
+class PhotosViewController: UIViewController, ImageLibrarySubscriber {
     
+    func receive(images: [UIImage]) {
+        arrayOfPublishedPhotos = images
+        photoCollectionView.reloadData()
+    }
+    
+    private let facade = ImagePublisherFacade()
+    private var arrayOfPublishedPhotos: [UIImage] = []
     private let layout = UICollectionViewFlowLayout()
     private lazy var photoCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     private let collectionCellID = "collectionCellID"
@@ -23,10 +31,20 @@ class PhotosViewController: UIViewController {
         
         photoCollectionView.backgroundColor = .white
         setupCollectionView()
+        
+        facade.addImagesWithTimer(time: 0.05, repeat: 50, userImages: allPhotos.photoArray)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        facade.subscribe(self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         navigationController?.navigationBar.isHidden = true
+        facade.removeSubscription(for: self)
+        facade.rechargeImageLibrary()
     }
     
     private func setupCollectionView(){
@@ -49,13 +67,13 @@ class PhotosViewController: UIViewController {
 
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return allPhotos.photoArray.count
+        return arrayOfPublishedPhotos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PhotosCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCellID", for: indexPath) as! PhotosCollectionViewCell
         
-        cell.photo = allPhotos.photoArrayReversed[indexPath.item]
+        cell.photo = arrayOfPublishedPhotos[indexPath.item]
         return cell
     }
 }
