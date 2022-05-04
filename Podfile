@@ -6,4 +6,6 @@ target 'Navigation' do
 
   pod 'SnapKit', '~> 5.0.0'
 
+pod 'YoutubeKit'
+
 end
