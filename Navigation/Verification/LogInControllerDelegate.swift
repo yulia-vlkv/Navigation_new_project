@@ -9,6 +9,6 @@
 import Foundation
 import UIKit
 
-protocol LoginViewControllerDelegate: AnyObject {
+protocol LogInControllerDelegate: AnyObject {
     func checkLoginTextfields(filledInLogin: String, filledInPassword: String) -> Bool 
 }

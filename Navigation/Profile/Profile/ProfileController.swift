@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileController: UIViewController {
+    
+    weak var coordinator: ProfileCoordinator?
     
     private let tableView = UITableView(frame: .zero, style: .grouped)
     private let arrayOfPosts = allPosts.postArray
@@ -16,7 +18,10 @@ class ProfileViewController: UIViewController {
     let userService: UserService
     let userName: String
     
-    init(userService: UserService, userName: String) {
+    init(coordinator: ProfileCoordinator,
+         userService: UserService,
+         userName: String) {
+        self.coordinator = coordinator
         self.userService = userService
         self.userName = userName
         super.init(nibName: nil, bundle: nil)
@@ -65,7 +70,7 @@ class ProfileViewController: UIViewController {
 }
 
 // MARK: UITableViewDataSource
-extension ProfileViewController: UITableViewDataSource {
+extension ProfileController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -96,7 +101,7 @@ extension ProfileViewController: UITableViewDataSource {
 }
 
 // MARK: UITableViewDelegate
-extension ProfileViewController: UITableViewDelegate {
+extension ProfileController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == 0 else { return nil }
         return ProfileHeaderView()

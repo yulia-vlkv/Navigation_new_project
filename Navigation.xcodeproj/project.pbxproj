@@ -9,13 +9,16 @@
 /* Begin PBXBuildFile section */
 		060782B2250CE27700A87020 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782B1250CE27700A87020 /* AppDelegate.swift */; };
 		060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782B3250CE27700A87020 /* SceneDelegate.swift */; };
-		060782B6250CE27700A87020 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782B5250CE27700A87020 /* FeedViewController.swift */; };
+		060782B6250CE27700A87020 /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782B5250CE27700A87020 /* FeedController.swift */; };
 		060782BB250CE27A00A87020 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 060782BA250CE27A00A87020 /* Assets.xcassets */; };
 		060782BE250CE27A00A87020 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 060782BC250CE27A00A87020 /* LaunchScreen.storyboard */; };
 		060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C5250CEB0A00A87020 /* InfoViewController.swift */; };
 		060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C7250CEE5D00A87020 /* PostViewController.swift */; };
 		613F521BCB49813FB46FFA9D /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B61463FDF1D3BEBFC38A46E /* Pods_Navigation.framework */; };
-		EF25DCB42691CD2500577166 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB32691CD2500577166 /* LogInViewController.swift */; };
+		EF1B136A27CA24000070A9A0 /* FeedViewModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B136927CA24000070A9A0 /* FeedViewModuleFactory.swift */; };
+		EF1B136C27CA241A0070A9A0 /* ProfileViewModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B136B27CA241A0070A9A0 /* ProfileViewModuleFactory.swift */; };
+		EF1F96E7278414BF00112D0C /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = EF1F96E6278414BF00112D0C /* iOSIntPackage */; };
+		EF25DCB42691CD2500577166 /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB32691CD2500577166 /* LogInController.swift */; };
 		EF25DCB626A02A6E00577166 /* allPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB526A02A6E00577166 /* allPosts.swift */; };
 		EF25DCB826A02AFC00577166 /* PostVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB726A02AFC00577166 /* PostVK.swift */; };
 		EF25DCBA26A02BBA00577166 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB926A02BBA00577166 /* PostTableViewCell.swift */; };
@@ -25,18 +28,22 @@
 		EF25DCC626A466A600577166 /* allPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCC526A466A600577166 /* allPhotos.swift */; };
 		EF25DCCA26A4754A00577166 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCC926A4754A00577166 /* PhotosTableViewCell.swift */; };
 		EF8B724D27256BFF0069457D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8B724C27256BFF0069457D /* TabBarController.swift */; };
-		EF8B724F272585D80069457D /* CheckTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8B724E272585D80069457D /* CheckTextField.swift */; };
-		EFAFCFFE26F3915400C74923 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAFCFFD26F3915400C74923 /* Checker.swift */; };
-		EFAFD00026F5D78600C74923 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAFCFFF26F5D78600C74923 /* LoginViewControllerDelegate.swift */; };
+		EF8B724F272585D80069457D /* TextFieldChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8B724E272585D80069457D /* TextFieldChecker.swift */; };
+		EFAE39AE272D3C1B00723701 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAE39AD272D3C1B00723701 /* MainCoordinator.swift */; };
+		EFAE39B0272D437900723701 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAE39AF272D437900723701 /* FeedCoordinator.swift */; };
+		EFAE39B2272D438600723701 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAE39B1272D438600723701 /* ProfileCoordinator.swift */; };
+		EFAE39B42732C7A300723701 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAE39B32732C7A300723701 /* Coordinator.swift */; };
+		EFAE39B62732D2F500723701 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAE39B52732D2F500723701 /* ModuleFactory.swift */; };
+		EFAFCFFE26F3915400C74923 /* LogInChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAFCFFD26F3915400C74923 /* LogInChecker.swift */; };
+		EFAFD00026F5D78600C74923 /* LogInControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAFCFFF26F5D78600C74923 /* LogInControllerDelegate.swift */; };
 		EFAFD00226F5D8A000C74923 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAFD00126F5D8A000C74923 /* LoginInspector.swift */; };
 		EFAFD00426F6F0CE00C74923 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAFD00326F6F0CE00C74923 /* LoginFactory.swift */; };
-		EFCC66B12658E3C20090CD73 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC66B02658E3C20090CD73 /* ProfileViewController.swift */; };
+		EFCC66B12658E3C20090CD73 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC66B02658E3C20090CD73 /* ProfileController.swift */; };
 		EFCC66B32658E4070090CD73 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCC66B22658E4070090CD73 /* ProfileHeaderView.swift */; };
 		EFCCFED726D68724007B4EBA /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = EFCCFEC726D68724007B4EBA /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFCCFEDA26D68724007B4EBA /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFCCFEC526D68724007B4EBA /* StorageService.framework */; };
 		EFCCFEDB26D68724007B4EBA /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EFCCFEC526D68724007B4EBA /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EFCCFEE326D6878C007B4EBA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C9250CEE7200A87020 /* Post.swift */; };
-		EFCCFEE926D7F2A3007B4EBA /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = EFCCFEE826D7F2A3007B4EBA /* iOSIntPackage */; };
 		EFCCFEEE26DA6662007B4EBA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCCFEED26DA6662007B4EBA /* User.swift */; };
 		EFCCFEF026DA6862007B4EBA /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCCFEEF26DA6862007B4EBA /* UserService.swift */; };
 		EFCCFEF226DA6905007B4EBA /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCCFEF126DA6905007B4EBA /* CurrentUserService.swift */; };
@@ -74,7 +81,7 @@
 		060782AE250CE27700A87020 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		060782B1250CE27700A87020 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		060782B3250CE27700A87020 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		060782B5250CE27700A87020 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		060782B5250CE27700A87020 /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		060782BA250CE27A00A87020 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		060782BD250CE27A00A87020 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		060782BF250CE27A00A87020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,7 +91,9 @@
 		22254A967C8FC10DA6513A88 /* Pods-Navigation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.debug.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.debug.xcconfig"; sourceTree = "<group>"; };
 		5B61463FDF1D3BEBFC38A46E /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D3A9544C94E3C70DCDEF8A /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
-		EF25DCB32691CD2500577166 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		EF1B136927CA24000070A9A0 /* FeedViewModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModuleFactory.swift; sourceTree = "<group>"; };
+		EF1B136B27CA241A0070A9A0 /* ProfileViewModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModuleFactory.swift; sourceTree = "<group>"; };
+		EF25DCB32691CD2500577166 /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
 		EF25DCB526A02A6E00577166 /* allPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allPosts.swift; sourceTree = "<group>"; };
 		EF25DCB726A02AFC00577166 /* PostVK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVK.swift; sourceTree = "<group>"; };
 		EF25DCB926A02BBA00577166 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
@@ -94,12 +103,17 @@
 		EF25DCC526A466A600577166 /* allPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = allPhotos.swift; sourceTree = "<group>"; };
 		EF25DCC926A4754A00577166 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		EF8B724C27256BFF0069457D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		EF8B724E272585D80069457D /* CheckTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckTextField.swift; sourceTree = "<group>"; };
-		EFAFCFFD26F3915400C74923 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
-		EFAFCFFF26F5D78600C74923 /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
+		EF8B724E272585D80069457D /* TextFieldChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldChecker.swift; sourceTree = "<group>"; };
+		EFAE39AD272D3C1B00723701 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		EFAE39AF272D437900723701 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
+		EFAE39B1272D438600723701 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		EFAE39B32732C7A300723701 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		EFAE39B52732D2F500723701 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
+		EFAFCFFD26F3915400C74923 /* LogInChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInChecker.swift; sourceTree = "<group>"; };
+		EFAFCFFF26F5D78600C74923 /* LogInControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInControllerDelegate.swift; sourceTree = "<group>"; };
 		EFAFD00126F5D8A000C74923 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		EFAFD00326F6F0CE00C74923 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
-		EFCC66B02658E3C20090CD73 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		EFCC66B02658E3C20090CD73 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		EFCC66B22658E4070090CD73 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		EFCCFEC526D68724007B4EBA /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFCCFEC726D68724007B4EBA /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
@@ -118,7 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFCCFEE926D7F2A3007B4EBA /* iOSIntPackage in Frameworks */,
+				EF1F96E7278414BF00112D0C /* iOSIntPackage in Frameworks */,
 				EFCCFEDA26D68724007B4EBA /* StorageService.framework in Frameworks */,
 				613F521BCB49813FB46FFA9D /* Pods_Navigation.framework in Frameworks */,
 			);
@@ -157,13 +171,15 @@
 		060782B0250CE27700A87020 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				EFAE39AC272D3BF600723701 /* Coordinators */,
+				EF25DCCB26A6B85900577166 /* Storages */,
 				EFAFCFFC26F3914200C74923 /* Verification */,
 				EFCCFEEC26DA6652007B4EBA /* UserData */,
 				EFCCFEBF26D6751A007B4EBA /* Post */,
 				EFCC66AF2658E2450090CD73 /* Profile */,
+				EF25DCCC26A6B87400577166 /* Models */,
 				060782B1250CE27700A87020 /* AppDelegate.swift */,
 				060782B3250CE27700A87020 /* SceneDelegate.swift */,
-				060782B5250CE27700A87020 /* FeedViewController.swift */,
 				EF8B724C27256BFF0069457D /* TabBarController.swift */,
 				060782BA250CE27A00A87020 /* Assets.xcassets */,
 				060782BC250CE27A00A87020 /* LaunchScreen.storyboard */,
@@ -201,19 +217,23 @@
 		EF25DCCC26A6B87400577166 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EFAE39B52732D2F500723701 /* ModuleFactory.swift */,
+				EF1B136927CA24000070A9A0 /* FeedViewModuleFactory.swift */,
+				EF1B136B27CA241A0070A9A0 /* ProfileViewModuleFactory.swift */,
 				EF25DCB726A02AFC00577166 /* PostVK.swift */,
 				EFCCFEF626DA71A5007B4EBA /* addSubviews.swift */,
 				EFE64ECF271BF9C0009C8CC2 /* CustomButton.swift */,
 				EFE64ED1271C4277009C8CC2 /* CustomTextFiled.swift */,
-				EF8B724E272585D80069457D /* CheckTextField.swift */,
+				EF8B724E272585D80069457D /* TextFieldChecker.swift */,
 			);
-			path = Models;
+			name = Models;
+			path = Profile/Models;
 			sourceTree = "<group>";
 		};
 		EF25DCCD26A6B8D400577166 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				EFCC66B02658E3C20090CD73 /* ProfileViewController.swift */,
+				EFCC66B02658E3C20090CD73 /* ProfileController.swift */,
 				EFCC66B22658E4070090CD73 /* ProfileHeaderView.swift */,
 				EF25DCBC26A2FCAA00577166 /* ProfileTableHeaderView.swift */,
 				EF25DCB926A02BBA00577166 /* PostTableViewCell.swift */,
@@ -231,12 +251,23 @@
 			path = Photos;
 			sourceTree = "<group>";
 		};
+		EFAE39AC272D3BF600723701 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				EFAE39AD272D3C1B00723701 /* MainCoordinator.swift */,
+				EFAE39B32732C7A300723701 /* Coordinator.swift */,
+				EFAE39AF272D437900723701 /* FeedCoordinator.swift */,
+				EFAE39B1272D438600723701 /* ProfileCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		EFAFCFFC26F3914200C74923 /* Verification */ = {
 			isa = PBXGroup;
 			children = (
-				EF25DCB32691CD2500577166 /* LogInViewController.swift */,
-				EFAFCFFD26F3915400C74923 /* Checker.swift */,
-				EFAFCFFF26F5D78600C74923 /* LoginViewControllerDelegate.swift */,
+				EF25DCB32691CD2500577166 /* LogInController.swift */,
+				EFAFCFFD26F3915400C74923 /* LogInChecker.swift */,
+				EFAFCFFF26F5D78600C74923 /* LogInControllerDelegate.swift */,
 				EFAFD00126F5D8A000C74923 /* LoginInspector.swift */,
 				EFAFD00326F6F0CE00C74923 /* LoginFactory.swift */,
 			);
@@ -248,8 +279,6 @@
 			children = (
 				EF25DCCD26A6B8D400577166 /* Profile */,
 				EF25DCCE26A6B8DD00577166 /* Photos */,
-				EF25DCCC26A6B87400577166 /* Models */,
-				EF25DCCB26A6B85900577166 /* Storages */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -257,6 +286,7 @@
 		EFCCFEBF26D6751A007B4EBA /* Post */ = {
 			isa = PBXGroup;
 			children = (
+				060782B5250CE27700A87020 /* FeedController.swift */,
 				060782C5250CEB0A00A87020 /* InfoViewController.swift */,
 				060782C7250CEE5D00A87020 /* PostViewController.swift */,
 			);
@@ -316,7 +346,7 @@
 			);
 			name = Navigation;
 			packageProductDependencies = (
-				EFCCFEE826D7F2A3007B4EBA /* iOSIntPackage */,
+				EF1F96E6278414BF00112D0C /* iOSIntPackage */,
 			);
 			productName = Navigation;
 			productReference = 060782AE250CE27700A87020 /* Navigation.app */;
@@ -347,7 +377,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1170;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = "Artem Novichkov";
 				TargetAttributes = {
 					060782AD250CE27700A87020 = {
@@ -368,7 +398,7 @@
 			);
 			mainGroup = 060782A5250CE27700A87020;
 			packageReferences = (
-				EFCCFEE726D7F2A3007B4EBA /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+				EF1F96E5278414BF00112D0C /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 			);
 			productRefGroup = 060782AF250CE27700A87020 /* Products */;
 			projectDirPath = "";
@@ -448,32 +478,39 @@
 			files = (
 				EFE64ED2271C4277009C8CC2 /* CustomTextFiled.swift in Sources */,
 				EFE64ED0271BF9C0009C8CC2 /* CustomButton.swift in Sources */,
+				EFAE39B62732D2F500723701 /* ModuleFactory.swift in Sources */,
 				EF25DCC626A466A600577166 /* allPhotos.swift in Sources */,
-				EF25DCB42691CD2500577166 /* LogInViewController.swift in Sources */,
+				EF25DCB42691CD2500577166 /* LogInController.swift in Sources */,
 				EFCCFEF026DA6862007B4EBA /* UserService.swift in Sources */,
-				EFAFCFFE26F3915400C74923 /* Checker.swift in Sources */,
+				EFAFCFFE26F3915400C74923 /* LogInChecker.swift in Sources */,
 				EF25DCBD26A2FCAA00577166 /* ProfileTableHeaderView.swift in Sources */,
+				EFAE39B2272D438600723701 /* ProfileCoordinator.swift in Sources */,
 				EFCCFEF226DA6905007B4EBA /* CurrentUserService.swift in Sources */,
-				EFAFD00026F5D78600C74923 /* LoginViewControllerDelegate.swift in Sources */,
-				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,
+				EFAFD00026F5D78600C74923 /* LogInControllerDelegate.swift in Sources */,
+				060782B6250CE27700A87020 /* FeedController.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				EF25DCCA26A4754A00577166 /* PhotosTableViewCell.swift in Sources */,
 				EFCCFEF526DA6B5B007B4EBA /* TestUserService.swift in Sources */,
+				EFAE39AE272D3C1B00723701 /* MainCoordinator.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
-				EFCC66B12658E3C20090CD73 /* ProfileViewController.swift in Sources */,
+				EFCC66B12658E3C20090CD73 /* ProfileController.swift in Sources */,
+				EF1B136A27CA24000070A9A0 /* FeedViewModuleFactory.swift in Sources */,
+				EFAE39B42732C7A300723701 /* Coordinator.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
 				EFAFD00426F6F0CE00C74923 /* LoginFactory.swift in Sources */,
 				EF25DCC126A4626300577166 /* PhotosCollectionViewCell.swift in Sources */,
 				EFAFD00226F5D8A000C74923 /* LoginInspector.swift in Sources */,
 				EF25DCC326A462D000577166 /* PhotosViewController.swift in Sources */,
+				EF1B136C27CA241A0070A9A0 /* ProfileViewModuleFactory.swift in Sources */,
 				EFCCFEEE26DA6662007B4EBA /* User.swift in Sources */,
 				EF25DCB626A02A6E00577166 /* allPosts.swift in Sources */,
 				EFCCFEF726DA71A5007B4EBA /* addSubviews.swift in Sources */,
 				EF25DCB826A02AFC00577166 /* PostVK.swift in Sources */,
+				EFAE39B0272D437900723701 /* FeedCoordinator.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
 				EF8B724D27256BFF0069457D /* TabBarController.swift in Sources */,
 				EFCC66B32658E4070090CD73 /* ProfileHeaderView.swift in Sources */,
-				EF8B724F272585D80069457D /* CheckTextField.swift in Sources */,
+				EF8B724F272585D80069457D /* TextFieldChecker.swift in Sources */,
 				EF25DCBA26A02BBA00577166 /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -534,6 +571,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -594,6 +632,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -629,14 +668,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 79RZ866842;
+				DEVELOPMENT_TEAM = A38548G3Y3;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.artemnovichkov.Navigation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.idontknowwhatimdoing.Navigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -650,14 +689,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 79RZ866842;
+				DEVELOPMENT_TEAM = A38548G3Y3;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.artemnovichkov.Navigation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.idontknowwhatimdoing.Navigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -757,20 +796,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		EFCCFEE726D7F2A3007B4EBA /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
+		EF1F96E5278414BF00112D0C /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/TrueMax/iOSIntPackage.git";
+			repositoryURL = "https://github.com/TrueMax/iOSIntPackage";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.2.3;
+				branch = imagepublisher;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		EFCCFEE826D7F2A3007B4EBA /* iOSIntPackage */ = {
+		EF1F96E6278414BF00112D0C /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EFCCFEE726D7F2A3007B4EBA /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
+			package = EF1F96E5278414BF00112D0C /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -10,19 +10,38 @@ import UIKit
 import StorageService
 import SnapKit
 
-final class FeedViewController: UIViewController {
-
-    private let correctWord: CheckTextField
-
-    init(correctWord: CheckTextField) {
-        self.correctWord = correctWord
-        super .init(nibName: nil, bundle: nil)
+class FeedPresenter {
+    private weak var view: FeedController?
+    private let coordinator: FeedCoordinator
+    private let checker: TextFieldChecker
+    
+    init(view: FeedController,
+         coordinator: FeedCoordinator,
+         checker: TextFieldChecker) {
+        self.view = view
+        self.coordinator = coordinator
+        self.checker = checker
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func showPost() {
+        coordinator.showPost()
     }
     
+    func presentPost() {
+        coordinator.presentPost()
+    }
+    
+    func performCheck(word: String) {
+        checker.check(word: word) { result in
+            view?.showInputResult(result)
+        }
+    }
+}
+
+final class FeedController: UIViewController {
+    
+    var presenter: FeedPresenter?
+
     private lazy var newViewButton: UIButton = {
         let button = CustomButton(
             title: "Show new post",
@@ -30,8 +49,7 @@ final class FeedViewController: UIViewController {
             backgroungColor: UIColor.systemBlue,
             backgroungImage: nil,
             cornerRadius: 15) {
-                let vc = PostViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.presenter?.showPost()
             }
         return button
     }()
@@ -43,8 +61,7 @@ final class FeedViewController: UIViewController {
             backgroungColor: UIColor.systemBlue,
             backgroungImage: nil,
             cornerRadius: 15) {
-                let vc = InfoViewController()
-                self.navigationController?.present(vc, animated: true, completion: nil)
+                self.presenter?.presentPost()
             }
         return button
     }()
@@ -66,7 +83,9 @@ final class FeedViewController: UIViewController {
             backgroungColor: UIColor.systemBlue,
             backgroungImage: nil,
             cornerRadius: 15) { [weak self] in
-                self?.onCompletion()
+                if let enteredText = self?.guessWordTextField.text {
+                    self?.presenter?.performCheck(word: enteredText)
+                }
             }
         return button
     } ()
@@ -101,22 +120,6 @@ final class FeedViewController: UIViewController {
         setupFeedViews()
     }
     
-    private func onCompletion() {
-        
-        let enteredWord = guessWordTextField.text
-        correctWord.check(word: enteredWord ?? "") { [weak self] result in
-            switch  result {
-            case .correct:
-                self?.checkLabel.backgroundColor = UIColor(named: "green")
-                self?.checkLabel.alpha = 1
-            case .incorrect:
-                self?.checkLabel.backgroundColor = UIColor(named: "red")
-                self?.checkLabel.alpha = 1
-            default: self?.checkLabel.backgroundColor = .clear
-            }
-        }
-    }
-    
     private func setupFeedViews() {
         view.addSubview(buttonsStackView)
         
@@ -129,6 +132,19 @@ final class FeedViewController: UIViewController {
         buttonsStackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(sideInset)
             make.top.equalToSuperview().inset(topInset)
+        }
+    }
+    
+    func showInputResult(_ result: Result){
+        switch result {
+        case .correct:
+            checkLabel.backgroundColor = UIColor(named: "green")
+            checkLabel.alpha = 1
+        case .incorrect:
+            checkLabel.backgroundColor = UIColor(named: "red")
+            checkLabel.alpha = 1
+        default:
+            checkLabel.backgroundColor = .clear
         }
     }
 

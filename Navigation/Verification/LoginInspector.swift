@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-class LoginInspector: LoginViewControllerDelegate {
+class LoginInspector: LogInControllerDelegate {
     func checkLoginTextfields(filledInLogin: String, filledInPassword: String) -> Bool {
-        return Checker.instance.checkLoginData(filledInLogin: filledInLogin, filledInPassword: filledInPassword)
+        return LogInChecker.instance.checkLoginData(filledInLogin: filledInLogin, filledInPassword: filledInPassword)
     }
 }

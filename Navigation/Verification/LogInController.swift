@@ -8,11 +8,29 @@
 
 import UIKit
 
-class LogInViewController: UIViewController, UITextFieldDelegate {
+class ProfilePresenter {
     
-    weak var checkerDelegate: LoginViewControllerDelegate?
+    private weak var view: LogInController?
+    var coordinator: ProfileCoordinator
+    
+    init(view: LogInController, coordinator: ProfileCoordinator) {
+        self.view = view
+        self.coordinator = coordinator
+    }
+    
+    func loggedInSuccessfully() {
+        coordinator.loggedInSuccessfully()
+    }
+
+}
+
+class LogInController: UIViewController, UITextFieldDelegate {
+    
+    var presenter: ProfilePresenter?
+    
+    weak var checkerDelegate: LogInControllerDelegate?
     weak var loginFactory: MyLoginFactory?
-    
+
     let someUserService = CurrentUserService()
     let testUserService = TestUserService()
     
@@ -82,6 +100,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             titleColor: .white,
             backgroungColor: nil,
             backgroungImage: bluePixel,
+<<<<<<< HEAD:Navigation/Verification/LogInViewController.swift
             cornerRadius: 10)
         
         { [self] in
@@ -102,12 +121,18 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 showLoginAlert()
             }
         }
+=======
+            cornerRadius: 10) {
+                self.showInputResult()
+            }
+>>>>>>> iOSINT-7:Navigation/Verification/LogInController.swift
 
         button.layer.masksToBounds = true
         button.titleLabel?.font = UIFont(name: "default", size: 16)
         
         return button
     }()
+<<<<<<< HEAD:Navigation/Verification/LogInViewController.swift
     
     @objc private func tapLogInButton() {
         
@@ -123,6 +148,26 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
            inspector.checkLoginTextfields(filledInLogin: username, filledInPassword: password) {
             let profileVC = ProfileViewController(userService: userService, userName: username)
             navigationController?.pushViewController(profileVC, animated: true)
+        } else {
+            showLoginAlert()
+        }
+    }
+=======
+>>>>>>> iOSINT-7:Navigation/Verification/LogInController.swift
+    
+    func showInputResult(){
+            
+        #if DEBUG
+        let userService = TestUserService()
+        #else
+        let userService = CurrentUserService()
+        #endif
+            
+        if let username = userNameField.text,
+            let password = passwordField.text,
+            let inspector = checkerDelegate,
+            inspector.checkLoginTextfields(filledInLogin: username, filledInPassword: password) {
+            self.presenter?.coordinator.loggedInSuccessfully()
         } else {
             showLoginAlert()
         }
@@ -146,7 +191,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     private var inset: CGFloat { return 16 }
     
-
     private func setupViews() {
         
         view.addSubview(scroll)
@@ -235,8 +279,9 @@ extension UIImage {
         return newImage!
     }
 }
+ 
 // MARK: extension for keyboard magic
-extension LogInViewController {
+extension LogInController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

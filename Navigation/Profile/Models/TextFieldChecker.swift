@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CheckTextField {
+class TextFieldChecker {
 
     private let correctWord = "агглютинация"
     

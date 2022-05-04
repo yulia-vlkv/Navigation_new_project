@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class Checker {
+class LogInChecker {
     
-    static let instance = Checker()
+    static let instance = LogInChecker()
     
     #if DEBUG
     private let login = "Test"
@@ -21,7 +21,7 @@ class Checker {
     
     private let password = "StrongPassword"
     
-    private init() {}
+    init() {}
     
     func checkLoginData(filledInLogin: String, filledInPassword: String) -> Bool {
         if login.hash == filledInLogin.hash && password.hash == filledInPassword.hash {
