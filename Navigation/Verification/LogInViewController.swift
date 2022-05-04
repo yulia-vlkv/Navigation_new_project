@@ -10,6 +10,8 @@ import UIKit
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
+    weak var checkerDelegate: LoginViewControllerDelegate?
+    
     let someUserService = CurrentUserService()
     let testUserService = TestUserService()
     
@@ -62,7 +64,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         return textField
     }()
     
-    private let password: UITextField = {
+    private let passwordField: UITextField = {
         let textField = UITextField()
         textField.font = UIFont.systemFont(ofSize: 16)
         textField.textColor = .black
@@ -98,21 +100,19 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }()
     
     @objc private func tapLogInButton() {
+        
         #if DEBUG
-        if let userName = userNameField.text, let _ = testUserService.returnUser(userName: userName) {
-            let profileVC = ProfileViewController(userService: testUserService, userName: userName)
+        let userService = TestUserService()
+        #else
+        let userService = CurrentUserService()
+        #endif
+        
+        if let username = userNameField.text, let password = passwordField.text, checkerDelegate?.checkLoginTextfields(filledInLogin: username, filledInPassword: password) == true {
+            let profileVC = ProfileViewController(userService: userService, userName: username)
             navigationController?.pushViewController(profileVC, animated: true)
         } else {
             showLoginAlert()
-            }
-        #else
-        if let userName = userNameField.text, let _ = someUserService.returnUser(userName: userName) {
-            let profileVC = ProfileViewController(userService: someUserService, userName: userName)
-            navigationController?.pushViewController(profileVC, animated: true)
-        } else {
-             showLoginAlert()
         }
-        #endif
     }
     
     private func showLoginAlert(){
@@ -127,7 +127,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         navigationController?.navigationBar.isHidden = true
         userNameField.delegate = self
-        password.delegate = self
+        passwordField.delegate = self
         setupViews()
     }
     
@@ -143,7 +143,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         mainView.addSubviews(logo, logInView, logInButton)
         
-        logInView.addSubviews(userNameField, password)
+        logInView.addSubviews(userNameField, passwordField)
         
         scroll.snp.makeConstraints { make in
             make.top.bottom.leading.trailing.width.height.equalToSuperview()
@@ -170,7 +170,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             make.top.equalTo(logInView)
         }
         
-        password.snp.makeConstraints { make in
+        passwordField.snp.makeConstraints { make in
             make.height.equalTo(50)
             make.width.equalTo(logInView)
             make.bottom.equalTo(logInView)

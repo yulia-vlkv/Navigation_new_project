@@ -31,7 +31,11 @@ class ProfileViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         
         setUpTableView()
-        showUserData()
+//        showUserData()
+        
+        if let user = userService.returnUser(userName: userName){
+            profileHeaderView.showUserData(user: user)
+        }
     }
     
     private func setUpTableView(){
@@ -57,14 +61,6 @@ class ProfileViewController: UIViewController {
         ]
         
         NSLayoutConstraint.activate(constraints)
-    }
-    
-    private func showUserData() {
-        if let user = self.userService.returnUser(userName: self.userName) {
-            profileHeaderView.userName.text = user.userName
-            profileHeaderView.profileImage.image = user.userImage
-            profileHeaderView.userStatus.text = user.userStatus
-        }
     }
 }
 

@@ -136,4 +136,10 @@ class ProfileHeaderView: UIView {
     @objc func statusTextChanged(_ textField: UITextField) {
         statusText = statusField.text ?? "No status"
     }
+    
+    func showUserData(user: User) {
+        userName.text = user.userName
+        profileImage.image = user.userImage
+        userStatus.text = user.userStatus
+    }
 }
