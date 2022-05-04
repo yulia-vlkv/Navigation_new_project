@@ -11,6 +11,7 @@ import UIKit
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
     weak var checkerDelegate: LoginViewControllerDelegate?
+    weak var loginFactory: MyLoginFactory?
     
     let someUserService = CurrentUserService()
     let testUserService = TestUserService()
@@ -107,7 +108,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         let userService = CurrentUserService()
         #endif
         
-        if let username = userNameField.text, let password = passwordField.text, checkerDelegate?.checkLoginTextfields(filledInLogin: username, filledInPassword: password) == true {
+        if let username = userNameField.text,
+           let password = passwordField.text,
+           let inspector = checkerDelegate,
+           inspector.checkLoginTextfields(filledInLogin: username, filledInPassword: password) {
             let profileVC = ProfileViewController(userService: userService, userName: username)
             navigationController?.pushViewController(profileVC, animated: true)
         } else {
