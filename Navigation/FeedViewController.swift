@@ -8,63 +8,128 @@
 
 import UIKit
 import StorageService
+import SnapKit
 
 final class FeedViewController: UIViewController {
-    
-    let post: Post = Post(title: "Пост")
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        print(type(of: self), #function)
+
+    private let correctWord: CheckTextField
+
+    init(correctWord: CheckTextField) {
+        self.correctWord = correctWord
+        super .init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        print(type(of: self), #function)
+        fatalError("init(coder:) has not been implemented")
     }
     
+    private lazy var newViewButton: UIButton = {
+        let button = CustomButton(
+            title: "Show new post",
+            titleColor: .white,
+            backgroungColor: UIColor.systemBlue,
+            backgroungImage: nil,
+            cornerRadius: 15) {
+                let vc = PostViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        return button
+    }()
+
+    private lazy var modalViewButton: UIButton = {
+        let button = CustomButton(
+            title: "Show it modally",
+            titleColor: .white,
+            backgroungColor: UIColor.systemBlue,
+            backgroungImage: nil,
+            cornerRadius: 15) {
+                let vc = InfoViewController()
+                self.navigationController?.present(vc, animated: true, completion: nil)
+            }
+        return button
+    }()
+    
+    private let guessWordTextField: UITextField = {
+        let textField = CustomTextField(
+            font: UIFont.systemFont(ofSize: 18, weight: .light),
+            textColor: UIColor.systemBlue,
+            backgroundColor: .white,
+            placeholder: "Guess the word")
+        textField.layer.cornerRadius = 15
+        return textField
+    } ()
+    
+    private lazy var checkButton: UIButton = {
+        let button = CustomButton(
+            title: "CHECK",
+            titleColor: .white,
+            backgroungColor: UIColor.systemBlue,
+            backgroungImage: nil,
+            cornerRadius: 15) { [weak self] in
+                self?.onCompletion()
+            }
+        return button
+    } ()
+    
+    private let checkLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .clear
+        label.toAutoLayout()
+        label.clipsToBounds = true
+        label.layer.cornerRadius = 15
+        return label
+    } ()
+    
+    private let buttonsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.distribution = .fillEqually
+        stackView.axis = .vertical
+        stackView.spacing = 35
+        stackView.alignment = .fill
+        stackView.toAutoLayout()
+        return stackView
+    } ()
+    
+    private var sideInset: CGFloat { return 40 }
+    private var topInset: CGFloat { return 200 }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(type(of: self), #function)
+        
+        view.backgroundColor = UIColor(named: "mint")
+        
+        setupFeedViews()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print(type(of: self), #function)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print(type(of: self), #function)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print(type(of: self), #function)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print(type(of: self), #function)
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        print(type(of: self), #function)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        print(type(of: self), #function)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "post" else {
-            return
+    private func onCompletion() {
+        
+        let enteredWord = guessWordTextField.text
+        correctWord.check(word: enteredWord ?? "") { [weak self] result in
+            switch  result {
+            case .correct:
+                self?.checkLabel.backgroundColor = UIColor(named: "green")
+                self?.checkLabel.alpha = 1
+            case .incorrect:
+                self?.checkLabel.backgroundColor = UIColor(named: "red")
+                self?.checkLabel.alpha = 1
+            default: self?.checkLabel.backgroundColor = .clear
+            }
         }
-        guard let postViewController = segue.destination as? PostViewController else {
-            return
-        }
-        postViewController.post = post
     }
+    
+    private func setupFeedViews() {
+        view.addSubview(buttonsStackView)
+        
+        buttonsStackView.addArrangedSubview(guessWordTextField)
+        buttonsStackView.addArrangedSubview(checkButton)
+        buttonsStackView.addArrangedSubview(checkLabel)
+        buttonsStackView.addArrangedSubview(newViewButton)
+        buttonsStackView.addArrangedSubview(modalViewButton)
+        
+        buttonsStackView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(sideInset)
+            make.top.equalToSuperview().inset(topInset)
+        }
+    }
+
 }

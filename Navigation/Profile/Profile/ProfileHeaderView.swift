@@ -41,17 +41,19 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    private let statusButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Set status", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.backgroundColor = UIColor.systemBlue.cgColor
-        button.layer.cornerRadius = 14
+    private lazy var statusButton: UIButton = {
+        let button = CustomButton(
+            title: "Set status",
+            titleColor: .white,
+            backgroungColor: UIColor.systemBlue,
+            backgroungImage: nil,
+            cornerRadius: 14) 
+        { [self] in self.userStatus.text = statusText }
+        
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowOpacity = 0.7
-        button.toAutoLayout()
-        button.addTarget(self, action: #selector(isPressed), for: .touchUpInside)
+    
         return button
     }()
     
@@ -125,11 +127,6 @@ class ProfileHeaderView: UIView {
             make.trailing.equalToSuperview().inset(inset)
             make.height.equalTo(statusHeight)
         }
-    }
-    
-    // Функция для обработки нажатия на кнопку
-    @objc func isPressed() {
-        userStatus.text = statusText
     }
     
     // Функция для нового статуса
