@@ -47,6 +47,7 @@
 		EF3D5A6B27E5C06D007BF7D3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3D5A6A27E5C06D007BF7D3 /* LoginPresenter.swift */; };
 		EF5894E428227371006D9A64 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5894E328227371006D9A64 /* NetworkService.swift */; };
 		EF5894E628227459006D9A64 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5894E528227459006D9A64 /* AppConfiguration.swift */; };
+		EF5894E828228E11006D9A64 /* TodosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5894E728228E11006D9A64 /* TodosModel.swift */; };
 		EF8B724F272585D80069457D /* TextFieldChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8B724E272585D80069457D /* TextFieldChecker.swift */; };
 		EFA9642B28151AAD0011DF91 /* VideoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA9642A28151AAD0011DF91 /* VideoPresenter.swift */; };
 		EFA9642D28151AC20011DF91 /* MusicPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA9642C28151AC10011DF91 /* MusicPresenter.swift */; };
@@ -150,6 +151,7 @@
 		EF3D5A6A27E5C06D007BF7D3 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		EF5894E328227371006D9A64 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EF5894E528227459006D9A64 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		EF5894E728228E11006D9A64 /* TodosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosModel.swift; sourceTree = "<group>"; };
 		EF8B724E272585D80069457D /* TextFieldChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldChecker.swift; sourceTree = "<group>"; };
 		EFA9642A28151AAD0011DF91 /* VideoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPresenter.swift; sourceTree = "<group>"; };
 		EFA9642C28151AC10011DF91 /* MusicPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPresenter.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 			children = (
 				EF5894E328227371006D9A64 /* NetworkService.swift */,
 				EF5894E528227459006D9A64 /* AppConfiguration.swift */,
+				EF5894E728228E11006D9A64 /* TodosModel.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -694,6 +697,7 @@
 				EFA964402816AAEC0011DF91 /* AudioRecorderModuleFactory.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				EF25DCCA26A4754A00577166 /* PhotosTableViewCell.swift in Sources */,
+				EF5894E828228E11006D9A64 /* TodosModel.swift in Sources */,
 				EFA9643C2816AA6F0011DF91 /* AudioRecorderViewController.swift in Sources */,
 				EFCCFEF526DA6B5B007B4EBA /* TestUserService.swift in Sources */,
 				EF5894E428227371006D9A64 /* NetworkService.swift in Sources */,

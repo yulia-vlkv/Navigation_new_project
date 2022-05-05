@@ -22,6 +22,23 @@ class InfoViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private let urlString = "https://jsonplaceholder.typicode.com/todos/"
+    private var networkService = NetworkService()
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        label.lineBreakMode = .byTruncatingMiddle
+        label.numberOfLines = 2
+        label.textColor = .darkGray
+        label.backgroundColor = UIColor(named: "mint")
+        label.layer.cornerRadius = 15
+        label.layer.masksToBounds = true
+        label.toAutoLayout()
+        return label
+    }()
+    
     private lazy var button: UIButton = {
         let button = CustomButton(
             title: "Detele this post",
@@ -36,9 +53,26 @@ class InfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemPink
-        view.addSubview(button)
+        
+        networkService.delegate = self
+        setUI()
+        networkService.performNewRequest(with: urlString)
+        
+        print("decoding from: \(urlString)")
+
+    }
+    
+    private func setUI(){
+        view.backgroundColor = .lightGray
+        view.addSubviews(button, titleLabel)
         button.snp.makeConstraints { make in
+            make.bottom.equalTo(titleLabel.snp.top).offset(150)
+            make.centerX.equalToSuperview()
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.height.equalTo(100)
+            make.leading.trailing.equalToSuperview().inset(50)
             make.center.equalToSuperview()
         }
     }
@@ -56,4 +90,13 @@ class InfoViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+}
+
+extension InfoViewController: NetworkServiceDelegate {
+    
+    func didUpdateTitleLabel(_ service: NetworkService, title: String) {
+        DispatchQueue.main.async {
+            self.titleLabel.text = title
+        }
+    }
 }

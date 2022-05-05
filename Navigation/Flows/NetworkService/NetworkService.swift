@@ -8,8 +8,16 @@
 
 import Foundation
 
+protocol NetworkServiceDelegate {
+    
+    func didUpdateTitleLabel(_ service: NetworkService, title: String)
+    
+}
+
 
 struct NetworkService {
+    
+    var delegate: NetworkServiceDelegate?
     
     static func performRequest (with urlString: String) {
         
@@ -34,4 +42,45 @@ struct NetworkService {
         }
         task.resume()
     }
+    
+    func createArrayOfData (data: Data) -> [TodosModel]? {
+        var JSONdictionary: [[String: Any]]
+        do {
+            guard let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] else {
+                print("Can't downcast data to array if dictionaries")
+                return nil
+            }
+            JSONdictionary = dictionary
+        } catch {
+            print("The error occured: \(error.localizedDescription)")
+            return nil
+        }
+        var returnArray: [TodosModel] = []
+        for list in JSONdictionary {
+            returnArray.append(TodosModel(from: list))
+        }
+        return returnArray
+    }
+    
+    func performNewRequest (with urlString: String) {
+
+        guard let url = URL(string: urlString) else { return }
+        
+        let session = URLSession(configuration: .default)
+        
+        let task = session.dataTask(with: url) { (data, response, error) in
+            if let safeData = data {
+                
+                guard let list = createArrayOfData(data: safeData) else { return }
+                let random = list.randomElement()
+                self.delegate?.didUpdateTitleLabel(self, title: random?.title ?? "")
+                
+                if let error = error {
+                    print ("The error occured: \(error.localizedDescription)")
+                    return
+                }
+            }
+        }
+       task.resume()
+   }
 }

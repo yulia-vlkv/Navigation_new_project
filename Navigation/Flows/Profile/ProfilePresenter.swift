@@ -56,20 +56,4 @@ class ProfilePresenter {
             self.view?.showReminderAlert()
         }
     }
-    
-//    func pushProfileVC(userService: UserService, userName: String) {
-//        coordinator.pushProfileVC(userService: userService, userName: userName)
-//    }
-    
-//    func loggedInSuccessfully() {
-//        coordinator.loggedInSuccessfully()
-//    }
-//
-//    func pushPhotoVC() {
-//        coordinator.pushPhotoVC()
-//    }
-//
-//    func pushMusicVC() {
-//        coordinator.pushMusicVC()
-//    }
 }
