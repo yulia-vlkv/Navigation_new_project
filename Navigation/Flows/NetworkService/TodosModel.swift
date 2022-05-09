@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TodosModel: Codable {
+struct TodoModel: Codable {
     
     var id: Int
     var userId: Int
