@@ -47,6 +47,9 @@
 		EF3D5A6B27E5C06D007BF7D3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3D5A6A27E5C06D007BF7D3 /* LoginPresenter.swift */; };
 		EF5894E428227371006D9A64 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5894E328227371006D9A64 /* NetworkService.swift */; };
 		EF5894E628227459006D9A64 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5894E528227459006D9A64 /* AppConfiguration.swift */; };
+		EF5894E828228E11006D9A64 /* TodosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5894E728228E11006D9A64 /* TodosModel.swift */; };
+		EF5894EA2829179E006D9A64 /* PlanetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5894E92829179E006D9A64 /* PlanetModel.swift */; };
+		EF5894EC28292BB9006D9A64 /* ResidentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5894EB28292BB9006D9A64 /* ResidentModel.swift */; };
 		EF8B724F272585D80069457D /* TextFieldChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8B724E272585D80069457D /* TextFieldChecker.swift */; };
 		EFA9642B28151AAD0011DF91 /* VideoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA9642A28151AAD0011DF91 /* VideoPresenter.swift */; };
 		EFA9642D28151AC20011DF91 /* MusicPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA9642C28151AC10011DF91 /* MusicPresenter.swift */; };
@@ -150,6 +153,9 @@
 		EF3D5A6A27E5C06D007BF7D3 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		EF5894E328227371006D9A64 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EF5894E528227459006D9A64 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		EF5894E728228E11006D9A64 /* TodosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosModel.swift; sourceTree = "<group>"; };
+		EF5894E92829179E006D9A64 /* PlanetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetModel.swift; sourceTree = "<group>"; };
+		EF5894EB28292BB9006D9A64 /* ResidentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentModel.swift; sourceTree = "<group>"; };
 		EF8B724E272585D80069457D /* TextFieldChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldChecker.swift; sourceTree = "<group>"; };
 		EFA9642A28151AAD0011DF91 /* VideoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPresenter.swift; sourceTree = "<group>"; };
 		EFA9642C28151AC10011DF91 /* MusicPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPresenter.swift; sourceTree = "<group>"; };
@@ -381,6 +387,9 @@
 			children = (
 				EF5894E328227371006D9A64 /* NetworkService.swift */,
 				EF5894E528227459006D9A64 /* AppConfiguration.swift */,
+				EF5894E728228E11006D9A64 /* TodosModel.swift */,
+				EF5894E92829179E006D9A64 /* PlanetModel.swift */,
+				EF5894EB28292BB9006D9A64 /* ResidentModel.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -680,6 +689,7 @@
 				EF5894E628227459006D9A64 /* AppConfiguration.swift in Sources */,
 				EFA96439281677620011DF91 /* PhotosViewModuleFactory.swift in Sources */,
 				EFAFCFFE26F3915400C74923 /* LogInChecker.swift in Sources */,
+				EF5894EC28292BB9006D9A64 /* ResidentModel.swift in Sources */,
 				EFA96435281677160011DF91 /* MusicViewModuleFactory.swift in Sources */,
 				EFA9642B28151AAD0011DF91 /* VideoPresenter.swift in Sources */,
 				EF25DCBD26A2FCAA00577166 /* ProfileTableHeaderView.swift in Sources */,
@@ -694,6 +704,7 @@
 				EFA964402816AAEC0011DF91 /* AudioRecorderModuleFactory.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				EF25DCCA26A4754A00577166 /* PhotosTableViewCell.swift in Sources */,
+				EF5894E828228E11006D9A64 /* TodosModel.swift in Sources */,
 				EFA9643C2816AA6F0011DF91 /* AudioRecorderViewController.swift in Sources */,
 				EFCCFEF526DA6B5B007B4EBA /* TestUserService.swift in Sources */,
 				EF5894E428227371006D9A64 /* NetworkService.swift in Sources */,
@@ -713,6 +724,7 @@
 				EF1B137B27E446620070A9A0 /* Track.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
 				EFAFD00426F6F0CE00C74923 /* LoginFactory.swift in Sources */,
+				EF5894EA2829179E006D9A64 /* PlanetModel.swift in Sources */,
 				EF25DCC126A4626300577166 /* PhotosCollectionViewCell.swift in Sources */,
 				EFAFD00226F5D8A000C74923 /* LoginInspector.swift in Sources */,
 				EF25DCC326A462D000577166 /* PhotosViewController.swift in Sources */,
