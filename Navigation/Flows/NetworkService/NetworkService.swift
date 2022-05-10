@@ -11,13 +11,21 @@ import Foundation
 protocol NetworkServiceDelegate {
     
     func didUpdateTitleLabel(_ service: NetworkService, title: String)
-    
+    func didUpdatePlanetInfo(_ service: NetworkService, info: PlanetModel)
+    func didUpdateResidentInfo(_ service: NetworkService, info: [String])
+    func didFailWithError(error: Error)
 }
 
 
-struct NetworkService {
+class NetworkService {
     
     var delegate: NetworkServiceDelegate?
+    
+    var residents: [String] = []
+    
+    var numberOfRows: Int {
+        return residents.count
+    }
     
     static func performRequest (with urlString: String) {
         
@@ -43,7 +51,7 @@ struct NetworkService {
         task.resume()
     }
     
-    func createArrayOfData (data: Data) -> [TodosModel]? {
+    func createArrayOfData (data: Data) -> [TodoModel]? {
         var JSONdictionary: [[String: Any]]
         do {
             guard let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] else {
@@ -52,12 +60,12 @@ struct NetworkService {
             }
             JSONdictionary = dictionary
         } catch {
-            print("The error occured: \(error.localizedDescription)")
+            self.delegate?.didFailWithError(error: error)
             return nil
         }
-        var returnArray: [TodosModel] = []
+        var returnArray: [TodoModel] = []
         for list in JSONdictionary {
-            returnArray.append(TodosModel(from: list))
+            returnArray.append(TodoModel(from: list))
         }
         return returnArray
     }
@@ -71,16 +79,68 @@ struct NetworkService {
         let task = session.dataTask(with: url) { (data, response, error) in
             if let safeData = data {
                 
-                guard let list = createArrayOfData(data: safeData) else { return }
+                guard let list = self.createArrayOfData(data: safeData) else { return }
                 let random = list.randomElement()
                 self.delegate?.didUpdateTitleLabel(self, title: random?.title ?? "")
                 
                 if let error = error {
-                    print ("The error occured: \(error.localizedDescription)")
+                    self.delegate?.didFailWithError(error: error)
                     return
                 }
             }
         }
-       task.resume()
-   }
+        task.resume()
+    }
+    
+    func performPlanetRequest(with urlString: String) {
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        let session = URLSession(configuration: .default)
+        
+        let task = session.dataTask(with: url) { (data, response, error) in
+            if let safeData = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let info = try decoder.decode(PlanetModel.self, from: safeData)
+                    self.fetchResidents(from: info.residents)
+                    self.delegate?.didUpdatePlanetInfo(self, info: info)
+                } catch {
+                    self.delegate?.didFailWithError(error: error)
+                    return
+                }
+            }
+        }
+        
+        task.resume()
+    }
+    
+    private func fetchResidents(from urls: [String]) {
+        
+        urls.forEach { url in
+            
+            guard let url = URL(string: url) else { return }
+            
+            let session = URLSession(configuration: .default)
+            
+            let task = session.dataTask(with: url) { (data, response, error) in
+                if let safeData = data {
+                    do {
+                        let decoder = JSONDecoder()
+                        let resident = try decoder.decode(ResidentModel.self, from: safeData)
+                        self.residents.append(resident.name)
+                        self.delegate?.didUpdateResidentInfo(self, info: self.residents)
+                    } catch {
+                        self.delegate?.didFailWithError(error: error)
+                        return
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    func textLabelForRow(index: Int) -> String {
+        return residents[index]
+    }
 }

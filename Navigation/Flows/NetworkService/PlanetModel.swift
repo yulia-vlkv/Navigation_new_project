@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PlanetData: Decodable {
+struct PlanetModel: Decodable {
     
     let name: String
     let rotationPeriod: String
@@ -24,7 +24,6 @@ struct PlanetData: Decodable {
     let created: String
     let edited: String
     let url: String
-
 
     enum CodingKeys: String, CodingKey {
         case name, diameter, climate, gravity, terrain, population, residents, films, created, edited, url
