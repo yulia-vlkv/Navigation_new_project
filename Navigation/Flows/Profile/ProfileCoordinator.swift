@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 class ProfileCoordinator: Coordinator {
     
@@ -35,7 +36,7 @@ class ProfileCoordinator: Coordinator {
     let profileFactory = ProfileViewModuleFactory()
 
     private func isUserLoggedIn() -> Bool {
-        false
+        (FirebaseAuth.Auth.auth().currentUser != nil) ? true : false
     }
     
     func start() {}
@@ -45,10 +46,23 @@ class ProfileCoordinator: Coordinator {
         if self.isUserLoggedIn() {
             showProfile()
         } else {
+            logOut()
             showLogin()
         }
 
         return navigationController
+    }
+    
+    func logOut() {
+        do {
+            try Auth.auth().signOut()
+            showLogin()
+            print("pressed 3")
+            print("logged out")
+        } catch let signOutError as NSError {
+            print(signOutError.localizedDescription)
+            print("not logged out")
+        }
     }
     
     func showProfile() {

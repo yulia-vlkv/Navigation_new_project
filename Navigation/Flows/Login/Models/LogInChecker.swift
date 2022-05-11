@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 
 protocol LogInChecker {
@@ -35,6 +36,7 @@ class FakeLogInChecker: LogInChecker {
     init() {}
     
     func checkLoginData(filledInLogin: String, filledInPassword: String) -> Bool {
+        
         if login.hash == filledInLogin.hash && constantPassword.hash == filledInPassword.hash {
             return true
         } else {
@@ -46,9 +48,6 @@ class FakeLogInChecker: LogInChecker {
         password == constantPassword
     }
     
-//    func check(password: String, completion: (Result<Bool, Error>) -> ()) {
-//        completion(.success(password == constantPassword))
-//    }
     
     func login(username: String, password: String, completion: @escaping (Result<String, Error>) -> Void) {
         DispatchQueue.global(qos: .default).asyncAfter(deadline: .now() + 1) {

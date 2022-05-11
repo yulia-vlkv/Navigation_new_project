@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 
+
 class ProfileViewController: UIViewController {
     
     var presenter: ProfilePresenter?
@@ -26,6 +27,7 @@ class ProfileViewController: UIViewController {
         
         setUpTableView()
         self.presenter?.setupTimer()
+        self.logout()
 
         presenter?.viewDidLoad()
     }
@@ -40,6 +42,12 @@ class ProfileViewController: UIViewController {
     
     public func configure(with user: User) {
         profileHeader.showUserData(user: user)
+    }
+    
+    public func logout(){
+        profileHeader.logoutHandler = {
+            self.presenter?.logOut()
+        }
     }
     
     func showReminderAlert() {
