@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import FirebaseCore
+import FirebaseFirestore
 
 class LoginPresenter {
     
