@@ -8,8 +8,25 @@
 
 import UIKit
 import SnapKit
+import FirebaseAuth
+
 
 class ProfileHeaderView: UIView {
+
+    var logoutHandler: (() -> Void)?
+    
+    private lazy var logoutButton: CustomButton = {
+        let button = CustomButton(
+            title: "Log out",
+            titleColor: .white,
+            backgroungColor: UIColor.systemBlue,
+            backgroungImage: nil,
+            cornerRadius: 15) { [self] in
+                self.logoutHandler?()
+            }
+        return button
+    }()
+
     
     let timerLabel: UILabel = {
         let label = UILabel()
@@ -80,7 +97,7 @@ class ProfileHeaderView: UIView {
         textField.leftViewMode = .always
         textField.placeholder = "Today I feel like..."
         textField.toAutoLayout()
-        textField.addTarget(self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
+        textField.addTarget(ProfileHeaderView.self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
         return textField
     }()
     
@@ -89,7 +106,9 @@ class ProfileHeaderView: UIView {
     private var userNameHeight: CGFloat { return 20 }
     private var userStatusHeight: CGFloat { return 14 }
     private var statusHeight: CGFloat { return 40 }
-    private  var heightAndWidth: CGFloat { return 110 }
+    private var heightAndWidth: CGFloat { return 110 }
+    private var logOutHeight: CGFloat { return 35 }
+    private var logOutWidth: CGFloat { return 80 }
     
     private var statusText: String = String()
     
@@ -101,21 +120,22 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubviews(timerLabel, profileImage, userName, userStatus, statusButton, statusField)
+        addSubviews(timerLabel, profileImage, userName, userStatus, statusButton, statusField, logoutButton)
         
         timerLabel.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(inset * 2)
+            make.top.equalToSuperview().inset(inset)
+            make.leading.equalToSuperview().inset(inset * 2)
             make.height.equalTo(userStatusHeight)
         }
         
         profileImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(inset)
+            make.top.equalTo(timerLabel.snp.bottom).offset(inset)
             make.leading.equalToSuperview().inset(inset)
             make.height.width.equalTo(heightAndWidth)
         }
         
         userName.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(topInset)
+            make.top.equalTo(timerLabel.snp.bottom).offset(inset)
             make.leading.equalTo(profileImage.snp.trailing).offset(inset)
             make.trailing.equalToSuperview().inset(inset)
             make.height.equalTo(userNameHeight)
@@ -140,6 +160,13 @@ class ProfileHeaderView: UIView {
             make.leading.equalTo(profileImage.snp.trailing).offset(inset)
             make.trailing.equalToSuperview().inset(inset)
             make.height.equalTo(statusHeight)
+        }
+        
+        logoutButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(inset)
+            make.trailing.equalToSuperview().inset(inset)
+            make.height.equalTo(logOutHeight)
+            make.width.equalTo(logOutWidth)
         }
     }
     

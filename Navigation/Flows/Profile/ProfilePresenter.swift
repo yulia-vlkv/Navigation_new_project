@@ -56,4 +56,8 @@ class ProfilePresenter {
             self.view?.showReminderAlert()
         }
     }
+    
+    @objc func logOut(){
+            self.coordinator.logOut()
+    }
 }

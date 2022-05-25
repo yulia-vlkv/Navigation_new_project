@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let urlString = String(appConfiguration?.rawValue ?? "")
         NetworkService.performRequest(with: urlString)
         print("Downloading data from: \(urlString)")
+        FirebaseApp.configure()
+        
         return true
     }
 

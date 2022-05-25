@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol NetworkServiceDelegate {
+protocol NetworkServiceDelegate: AnyObject {
     
     func didUpdateTitleLabel(_ service: NetworkService, title: String)
     func didUpdatePlanetInfo(_ service: NetworkService, info: PlanetModel)
@@ -16,16 +16,24 @@ protocol NetworkServiceDelegate {
     func didFailWithError(error: Error)
 }
 
+enum NetworkError: Error {
+    case incorrectString
+    case dataLoadingError
+}
+
 
 class NetworkService {
     
-    var delegate: NetworkServiceDelegate?
+    weak var delegate: NetworkServiceDelegate?
     
     var residents: [String] = []
     
     var numberOfRows: Int {
         return residents.count
     }
+    
+    private let urlTodoString = "https://jsonplaceholder.typicode.com/todos/"
+    private let urlPlanetString = "https://swapi.dev/api/planets/1"
     
     static func performRequest (with urlString: String) {
         
@@ -70,31 +78,39 @@ class NetworkService {
         return returnArray
     }
     
-    func performNewRequest (with urlString: String) {
+    func fetchRandomTitle(completion: @escaping (Result<String, Error>) -> Void) {
 
-        guard let url = URL(string: urlString) else { return }
+        guard let url = URL(string: urlTodoString) else {
+            completion(.failure(NetworkError.incorrectString))
+            return
+        }
         
         let session = URLSession(configuration: .default)
         
         let task = session.dataTask(with: url) { (data, response, error) in
+            
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
             if let safeData = data {
-                
                 guard let list = self.createArrayOfData(data: safeData) else { return }
                 let random = list.randomElement()
-                self.delegate?.didUpdateTitleLabel(self, title: random?.title ?? "")
-                
-                if let error = error {
-                    self.delegate?.didFailWithError(error: error)
-                    return
-                }
+                completion(.success(random?.title ?? "No title yet"))
+                return
             }
+            
+            completion(.failure(NetworkError.dataLoadingError))
         }
+        
         task.resume()
+                    
     }
     
-    func performPlanetRequest(with urlString: String) {
+    func performPlanetRequest() {
         
-        guard let url = URL(string: urlString) else { return }
+        guard let url = URL(string: urlPlanetString) else { return }
         
         let session = URLSession(configuration: .default)
         

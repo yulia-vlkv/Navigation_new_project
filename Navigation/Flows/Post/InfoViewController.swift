@@ -22,8 +22,6 @@ class InfoViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private let urlTodoString = "https://jsonplaceholder.typicode.com/todos/"
-    private let urlPlanetString = "https://swapi.dev/api/planets/1"
     private var networkService = NetworkService()
     
     private lazy var titleLabel: UILabel = {
@@ -104,12 +102,18 @@ class InfoViewController: UIViewController {
         
         networkService.delegate = self
         setUI()
-        networkService.performNewRequest(with: urlTodoString)
-        networkService.performPlanetRequest(with: urlPlanetString)
-        
-        print("decoding from: \(urlTodoString)")
-        print("decoding from: \(urlPlanetString)")
-
+        networkService.fetchRandomTitle { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let title):
+                DispatchQueue.main.async {
+                    self.titleLabel.text = title
+                }
+            }
+        }
+        networkService.performPlanetRequest()
     }
     
     private func setUI(){

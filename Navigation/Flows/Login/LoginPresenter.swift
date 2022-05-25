@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import FirebaseCore
+import FirebaseAuth
 
 class LoginPresenter {
     
@@ -28,39 +30,69 @@ class LoginPresenter {
         self.passwordPicker = passwordPicker
     }
     
-    func didLoginPressed(username: String?, password: String?) {
-        guard let username = username,
-              let password = password
-        else {
+    func didLoginPressed(username: String, password: String) {
+        if username.isEmpty || password.isEmpty {
             self.view?.handle(error: AuthorizationError.emptyField)
             return
-        }
-        
-        login(username: username, password: password)
-    }
-    
-    func didPickPasswordPressed(username: String?) {
-        guard let username = username
-        else {
-            self.view?.handle(error: AuthorizationError.emptyField)
-            return
-        }
-        
-        bruteForce() { password in
-            self.login(username: username, password: password)
+        } else {
+            login(email: username, password: password)
         }
     }
     
-    private func login(username: String, password: String) {
-        self.view?.indicatorToggle()
-        loginChecker.login(username: username, password: password) { [weak self] result in
+    func didPickPasswordPressed(username: String) {
+        if username.isEmpty {
+            self.view?.handle(error: AuthorizationError.emptyField)
+            return
+        } else {
+            bruteForce() { password in
+                self.loginChecker.login(username: username, password: password) { [weak self] result in
+                    guard let self = self else { return }
+                    self.view?.indicatorToggle()
+                    
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .failure(let error): self.view?.handle(error: error)
+                        case .success: self.coordinator.loggedInSuccessfully()
+                        }
+                    }
+                    self.view?.indicatorToggle()
+                }
+            }
+        }
+    }
+
+    
+    private func login(email: String, password: String) {
+        
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let strongSelf = self else { return }
+            if let error = error {
+                self?.view?.handle(error: AuthorizationError.incorrectData)
+            } else {
+                self?.coordinator.loggedInSuccessfully()
+                if let user = Auth.auth().currentUser {
+                    let uid = user.uid
+                    let email = user.email
+                    print(uid)
+                    print("Current user's email is: \(String(describing: email))")
+                }
+            }
+        }
+    }
+    
+    func singUp(email: String, password: String) {
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
             guard let self = self else { return }
-            self.view?.indicatorToggle()
-            
-            DispatchQueue.main.async {
-                switch result {
-                case .failure(let error): self.view?.handle(error: error)
-                case .success: self.coordinator.loggedInSuccessfully()
+            if let error = error {
+                self.view?.handle(error: error)
+//                self.showAlert(message: "Failed to create new user \(error.localizedDescription)")
+            } else {
+                self.coordinator.loggedInSuccessfully()
+                if let user = Auth.auth().currentUser {
+                    let uid = user.uid
+                    let email = user.email
+                    print(uid)
+                    print("Current user's email is: \(String(describing: email))")
                 }
             }
         }
