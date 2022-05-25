@@ -36,7 +36,7 @@ class ProfileCoordinator: Coordinator {
     let profileFactory = ProfileViewModuleFactory()
 
     private func isUserLoggedIn() -> Bool {
-        (FirebaseAuth.Auth.auth().currentUser != nil) ? true : false
+        FirebaseAuth.Auth.auth().currentUser != nil
     }
     
     func start() {}
