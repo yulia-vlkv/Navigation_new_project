@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import FirebaseAuth
+import RealmSwift
 
 class ProfileCoordinator: Coordinator {
     
@@ -36,7 +37,16 @@ class ProfileCoordinator: Coordinator {
     let profileFactory = ProfileViewModuleFactory()
 
     private func isUserLoggedIn() -> Bool {
-        FirebaseAuth.Auth.auth().currentUser != nil
+        
+        guard RealmAuthentication.shared.currentUser != nil else {
+            print(RealmAuthentication.shared)
+            return false
+        }
+        print(RealmAuthentication.shared.currentUser)
+        return true
+
+        
+//        FirebaseAuth.Auth.auth().currentUser != nil
     }
     
     func start() {}
@@ -54,15 +64,20 @@ class ProfileCoordinator: Coordinator {
     }
     
     func logOut() {
+        
         do {
-            try Auth.auth().signOut()
+            try RealmAuthentication.shared.signOut()
             showLogin()
-            print("pressed 3")
-            print("logged out")
-        } catch let signOutError as NSError {
-            print(signOutError.localizedDescription)
-            print("not logged out")
+        } catch {
+            print(error.localizedDescription)
         }
+        
+//        do {
+//            try Auth.auth().signOut()
+//            showLogin()
+//        } catch let signOutError as NSError {
+//            print(signOutError.localizedDescription)
+//        }
     }
     
     func showProfile() {

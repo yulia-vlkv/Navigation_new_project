@@ -16,7 +16,6 @@
 		060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C7250CEE5D00A87020 /* PostViewController.swift */; };
 		613F521BCB49813FB46FFA9D /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B61463FDF1D3BEBFC38A46E /* Pods_Navigation.framework */; };
 		EF1A53D8282BADD3002758EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF1A53D7282BADD3002758EE /* GoogleService-Info.plist */; };
-		EF1A53DB282BB109002758EE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EF1A53DA282BB109002758EE /* FirebaseAuth */; };
 		EF1B136A27CA24000070A9A0 /* FeedViewModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B136927CA24000070A9A0 /* FeedViewModuleFactory.swift */; };
 		EF1B136C27CA241A0070A9A0 /* ProfileViewModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B136B27CA241A0070A9A0 /* ProfileViewModuleFactory.swift */; };
 		EF1B136E27D623760070A9A0 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B136D27D623760070A9A0 /* BruteForce.swift */; };
@@ -34,7 +33,6 @@
 		EF1B139127E4B6CD0070A9A0 /* VideoPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B139027E4B6CD0070A9A0 /* VideoPlaylist.swift */; };
 		EF1B139327E4BBD00070A9A0 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B139227E4BBD00070A9A0 /* VideoViewController.swift */; };
 		EF1B139527E4CA0D0070A9A0 /* YoutubePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1B139427E4CA0D0070A9A0 /* YoutubePlayerViewController.swift */; };
-		EF1F96E7278414BF00112D0C /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = EF1F96E6278414BF00112D0C /* iOSIntPackage */; };
 		EF25DCB42691CD2500577166 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB32691CD2500577166 /* LoginViewController.swift */; };
 		EF25DCB626A02A6E00577166 /* allPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB526A02A6E00577166 /* allPosts.swift */; };
 		EF25DCB826A02AFC00577166 /* PostVK.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF25DCB726A02AFC00577166 /* PostVK.swift */; };
@@ -82,6 +80,8 @@
 		EFCCFEF226DA6905007B4EBA /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCCFEF126DA6905007B4EBA /* CurrentUserService.swift */; };
 		EFCCFEF526DA6B5B007B4EBA /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCCFEF426DA6B5B007B4EBA /* TestUserService.swift */; };
 		EFCCFEF726DA71A5007B4EBA /* addSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCCFEF626DA71A5007B4EBA /* addSubviews.swift */; };
+		EFE5E96C28452A950086C277 /* RealmAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE5E96B28452A950086C277 /* RealmAuthentication.swift */; };
+		EFE5E96F28452C4F0086C277 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = EFE5E96E28452C4F0086C277 /* iOSIntPackage */; };
 		EFE64ED0271BF9C0009C8CC2 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE64ECF271BF9C0009C8CC2 /* CustomButton.swift */; };
 		EFE64ED2271C4277009C8CC2 /* CustomTextFiled.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE64ED1271C4277009C8CC2 /* CustomTextFiled.swift */; };
 /* End PBXBuildFile section */
@@ -188,6 +188,7 @@
 		EFCCFEF126DA6905007B4EBA /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		EFCCFEF426DA6B5B007B4EBA /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		EFCCFEF626DA71A5007B4EBA /* addSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addSubviews.swift; sourceTree = "<group>"; };
+		EFE5E96B28452A950086C277 /* RealmAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmAuthentication.swift; sourceTree = "<group>"; };
 		EFE64ECF271BF9C0009C8CC2 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		EFE64ED1271C4277009C8CC2 /* CustomTextFiled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFiled.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,10 +198,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF1F96E7278414BF00112D0C /* iOSIntPackage in Frameworks */,
+				EFE5E96F28452C4F0086C277 /* iOSIntPackage in Frameworks */,
 				EFCCFEDA26D68724007B4EBA /* StorageService.framework in Frameworks */,
 				613F521BCB49813FB46FFA9D /* Pods_Navigation.framework in Frameworks */,
-				EF1A53DB282BB109002758EE /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +461,7 @@
 				EFAFCFFF26F5D78600C74923 /* LogInControllerDelegate.swift */,
 				EFAFCFFD26F3915400C74923 /* LogInChecker.swift */,
 				EFAFD00126F5D8A000C74923 /* LoginInspector.swift */,
+				EFE5E96B28452A950086C277 /* RealmAuthentication.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -548,8 +549,7 @@
 			);
 			name = Navigation;
 			packageProductDependencies = (
-				EF1F96E6278414BF00112D0C /* iOSIntPackage */,
-				EF1A53DA282BB109002758EE /* FirebaseAuth */,
+				EFE5E96E28452C4F0086C277 /* iOSIntPackage */,
 			);
 			productName = Navigation;
 			productReference = 060782AE250CE27700A87020 /* Navigation.app */;
@@ -601,8 +601,7 @@
 			);
 			mainGroup = 060782A5250CE27700A87020;
 			packageReferences = (
-				EF1F96E5278414BF00112D0C /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
-				EF1A53D9282BB109002758EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				EFE5E96D28452C4F0086C277 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 			);
 			productRefGroup = 060782AF250CE27700A87020 /* Products */;
 			projectDirPath = "";
@@ -725,6 +724,7 @@
 				EF1B138F27E4B69E0070A9A0 /* Video.swift in Sources */,
 				EFCC66B12658E3C20090CD73 /* ProfileViewController.swift in Sources */,
 				EF3D5A6327E5BD19007BF7D3 /* ProfilePresenter.swift in Sources */,
+				EFE5E96C28452A950086C277 /* RealmAuthentication.swift in Sources */,
 				EF1B137627E392DD0070A9A0 /* CustomPlayerButton.swift in Sources */,
 				EF1B136A27CA24000070A9A0 /* FeedViewModuleFactory.swift in Sources */,
 				EFAE39B42732C7A300723701 /* Coordinator.swift in Sources */,
@@ -1032,33 +1032,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		EF1A53D9282BB109002758EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
-		EF1F96E5278414BF00112D0C /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
+		EFE5E96D28452C4F0086C277 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TrueMax/iOSIntPackage";
 			requirement = {
-				branch = imagepublisher;
-				kind = branch;
+				kind = exactVersion;
+				version = 3.2.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		EF1A53DA282BB109002758EE /* FirebaseAuth */ = {
+		EFE5E96E28452C4F0086C277 /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EF1A53D9282BB109002758EE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-		EF1F96E6278414BF00112D0C /* iOSIntPackage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EF1F96E5278414BF00112D0C /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
+			package = EFE5E96D28452C4F0086C277 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */

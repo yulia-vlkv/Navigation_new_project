@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//LoginViewController.swift
 //  Navigation
 //
 //  Created by Iuliia Volkova on 04.07.2021.
@@ -9,11 +9,15 @@
 import UIKit
 import FirebaseAuth
 import FirebaseCore
+import RealmSwift
 
 
 enum AuthorizationError: Error {
     case emptyField
     case incorrectData
+    case userNotFound
+    case userAlreadyExist
+    case userNotLoggedIn
 }
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
@@ -140,11 +144,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             switch authError {
             case .emptyField:
                 self.showAlert(message: "Fill in username and password")
-            case .incorrectData:
+                print("tap 2")
+            case .userNotFound:
                 self.showSignUpAlert(email: userNameField.text!, password: passwordField.text!)
+                print("tap 3")
+            case .userAlreadyExist:
+                self.showAlert(message: "Username is already taken")
+            case .incorrectData:
+                self.showAlert(message: "Incorrect password")
+            default:
+                self.showAlert(message: error.localizedDescription)
+                print("tap 4")
             }
-        } else {
-            self.showAlert(message: error.localizedDescription)
         }
     }
     
@@ -171,7 +182,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private func showAlert(message: String){
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: "Ok", style: .cancel)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
     }
@@ -313,3 +324,4 @@ extension UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
     }
 }
+

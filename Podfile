@@ -8,4 +8,10 @@ target 'Navigation' do
 
 pod 'YoutubeKit'
 
+pod 'FirebaseAuth'
+
+pod 'FirebaseFirestore'
+
+pod 'RealmSwift', '~>10'
+
 end

@@ -32,7 +32,8 @@ class MyLoginFactory: LoginFactory, ModuleFactory {
             coordinator: coordinator,
             loginInspector: createLoginInspector() ,
             loginChecker: createLoginChecker(),
-            passwordPicker: BruteForce()
+            passwordPicker: BruteForce(),
+            realmAuth: RealmAuthentication()
             )
     
         loginViewController.presenter = loginPresenter
