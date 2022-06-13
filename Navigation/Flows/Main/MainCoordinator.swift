@@ -35,6 +35,9 @@ class MainCoordinator: Coordinator {
         let secondItem = UITabBarItem(title: "Profile",
                                       image: UIImage(systemName: "person.fill"),
                                       tag: 1)
+        let thirdItem = UITabBarItem(title: "Favourite",
+                                     image: UIImage(systemName: "heart.fill"),
+                                     tag: 2)
 
         let feedViewCoordinator = FeedCoordinator()
         feedViewCoordinator.parentCoordinator = self
@@ -47,9 +50,15 @@ class MainCoordinator: Coordinator {
         childCoordinator.append(profileViewCoordinator)
         let profileViewController = profileViewCoordinator.startPush()
         profileViewController.tabBarItem = secondItem
+        
+        let favouriteViewCoordinator = FavouriteCoordinator()
+        favouriteViewCoordinator.parentCoordinator = self
+        childCoordinator.append(favouriteViewCoordinator)
+        let favouriteViewController = favouriteViewCoordinator.startPush()
+        favouriteViewController.tabBarItem = thirdItem
 
 
-        tabBarController.viewControllers = [feedViewController, profileViewController]
+        tabBarController.viewControllers = [feedViewController, profileViewController, favouriteViewController]
 
         return tabBarController
     }

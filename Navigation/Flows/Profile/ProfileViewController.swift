@@ -147,6 +147,16 @@ extension ProfileViewController: UITableViewDataSource {
         default:
             let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
             cell.post = arrayOfPosts[indexPath.row]
+            
+            cell.doubleTapHandler  = { [unowned self] in
+                if var post = arrayOfPosts[indexPath.row] as? PostVK {
+                    FavouriteDataManager.shared.updateFavourites(post: post)
+                    print("updated a post")
+                } else {
+                    print ("can't add a post")
+                }
+            }
+            
             return cell
         }
     }

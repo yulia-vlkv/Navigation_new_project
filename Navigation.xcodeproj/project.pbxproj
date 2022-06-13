@@ -47,6 +47,12 @@
 		EF3D5A6327E5BD19007BF7D3 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3D5A6227E5BD19007BF7D3 /* ProfilePresenter.swift */; };
 		EF3D5A6927E5BEFE007BF7D3 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3D5A6827E5BEFE007BF7D3 /* FeedPresenter.swift */; };
 		EF3D5A6B27E5C06D007BF7D3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3D5A6A27E5C06D007BF7D3 /* LoginPresenter.swift */; };
+		EF50FD4B285474DF0097C44E /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF50FD4A285474DF0097C44E /* FavouriteViewController.swift */; };
+		EF50FD4D285475120097C44E /* FavouriteViewModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF50FD4C285475120097C44E /* FavouriteViewModuleFactory.swift */; };
+		EF50FD4F285475230097C44E /* FavouriteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF50FD4E285475230097C44E /* FavouriteCoordinator.swift */; };
+		EF50FD51285475320097C44E /* FavouritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF50FD50285475320097C44E /* FavouritePresenter.swift */; };
+		EF50FD55285486BF0097C44E /* FavouriteModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF50FD53285486BF0097C44E /* FavouriteModel.xcdatamodeld */; };
+		EF50FD57285493C80097C44E /* FavouriteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF50FD56285493C80097C44E /* FavouriteDataManager.swift */; };
 		EF5894E428227371006D9A64 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5894E328227371006D9A64 /* NetworkService.swift */; };
 		EF5894E628227459006D9A64 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5894E528227459006D9A64 /* AppConfiguration.swift */; };
 		EF5894E828228E11006D9A64 /* TodosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5894E728228E11006D9A64 /* TodosModel.swift */; };
@@ -154,6 +160,12 @@
 		EF3D5A6227E5BD19007BF7D3 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		EF3D5A6827E5BEFE007BF7D3 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
 		EF3D5A6A27E5C06D007BF7D3 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		EF50FD4A285474DF0097C44E /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
+		EF50FD4C285475120097C44E /* FavouriteViewModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewModuleFactory.swift; sourceTree = "<group>"; };
+		EF50FD4E285475230097C44E /* FavouriteCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCoordinator.swift; sourceTree = "<group>"; };
+		EF50FD50285475320097C44E /* FavouritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePresenter.swift; sourceTree = "<group>"; };
+		EF50FD54285486BF0097C44E /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		EF50FD56285493C80097C44E /* FavouriteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteDataManager.swift; sourceTree = "<group>"; };
 		EF5894E328227371006D9A64 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EF5894E528227459006D9A64 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		EF5894E728228E11006D9A64 /* TodosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosModel.swift; sourceTree = "<group>"; };
@@ -387,6 +399,27 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
+		EF50FD49285474BE0097C44E /* Favourite */ = {
+			isa = PBXGroup;
+			children = (
+				EF50FD522854866A0097C44E /* DataBase */,
+				EF50FD4A285474DF0097C44E /* FavouriteViewController.swift */,
+				EF50FD50285475320097C44E /* FavouritePresenter.swift */,
+				EF50FD4E285475230097C44E /* FavouriteCoordinator.swift */,
+				EF50FD4C285475120097C44E /* FavouriteViewModuleFactory.swift */,
+			);
+			path = Favourite;
+			sourceTree = "<group>";
+		};
+		EF50FD522854866A0097C44E /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				EF50FD53285486BF0097C44E /* FavouriteModel.xcdatamodeld */,
+				EF50FD56285493C80097C44E /* FavouriteDataManager.swift */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
 		EF5894E228227349006D9A64 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
@@ -402,8 +435,9 @@
 		EFA964262809AE880011DF91 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				EF5894E228227349006D9A64 /* NetworkService */,
 				EFA964272809AE940011DF91 /* Main */,
+				EF5894E228227349006D9A64 /* NetworkService */,
+				EF50FD49285474BE0097C44E /* Favourite */,
 				EF3D5A6727E5BE9C007BF7D3 /* Feed */,
 				EFCCFEBF26D6751A007B4EBA /* Post */,
 				EF3D5A6127E5BCE8007BF7D3 /* Profile */,
@@ -696,16 +730,20 @@
 				EF1B137427E38E250070A9A0 /* AudioPlayerViewController.swift in Sources */,
 				EF5894E628227459006D9A64 /* AppConfiguration.swift in Sources */,
 				EFA96439281677620011DF91 /* PhotosViewModuleFactory.swift in Sources */,
+				EF50FD4F285475230097C44E /* FavouriteCoordinator.swift in Sources */,
 				EFAFCFFE26F3915400C74923 /* LogInChecker.swift in Sources */,
 				EF5894EC28292BB9006D9A64 /* ResidentModel.swift in Sources */,
 				EFA96435281677160011DF91 /* MusicViewModuleFactory.swift in Sources */,
 				EFA9642B28151AAD0011DF91 /* VideoPresenter.swift in Sources */,
+				EF50FD57285493C80097C44E /* FavouriteDataManager.swift in Sources */,
 				EF25DCBD26A2FCAA00577166 /* ProfileTableHeaderView.swift in Sources */,
 				EF3D5A6927E5BEFE007BF7D3 /* FeedPresenter.swift in Sources */,
 				EFA9642D28151AC20011DF91 /* MusicPresenter.swift in Sources */,
 				EFA9643E2816AAAA0011DF91 /* AudioRecorderPresenter.swift in Sources */,
+				EF50FD4D285475120097C44E /* FavouriteViewModuleFactory.swift in Sources */,
 				EFAE39B2272D438600723701 /* ProfileCoordinator.swift in Sources */,
 				EFCCFEF226DA6905007B4EBA /* CurrentUserService.swift in Sources */,
+				EF50FD51285475320097C44E /* FavouritePresenter.swift in Sources */,
 				EFAFD00026F5D78600C74923 /* LogInControllerDelegate.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedController.swift in Sources */,
 				EFA96437281677340011DF91 /* VideoViewModuleFactory.swift in Sources */,
@@ -722,12 +760,14 @@
 				EF1B139527E4CA0D0070A9A0 /* YoutubePlayerViewController.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				EF3D5A6B27E5C06D007BF7D3 /* LoginPresenter.swift in Sources */,
+				EF50FD4B285474DF0097C44E /* FavouriteViewController.swift in Sources */,
 				EF1B138F27E4B69E0070A9A0 /* Video.swift in Sources */,
 				EFCC66B12658E3C20090CD73 /* ProfileViewController.swift in Sources */,
 				EF3D5A6327E5BD19007BF7D3 /* ProfilePresenter.swift in Sources */,
 				EF1B137627E392DD0070A9A0 /* CustomPlayerButton.swift in Sources */,
 				EF1B136A27CA24000070A9A0 /* FeedViewModuleFactory.swift in Sources */,
 				EFAE39B42732C7A300723701 /* Coordinator.swift in Sources */,
+				EF50FD55285486BF0097C44E /* FavouriteModel.xcdatamodeld in Sources */,
 				EF1B138727E49CBC0070A9A0 /* MusicViewController.swift in Sources */,
 				EF1B137B27E446620070A9A0 /* Track.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
@@ -1062,6 +1102,19 @@
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		EF50FD53285486BF0097C44E /* FavouriteModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EF50FD54285486BF0097C44E /* Model.xcdatamodel */,
+			);
+			currentVersion = EF50FD54285486BF0097C44E /* Model.xcdatamodel */;
+			path = FavouriteModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 060782A6250CE27700A87020 /* Project object */;
 }
