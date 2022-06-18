@@ -9,6 +9,7 @@
 import UIKit
 
 struct PostVK {
+    var liked: Bool
     let author: String
     let description: String
     let image: String

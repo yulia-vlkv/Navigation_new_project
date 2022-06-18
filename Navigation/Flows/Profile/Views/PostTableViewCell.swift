@@ -13,6 +13,8 @@ class PostTableViewCell: UITableViewCell {
     
     private let processor = ImageProcessor()
     
+    var doubleTapHandler : (() -> ())?
+    
     var post: PostVK? {
         didSet{
             authorLabel.text = post?.author
@@ -76,7 +78,9 @@ class PostTableViewCell: UITableViewCell {
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.addSingleAndDoubleTapGesture()
         
         contentView.addSubview(authorLabel)
         contentView.addSubview(postImageView)
@@ -110,5 +114,26 @@ class PostTableViewCell: UITableViewCell {
     }
     
     private var inset: CGFloat {return 16}
+    
+    private func addSingleAndDoubleTapGesture() {
+        let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleSingleTap))
+        singleTapGesture.numberOfTapsRequired = 1
+        self.addGestureRecognizer(singleTapGesture)
+
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap))
+        doubleTapGesture.numberOfTapsRequired = 2
+        self.addGestureRecognizer(doubleTapGesture)
+
+        singleTapGesture.require(toFail: doubleTapGesture)
+    }
+
+    @objc private func handleSingleTap(_ tapGesture: UITapGestureRecognizer) {
+        print("single tap")
+    }
+
+    @objc private func handleDoubleTap(_ tapGesture: UITapGestureRecognizer){
+        print("double tap")
+        doubleTapHandler?()
+    }
     
 }
