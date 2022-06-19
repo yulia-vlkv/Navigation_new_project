@@ -2,9 +2,9 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Favourites" representedClassName="Favourites" syncable="YES" codeGenerationType="class">
         <attribute name="author" attributeType="String" defaultValueString="Anonimus"/>
-        <attribute name="image" attributeType="String" defaultValueString="angryCat"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="likes" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="text" attributeType="String" defaultValueString="What a lovely day! "/>
+        <attribute name="text" optional="YES" attributeType="String"/>
         <attribute name="views" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
     </entity>
     <elements>
