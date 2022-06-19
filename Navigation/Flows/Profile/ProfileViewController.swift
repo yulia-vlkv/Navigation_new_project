@@ -150,8 +150,9 @@ extension ProfileViewController: UITableViewDataSource {
             
             cell.doubleTapHandler  = { [unowned self] in
                 if var post = arrayOfPosts[indexPath.row] as? PostVK {
-                    FavouriteDataManager.shared.updateFavourites(post: post)
-                    print("updated a post")
+                    FavouriteDataManager.shared.updateFavourites(post: post) {
+                        print("updated a post")
+                    }
                 } else {
                     print ("can't add a post")
                 }

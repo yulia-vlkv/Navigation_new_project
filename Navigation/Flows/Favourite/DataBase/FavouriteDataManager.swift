@@ -13,101 +13,121 @@ class FavouriteDataManager {
     
     static let shared = FavouriteDataManager()
     
-    public lazy var favouritePosts = FavouriteDataManager.shared.fetchFavourites()
+//    public lazy var favouritePosts = fetchFavourites() { array in
+//        array as? [PostVK]
+//        print(array)
+//    }
     
-    private lazy var managedObjectModel: NSManagedObjectModel = {
-          guard let modelURL = Bundle.main.url(forResource: "FavouriteModel", withExtension: "momd") else {
-              fatalError("Unable to Find Data Model")
-          }
+    private let persistentContainer: NSPersistentContainer
+    private lazy var backgroundContext = persistentContainer.newBackgroundContext()
 
-          guard let managedObjectModel = NSManagedObjectModel(contentsOf: modelURL) else {
-              fatalError("Unable to Load Data Model")
-          }
+    init() {
 
-          return managedObjectModel
-      }()
-    
-    private lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
-            let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-
-            let storeName = "FavouritesModel.sqlite"
-
-            let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-
-            let persistentStoreURL = documentsDirectoryURL.appendingPathComponent(storeName)
-            do {
-                try persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType,
-                                                                  configurationName: nil,
-                                                                  at: persistentStoreURL,
-                                                                  options: nil)
-            } catch {
-                fatalError("Unable to Load Persistent Store")
-            }
-
-            return persistentStoreCoordinator
-        }()
-    
-    private(set) lazy var managedObjectContext: NSManagedObjectContext = {
-        let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-
-        managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator
-
-        return managedObjectContext
-    }()
-    
-    func fetchFavourites() -> [PostVK] {
-        let fetchRequest = Favourites.fetchRequest()
-        var favouritePosts: [PostVK] = []
-        do {
-            let favourites = try managedObjectContext.fetch(fetchRequest)
-            for post in favourites{
-                let postVK = PostVK(liked: true,
-                                    author: post.author ?? "Anon",
-                                    description: post.text ?? "Heeeeeey",
-                                    image: post.image ?? "angryCat",
-                                    likes: Int(post.likes),
-                                    views: Int(post.views))
-                favouritePosts.append(postVK)
-            }
-        } catch let error {
-            print(error)
-        }
-        return favouritePosts
+    let container = NSPersistentContainer(name: "FavouriteModel")
+    container.loadPersistentStores { description, error in
+       if let error = error {
+           fatalError("Unable to load persistent stores: \(error)")
+       }
+    }
+    self.persistentContainer = container
     }
     
-    func updateFavourites(post: PostVK){
+    func fetchFavourites(completion: @escaping ([PostVK]) -> Void) {
+        
+        backgroundContext.perform { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
+            let fetchRequest = Favourites.fetchRequest()
+            var favouritePosts: [PostVK] = []
+            do {
+                let favourites = try self.backgroundContext.fetch(fetchRequest)
+                for post in favourites {
+                    let postVK = PostVK(liked: true,
+                                        author: post.author ?? "Anon",
+                                        description: post.text ?? "Heeeeeey",
+                                        image: post.image ?? "angryCat",
+                                        likes: Int(post.likes),
+                                        views: Int(post.views))
+                    favouritePosts.append(postVK)
+                    //                    completion ( favouritePosts )
+                }
+            } catch let error {
+                print(error)
+            }
+            return completion (favouritePosts)
+        }
+    }
+    
+    func updateFavourites(post: PostVK, completion: @escaping () -> Void){
         let fetchRequest = Favourites.fetchRequest()
         
         fetchRequest.fetchLimit =  1
-        fetchRequest.predicate = NSPredicate(format: "author == %d" , post.author)
+        fetchRequest.predicate = NSPredicate(format: "author == %@" , post.author)
         fetchRequest.predicate = NSPredicate(format: "text == %@", post.description)
         
         do {
-            let count = try managedObjectContext.count(for: fetchRequest)
+            let count = try backgroundContext.count(for: fetchRequest)
             if count > 0 {
-                let fetchedResult = try managedObjectContext.fetch(fetchRequest) as [NSManagedObject]
+                let fetchedResult = try backgroundContext.fetch(fetchRequest) as [NSManagedObject]
+                print(fetchedResult)
                 if let post = fetchedResult.first as? Favourites {
                     print(post)
-                    managedObjectContext.delete(post)
-                    favouritePosts = fetchFavourites()
+                    backgroundContext.delete(post)
+//                    favouritePosts = fetchFavourites(completion:  )
                     print("deleted")
                 }
             } else {
-                if let favouritePost = NSEntityDescription.insertNewObject(forEntityName: "Favourites", into: managedObjectContext) as? Favourites {
+                let favouritePost = Favourites(context: backgroundContext)
+//                if let favouritePost = NSEntityDescription.insertNewObject(forEntityName: "Favourites", into: backgroundContext) as? Favourites {
                     favouritePost.author = post.author
                     favouritePost.image = post.image
                     favouritePost.text = post.description
                     favouritePost.likes = Int16(post.likes + 1)
                     favouritePost.views = Int16(post.views)
-                    favouritePosts = fetchFavourites()
+//                favouritePosts = fetchFavourites(completion: )
                     print("added")
-                } else {
-                    fatalError("Unable to insert Favourites entity")
-                }
+//                } else {
+//                    fatalError("Unable to insert Favourites entity")
+//                }
             }
-            try? managedObjectContext.save()
+            try? backgroundContext.save()
+            completion()
         } catch let error {
             print(error)
         }
     }
+    
+    func filerRerultsByAuthor(authorName: String,
+                              completion: @escaping ([PostVK]) -> Void) {
+        
+        backgroundContext.perform { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
+            var filteredPosts: [PostVK] = []
+            let fetchRequest = Favourites.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "author == %@", authorName)
+            
+            do {
+                let filtered = try self.backgroundContext.fetch(fetchRequest)
+                for post in filtered {
+                    let postVK = PostVK(liked: true,
+                                        author: post.author ?? "Anon",
+                                        description: post.text ?? "Heeeeeey",
+                                        image: post.image ?? "angryCat",
+                                        likes: Int(post.likes),
+                                        views: Int(post.views))
+                    filteredPosts.append(postVK)
+                }
+            } catch let error {
+                print(error)
+            }
+//            print(filteredPosts)
+            return completion (filteredPosts)
+        }
+    }
 }
+

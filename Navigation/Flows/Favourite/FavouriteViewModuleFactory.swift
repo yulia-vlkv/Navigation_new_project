@@ -7,3 +7,17 @@
 //
 
 import Foundation
+
+class FavouriteViewModuleFactory: ModuleFactory {
+    
+    func createModule(coordinator: FavouriteCoordinator) -> FavouriteViewController {
+        let favouriteViewController = FavouriteViewController()
+        let favouritePresenter = FavouritePresenter(
+            view: favouriteViewController,
+            coordinator: coordinator
+        )
+        
+        favouriteViewController.presenter = favouritePresenter
+        return favouriteViewController
+    }
+}
