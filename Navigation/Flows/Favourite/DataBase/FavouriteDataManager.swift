@@ -13,10 +13,6 @@ class FavouriteDataManager {
     
     static let shared = FavouriteDataManager()
     
-//    public lazy var favouritePosts = fetchFavourites() { array in
-//        array as? [PostVK]
-//        print(array)
-//    }
     
     private let persistentContainer: NSPersistentContainer
     private lazy var backgroundContext = persistentContainer.newBackgroundContext()
@@ -75,22 +71,16 @@ class FavouriteDataManager {
                 if let post = fetchedResult.first as? Favourites {
                     print(post)
                     backgroundContext.delete(post)
-//                    favouritePosts = fetchFavourites(completion:  )
                     print("deleted")
                 }
             } else {
                 let favouritePost = Favourites(context: backgroundContext)
-//                if let favouritePost = NSEntityDescription.insertNewObject(forEntityName: "Favourites", into: backgroundContext) as? Favourites {
                     favouritePost.author = post.author
                     favouritePost.image = post.image
                     favouritePost.text = post.description
                     favouritePost.likes = Int16(post.likes + 1)
                     favouritePost.views = Int16(post.views)
-//                favouritePosts = fetchFavourites(completion: )
                     print("added")
-//                } else {
-//                    fatalError("Unable to insert Favourites entity")
-//                }
             }
             try? backgroundContext.save()
             completion()
@@ -125,7 +115,6 @@ class FavouriteDataManager {
             } catch let error {
                 print(error)
             }
-//            print(filteredPosts)
             return completion (filteredPosts)
         }
     }
