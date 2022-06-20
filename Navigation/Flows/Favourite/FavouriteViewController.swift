@@ -9,21 +9,48 @@
 import Foundation
 import UIKit
 import SwiftUI
+import CoreData
 
 class FavouriteViewController: UIViewController {
     
     var presenter: FavouritePresenter?
-    var count = 0
-    var favouritesArray: [PostVK] = []
-    var filteredArray: [PostVK] = []
+    weak var coordinator: FavouriteCoordinator?
+    
+    private let favourites: FavouriteDataManager
     
     private let tableView = UITableView(frame: .zero, style: .grouped)
+    
+    private lazy var fetchedResultsController: NSFetchedResultsController<Favourites> = {
+    
+        let fetchRequest: NSFetchRequest<Favourites> = Favourites.fetchRequest()
+        
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "author", ascending: true)]
+
+        let fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: favourites.backgroundContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        
+        fetchedResultsController.delegate = self
+
+        return fetchedResultsController
+    }()
+    
+    init(favourites: FavouriteDataManager) {
+        self.favourites = favourites
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         view.backgroundColor = .cyan
         setUpTableView()
         setNavBar()
-        getFavourites()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,15 +58,21 @@ class FavouriteViewController: UIViewController {
     }
     
     private func getFavourites(){
-        FavouriteDataManager.shared.fetchFavourites() { favouritesArray in
-            DispatchQueue.main.async {
-                self.favouritesArray = favouritesArray
-                self.count = favouritesArray.count
-                self.tableView.reloadData()
-            }
+        fetchedResultsController.fetchRequest.predicate = nil
+            favourites.backgroundContext.perform {
+                do {
+                    try self.fetchedResultsController.performFetch()
+                    DispatchQueue.main.async {
+                                   self.tableView.reloadData()
+                    }
+                } catch {
+                    let fetchError = error as NSError
+                    print("Unable to show favourites")
+                    print("\(fetchError), \(fetchError.localizedDescription)")
+                }
         }
     }
-    
+        
     private func setNavBar() {
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Favourites"
@@ -64,12 +97,18 @@ class FavouriteViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
             if let textFields = alert.textFields,
                let tf = textFields.first,
-               let result = tf.text {
-                FavouriteDataManager.shared.filerRerultsByAuthor(authorName: result) { filteredArray in
-                    DispatchQueue.main.async {
-                        self.filteredArray = filteredArray
-                        self.count = filteredArray.count
-                        self.tableView.reloadData()
+               let textToSearch = tf.text {
+                self.fetchedResultsController.fetchRequest.predicate = NSPredicate(format: "author == %@", textToSearch)
+                self.favourites.backgroundContext.perform {
+                    do {
+                        try self.fetchedResultsController.performFetch()
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    } catch {
+                        let fetchError = error as NSError
+                        print("Unable to show favourites")
+                        print("\(fetchError), \(fetchError.localizedDescription)")
                     }
                 }
             } else {
@@ -110,24 +149,32 @@ extension FavouriteViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return count
+        return fetchedResultsController.fetchedObjects?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
-        cell.post = favouritesArray[indexPath.row]
+        
+        let fetchedPost = fetchedResultsController.object(at: indexPath)
+        print(fetchedPost)
+        
+        let post = PostVK(author: fetchedPost.author ?? "Anon",
+                            description: fetchedPost.text ?? "Heeeeeey",
+                            image: fetchedPost.image ?? "angryCat",
+                            likes: Int(fetchedPost.likes),
+                            views: Int(fetchedPost.views))
+        
+        cell.post = post
         
         cell.doubleTapHandler  = { [unowned self] in
-            if let post = favouritesArray[indexPath.row] as? PostVK {
-                FavouriteDataManager.shared.updateFavourites(post: post) {
-                    self.getFavourites()
-                }
-            } else {
-                print ("can't delete a post")
-            }
+            let postToDelete = fetchedResultsController.object(at: indexPath)
+            favourites.backgroundContext.delete(postToDelete)
+            try? favourites.backgroundContext.save()
         }
         return cell
     }
+    
 }
 
 // MARK: UITableViewDelegate
@@ -142,19 +189,56 @@ extension FavouriteViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-            let item = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
-                if let post = self.favouritesArray[indexPath.row] as? PostVK {
-                    FavouriteDataManager.shared.updateFavourites(post: post) {
-                        self.getFavourites()
-                    }
-                } else {
-                    print ("can't delete a post")
-                }
-            }
-            item.image = UIImage(named: "deleteIcon")
-
-            let swipeActions = UISwipeActionsConfiguration(actions: [item])
         
-            return swipeActions
+        let item = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+            let postToDelete = self.fetchedResultsController.object(at: indexPath)
+            self.favourites.backgroundContext.delete(postToDelete)
+            try? self.favourites.backgroundContext.save()
         }
+        
+        item.image = UIImage(named: "deleteIcon")
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [item])
+        
+        return swipeActions
+    }
+    
+}
+
+extension FavouriteViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anyObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
+        switch type {
+        case .delete:
+            guard let indexPath = indexPath else { fallthrough }
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        case .insert:
+            guard let newIndexPath = newIndexPath else { fallthrough }
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        case .move:
+            guard
+                let indexPath = indexPath,
+                let newIndexPath = newIndexPath
+            else { fallthrough }
+            tableView.moveRow(at: indexPath, to: newIndexPath)
+        case .update:
+            guard let indexPath = indexPath else { fallthrough }
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        @unknown default:
+            fatalError()
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
 }

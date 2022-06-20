@@ -11,7 +11,7 @@ import Foundation
 class FavouritePresenter {
     
     private weak var view: FavouriteViewController?
-    private let coordinator: FavouriteCoordinator
+    var coordinator: FavouriteCoordinator
     
     init(view: FavouriteViewController,
          coordinator: FavouriteCoordinator) {

@@ -9,10 +9,9 @@
 import UIKit
 
 struct PostVK {
-    var liked: Bool
-    let author: String
-    let description: String
-    let image: String
-    let likes: Int
-    let views: Int
+    var author: String
+    var description: String
+    var image: String
+    var likes: Int
+    var views: Int
 }
