@@ -13,23 +13,24 @@ class PostTableViewCell: UITableViewCell {
     
     private let processor = ImageProcessor()
     
-    var doubleTapHandler : (() -> ())?
+    var doubleTapHandler : (() throws -> ())?
     
     var post: PostVK? {
         didSet{
-            authorLabel.text = post?.author
-            postImageView.image = UIImage(named: post?.image ?? "No image")
+            authorLabel.text = post?.author ?? "Anon"
+            postImageView.image = UIImage(named: post?.image ?? "angryCat")
             descriptionLabel.text = post?.description
             likesLabel.text = "Likes: \(post?.likes ?? 0)"
             viewsLabel.text = "Views: \(post?.views ?? 0)"
-            if let image = UIImage(named: post?.image ?? "no image") {
+//            postImageView.image = UIImage(named: post?.image ?? "no image")
+            if let image = UIImage(named: post?.image ?? "angryCat") {
                 processor.processImage(sourceImage: image, filter: ColorFilter.allCases.randomElement() ?? .noir) { (image) in postImageView.image = image
                 }
             }
         }
     }
     
-    private let authorLabel: UILabel = {
+    let authorLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.textColor = .black
@@ -133,7 +134,7 @@ class PostTableViewCell: UITableViewCell {
 
     @objc private func handleDoubleTap(_ tapGesture: UITapGestureRecognizer){
         print("double tap")
-        doubleTapHandler?()
+        try? doubleTapHandler?()
     }
     
 }

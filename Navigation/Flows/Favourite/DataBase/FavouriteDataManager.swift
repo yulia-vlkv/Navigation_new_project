@@ -13,9 +13,8 @@ class FavouriteDataManager {
     
     static let shared = FavouriteDataManager()
     
-    
-    private let persistentContainer: NSPersistentContainer
-    private lazy var backgroundContext = persistentContainer.newBackgroundContext()
+    let persistentContainer: NSPersistentContainer
+    lazy var backgroundContext = persistentContainer.newBackgroundContext()
 
     init() {
 
@@ -26,34 +25,6 @@ class FavouriteDataManager {
        }
     }
     self.persistentContainer = container
-    }
-    
-    func fetchFavourites(completion: @escaping ([PostVK]) -> Void) {
-        
-        backgroundContext.perform { [weak self] in
-            guard let self = self else {
-                return
-            }
-            
-            let fetchRequest = Favourites.fetchRequest()
-            var favouritePosts: [PostVK] = []
-            do {
-                let favourites = try self.backgroundContext.fetch(fetchRequest)
-                for post in favourites {
-                    let postVK = PostVK(liked: true,
-                                        author: post.author ?? "Anon",
-                                        description: post.text ?? "Heeeeeey",
-                                        image: post.image ?? "angryCat",
-                                        likes: Int(post.likes),
-                                        views: Int(post.views))
-                    favouritePosts.append(postVK)
-                    //                    completion ( favouritePosts )
-                }
-            } catch let error {
-                print(error)
-            }
-            return completion (favouritePosts)
-        }
     }
     
     func updateFavourites(post: PostVK, completion: @escaping () -> Void){
@@ -89,34 +60,5 @@ class FavouriteDataManager {
         }
     }
     
-    func filerRerultsByAuthor(authorName: String,
-                              completion: @escaping ([PostVK]) -> Void) {
-        
-        backgroundContext.perform { [weak self] in
-            guard let self = self else {
-                return
-            }
-            
-            var filteredPosts: [PostVK] = []
-            let fetchRequest = Favourites.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "author == %@", authorName)
-            
-            do {
-                let filtered = try self.backgroundContext.fetch(fetchRequest)
-                for post in filtered {
-                    let postVK = PostVK(liked: true,
-                                        author: post.author ?? "Anon",
-                                        description: post.text ?? "Heeeeeey",
-                                        image: post.image ?? "angryCat",
-                                        likes: Int(post.likes),
-                                        views: Int(post.views))
-                    filteredPosts.append(postVK)
-                }
-            } catch let error {
-                print(error)
-            }
-            return completion (filteredPosts)
-        }
-    }
 }
 

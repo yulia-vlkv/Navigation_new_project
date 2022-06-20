@@ -10,8 +10,6 @@ import UIKit
 
 class PhotosTableViewCell: UITableViewCell {
     
-    
-    
     private let photoLabel: UILabel = {
         let label = UILabel()
         label.text = "Photos"
