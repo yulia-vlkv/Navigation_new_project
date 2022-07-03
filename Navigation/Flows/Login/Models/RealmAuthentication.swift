@@ -9,15 +9,10 @@
 import Foundation
 import RealmSwift
 
-@objcMembers class RealmUser: Object {
-    
-    dynamic var login: String?
-    dynamic var password: String?
-    dynamic var loggedIn: Bool?
 
-    override class func primaryKey() -> String? {
-        return "login"
-    }
+class UserObject: Object {
+    @Persisted(primaryKey: true) var login: String
+    @Persisted var password: String
 }
 
 class RealmAuthentication {
@@ -30,61 +25,33 @@ class RealmAuthentication {
         realm = try? Realm()
     }
     
-    var currentUser: String? {
-        print(realm.self)
-        guard let user = realm?.objects(RealmUser.self).first(where: { $0.loggedIn != true }) else { return nil }
-        print(user.login)
-        return user.login
+    var currentUserObject: UserObject? {
+        if let users = realm?.objects(UserObject.self) {
+            return users.isEmpty ? nil : users[0]
+        } else {
+            return nil
+        }
     }
+    
+    func signIn(with login: String, password: String) throws {
 
-    func signIn(withLogin login: String, password: String) throws {
-
-        guard let user = realm?.object(ofType: RealmUser.self, forPrimaryKey: login) else {
-            throw AuthorizationError.userNotFound
-        }
-
-        guard user.password == password else {
-            throw AuthorizationError.incorrectData
-        }
-
-        try realm?.write({
-            user.loggedIn = true
-            print(user.loggedIn)
-        })
-    }
-
-    func createUser(withLogin login: String, password: String) throws {
-
-        if let _ = realm?.object(ofType: RealmUser.self, forPrimaryKey: login) {
-            throw AuthorizationError.userAlreadyExist
-        }
-
-        let user = RealmUser()
+        let user = UserObject()
         user.login = login
         user.password = password
 
         try realm?.write({
             realm?.add(user)
         })
-
-        try signIn(withLogin: login, password: password)
-    }
-
-    func signOut() throws {
         
-        guard let userLogin = currentUser else {
-            throw AuthorizationError.userNotLoggedIn
-        }
-
-        guard let user = realm?.object(ofType: RealmUser.self, forPrimaryKey: userLogin) else {
-            throw AuthorizationError.userNotFound
-        }
+        print("Singed in with \(user.login) and \(user.password)")
+    }
+    
+    func signOut() throws {
 
         try realm?.write({
-            user.loggedIn = false
-            print(user.loggedIn)
+            realm?.deleteAll()
         })
+        
+        print("Singed out.")
     }
 }
-
-

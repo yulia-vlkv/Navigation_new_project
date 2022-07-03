@@ -199,49 +199,280 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E28C8101-5BBE-4F1C-8DF1-3FE860462B82"
+            uuid = "F868C2D2-FC06-4864-AAA3-8E43911597B5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Navigation/Library/DataBase/FavouriteDataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "updateFavourites(post:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3F8A3811-D2AC-42DB-8C22-DCCA82AFE4EF"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Navigation/Flows/Login/Models/RealmAuthentication.swift"
+            filePath = "Navigation/Flows/Favourite/FavouriteViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "currentUser"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E544E2C6-7538-49BD-AA20-15092DECDD8F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Navigation/Flows/Favourite/FavouriteViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "fetchedResultsController"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "E544E2C6-7538-49BD-AA20-15092DECDD8F - 71d85fb8c1e08527"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Navigation.FavouriteViewController.fetchedResultsController.getter : __C.NSFetchedResultsController&lt;Navigation.Favourites&gt;"
+                  moduleName = "Navigation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iuliiavolkova/Documents/Netology/Navigation_new_project/Navigation/Flows/Favourite/FavouriteViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "E544E2C6-7538-49BD-AA20-15092DECDD8F - c5430b35aa8ec52b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Navigation.FavouriteViewController.fetchedResultsController.setter : __C.NSFetchedResultsController&lt;Navigation.Favourites&gt;"
+                  moduleName = "Navigation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iuliiavolkova/Documents/Netology/Navigation_new_project/Navigation/Flows/Favourite/FavouriteViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "E544E2C6-7538-49BD-AA20-15092DECDD8F - 90d64b66abe053a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Navigation.FavouriteViewController.fetchedResultsController.modify : __C.NSFetchedResultsController&lt;Navigation.Favourites&gt;"
+                  moduleName = "Navigation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iuliiavolkova/Documents/Netology/Navigation_new_project/Navigation/Flows/Favourite/FavouriteViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "E544E2C6-7538-49BD-AA20-15092DECDD8F - c67277563987e1f9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Navigation.FavouriteViewController.fetchedResultsController.modify : __C.NSFetchedResultsController&lt;Navigation.Favourites&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Navigation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iuliiavolkova/Documents/Netology/Navigation_new_project/Navigation/Flows/Favourite/FavouriteViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "E544E2C6-7538-49BD-AA20-15092DECDD8F - 65514e651c87a15b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Navigation.FavouriteViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Navigation.FavouriteViewController"
+                  moduleName = "Navigation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iuliiavolkova/Documents/Netology/Navigation_new_project/Navigation/Flows/Favourite/FavouriteViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "360">
+               </Location>
+               <Location
+                  uuid = "E544E2C6-7538-49BD-AA20-15092DECDD8F - b8a80756cc8a99ea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Navigation.FavouriteViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Navigation.FavouriteViewController&gt;"
+                  moduleName = "Navigation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iuliiavolkova/Documents/Netology/Navigation_new_project/Navigation/Flows/Favourite/FavouriteViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "336">
+               </Location>
+               <Location
+                  uuid = "E544E2C6-7538-49BD-AA20-15092DECDD8F - 6e467b77a9b088e6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; __C.NSFetchedResultsController&lt;Navigation.Favourites&gt; in Navigation.FavouriteViewController.fetchedResultsController.getter : __C.NSFetchedResultsController&lt;Navigation.Favourites&gt;"
+                  moduleName = "Navigation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iuliiavolkova/Documents/Netology/Navigation_new_project/Navigation/Flows/Favourite/FavouriteViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BFED24FD-58A8-44EC-A3CE-E20C6A279857"
+            uuid = "159D11D5-A64C-4C58-9D60-54C3A981F37E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Navigation/Flows/Login/Models/RealmAuthentication.swift"
+            filePath = "Navigation/Flows/Favourite/FavouriteViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "signIn(withLogin:password:)"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "84AF032D-44B7-47C9-AE65-C625B61CD8CA"
+            uuid = "B9B01C92-3B4B-49E4-9AEF-4F4A53CDF536"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Navigation/Flows/Login/Models/RealmAuthentication.swift"
+            filePath = "Navigation/Flows/Profile/Views/PostTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "signIn(withLogin:password:)"
-            landmarkType = "7">
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "post"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "B9B01C92-3B4B-49E4-9AEF-4F4A53CDF536 - 79958b0fcb7209d0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Navigation.PostTableViewCell.post.getter : Swift.Optional&lt;Navigation.PostVK&gt;"
+                  moduleName = "Navigation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iuliiavolkova/Documents/Netology/Navigation_new_project/Navigation/Flows/Profile/Views/PostTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  uuid = "B9B01C92-3B4B-49E4-9AEF-4F4A53CDF536 - 6e941512f64f5dec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Navigation.PostTableViewCell.post.setter : Swift.Optional&lt;Navigation.PostVK&gt;"
+                  moduleName = "Navigation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iuliiavolkova/Documents/Netology/Navigation_new_project/Navigation/Flows/Profile/Views/PostTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "208">
+               </Location>
+               <Location
+                  uuid = "B9B01C92-3B4B-49E4-9AEF-4F4A53CDF536 - 3f39ad2c57a3e6dd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Navigation.PostTableViewCell.post.modify : Swift.Optional&lt;Navigation.PostVK&gt;"
+                  moduleName = "Navigation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iuliiavolkova/Documents/Netology/Navigation_new_project/Navigation/Flows/Profile/Views/PostTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "B9B01C92-3B4B-49E4-9AEF-4F4A53CDF536 - ba656d8d7fb10d2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Navigation.PostTableViewCell.post.modify : Swift.Optional&lt;Navigation.PostVK&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Navigation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iuliiavolkova/Documents/Netology/Navigation_new_project/Navigation/Flows/Profile/Views/PostTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "B9B01C92-3B4B-49E4-9AEF-4F4A53CDF536 - 500fd123d0421104"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Navigation.PostTableViewCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Navigation.PostTableViewCell&gt;"
+                  moduleName = "Navigation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iuliiavolkova/Documents/Netology/Navigation_new_project/Navigation/Flows/Profile/Views/PostTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  uuid = "B9B01C92-3B4B-49E4-9AEF-4F4A53CDF536 - 78ad53735ef74b65"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Navigation.PostTableViewCell.init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; Navigation.PostTableViewCell"
+                  moduleName = "Navigation"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/iuliiavolkova/Documents/Netology/Navigation_new_project/Navigation/Flows/Profile/Views/PostTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "184">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

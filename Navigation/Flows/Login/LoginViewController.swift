@@ -15,9 +15,6 @@ import RealmSwift
 enum AuthorizationError: Error {
     case emptyField
     case incorrectData
-    case userNotFound
-    case userAlreadyExist
-    case userNotLoggedIn
 }
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
@@ -99,7 +96,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             backgroungColor: nil,
             backgroungImage: bluePixel,
             cornerRadius: 10) { [self] in
-                self.presenter?.didLoginPressed(username: userNameField.text ?? "", password: passwordField.text ?? "")
+                self.presenter?.didLoginPressed(username: userNameField.text, password: passwordField.text)
             }
         
         button.layer.masksToBounds = true
@@ -124,7 +121,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             backgroungColor: nil,
             backgroungImage: bluePixel,
             cornerRadius: 10) { [self] in
-                self.presenter?.didPickPasswordPressed(username: userNameField.text ?? "")
+                self.presenter?.didPickPasswordPressed(username: userNameField.text)
+                //                self.bruteForce(passwordToUnlock: LogInChecker.instance.password)
             }
         
         button.layer.masksToBounds = true
@@ -144,18 +142,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             switch authError {
             case .emptyField:
                 self.showAlert(message: "Fill in username and password")
-                print("tap 2")
-            case .userNotFound:
-                self.showSignUpAlert(email: userNameField.text!, password: passwordField.text!)
-                print("tap 3")
-            case .userAlreadyExist:
-                self.showAlert(message: "Username is already taken")
             case .incorrectData:
-                self.showAlert(message: "Incorrect password")
-            default:
-                self.showAlert(message: error.localizedDescription)
-                print("tap 4")
+                self.showAlert(message: "Incorrect password or username")
             }
+        } else {
+            self.showAlert(message: error.localizedDescription)
         }
     }
     
@@ -166,6 +157,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 #else
         let userService = CurrentUserService()
 #endif
+        
         guard userNameField.text == nil || passwordField.text != nil  else {
             throw AuthorizationError.emptyField
         }
@@ -182,20 +174,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private func showAlert(message: String){
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Ok", style: .cancel)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
-    func showSignUpAlert (email: String, password: String) {
-        let alertController = UIAlertController(title: "WARNING", message: "The user does not exist! Try again or sign up as a new user?", preferredStyle: .alert)
-        let retryAction = UIAlertAction(title: "Retry", style: .destructive, handler: nil)
-        alertController.addAction(retryAction)
-        let createAction = UIAlertAction(title: "Sign up", style: .default) { _ in
-            self.presenter?.singUp(email: email, password: password)
-        }
-        
-        alertController.addAction(createAction)
         self.present(alertController, animated: true, completion: nil)
     }
     

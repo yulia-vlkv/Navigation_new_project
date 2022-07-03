@@ -38,15 +38,12 @@ class ProfileCoordinator: Coordinator {
 
     private func isUserLoggedIn() -> Bool {
         
-        guard RealmAuthentication.shared.currentUser != nil else {
-            print(RealmAuthentication.shared)
+        guard RealmAuthentication.shared.currentUserObject != nil else {
+            print("User is not logged in")
             return false
         }
-        print(RealmAuthentication.shared.currentUser)
+        print("Realm: \(RealmAuthentication.shared.currentUserObject)")
         return true
-
-        
-//        FirebaseAuth.Auth.auth().currentUser != nil
     }
     
     func start() {}
