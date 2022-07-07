@@ -32,7 +32,7 @@ class ProfileHeaderView: UIView {
         let label = UILabel()
         label.text = "Time till break: 0"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        label.textColor = CustomColors.setColor(style: .reverseAccentColor)
+        label.textColor = CustomColors.setColor(style: .textColor)
         label.toAutoLayout()
         return label
     }()
@@ -62,7 +62,7 @@ class ProfileHeaderView: UIView {
         let label = UILabel()
         label.text = "pew pew madafakas"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        label.textColor = CustomColors.setColor(style: .reverseAccentColor)
+        label.textColor = CustomColors.setColor(style: .textColor)
         label.toAutoLayout()
         return label
     }()
@@ -84,23 +84,8 @@ class ProfileHeaderView: UIView {
     }()
     
     private let statusField: UITextField = {
-        let textField = UITextField()
-        
-        textField.layer.backgroundColor = CustomColors.setColor(style: .reverseAccentColor).cgColor
-        textField.layer.opacity = 0.4
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = CustomColors.setColor(style: .accentColor).cgColor
-        textField.layer.cornerRadius = 12
-        textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        textField.textColor = .black
-        textField.textAlignment = .natural
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
-        textField.leftViewMode = .always
-        textField.attributedPlaceholder = NSAttributedString(
-            string: "Today I feel like...",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white]
-        )
-        textField.toAutoLayout()
+        let textField = CustomTextField(font: UIFont.systemFont(ofSize: 15, weight: .regular),
+                                        placeholder: "Today I feel like...")
         textField.addTarget(ProfileHeaderView.self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
         return textField
     }()

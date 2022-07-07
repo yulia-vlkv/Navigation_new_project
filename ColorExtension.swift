@@ -9,17 +9,18 @@
 import UIKit
 
 extension UIColor {
+    
   static var appTintColor: UIColor = {
       if #available(iOS 13, *) {
           return UIColor { (traitCollection: UITraitCollection) -> UIColor in
               if traitCollection.userInterfaceStyle == .dark {
-                  return UIColor(red: 1.0, green: 0, blue: 0.0, alpha: 1.0) // Темный цвет из палитры
+                  return UIColor(red: 0.379, green: 0.584, blue: 0.845, alpha: 1.0)
               } else {
-                  return UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0) // Светлый цвет из палитры
+                  return UIColor(red: 0.195, green: 0.296, blue: 0.455, alpha: 1.0)
               }
           }
       } else {
-          return UIColor.systemBlue // Цвет по умолчанию
+          return UIColor.systemBlue
       }
   }()
 

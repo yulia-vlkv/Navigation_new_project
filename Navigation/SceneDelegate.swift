@@ -20,7 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         self.mainCoordinator = MainCoordinator(window)
-        self.window?.tintColor = CustomColors.setColor(style: .reverseAccentColor)
+//        self.window?.tintColor = CustomColors.setColor(style: .reverseAccentColor)
+        self.window?.tintColor = .appTintColor
         
         mainCoordinator?.start()
         

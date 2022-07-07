@@ -41,10 +41,7 @@ final class FeedController: UIViewController {
     private let guessWordTextField: UITextField = {
         let textField = CustomTextField(
             font: UIFont.systemFont(ofSize: 18, weight: .light),
-            textColor: CustomColors.setColor(style: .accentColor),
-            backgroundColor: .white,
             placeholder: "Guess the word")
-        textField.layer.cornerRadius = 15
         return textField
     } ()
     

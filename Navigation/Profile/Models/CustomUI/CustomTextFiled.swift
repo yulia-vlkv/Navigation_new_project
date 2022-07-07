@@ -11,13 +11,18 @@ import UIKit
 
 class CustomTextField: UITextField {
 
-    init(font: UIFont, textColor: UIColor, backgroundColor: UIColor, placeholder: String) {
+    init(font: UIFont, placeholder: String) {
         super.init(frame: .zero)
 
         self.font = font
-        self.textColor = textColor
-        self.backgroundColor = backgroundColor
-        self.placeholder = placeholder
+        self.textColor = .appTintColor
+        self.layer.cornerRadius = 12
+        self.layer.backgroundColor = UIColor.white.cgColor
+        self.layer.opacity = 0.5
+        self.attributedPlaceholder = NSAttributedString(
+            string: placeholder,
+            attributes: [NSAttributedString.Key.foregroundColor: CustomColors.setColor(style: .accentColor)]
+        )
         self.becomeFirstResponder()
         self.autocapitalizationType = .none
         self.returnKeyType = UIReturnKeyType.done
