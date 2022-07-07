@@ -18,7 +18,7 @@ final class FeedController: UIViewController {
         let button = CustomButton(
             title: "Show new post",
             titleColor: .white,
-            backgroungColor: UIColor.systemBlue,
+            backgroungColor: CustomColors.setColor(style: .accentColor),
             backgroungImage: nil,
             cornerRadius: 15) {
                 self.presenter?.showPost()
@@ -30,7 +30,7 @@ final class FeedController: UIViewController {
         let button = CustomButton(
             title: "Show it modally",
             titleColor: .white,
-            backgroungColor: UIColor.systemBlue,
+            backgroungColor: CustomColors.setColor(style: .accentColor),
             backgroungImage: nil,
             cornerRadius: 15) {
                 self.presenter?.presentPost()
@@ -41,7 +41,7 @@ final class FeedController: UIViewController {
     private let guessWordTextField: UITextField = {
         let textField = CustomTextField(
             font: UIFont.systemFont(ofSize: 18, weight: .light),
-            textColor: UIColor.systemBlue,
+            textColor: CustomColors.setColor(style: .accentColor),
             backgroundColor: .white,
             placeholder: "Guess the word")
         textField.layer.cornerRadius = 15
@@ -52,7 +52,7 @@ final class FeedController: UIViewController {
         let button = CustomButton(
             title: "CHECK",
             titleColor: .white,
-            backgroungColor: UIColor.systemBlue,
+            backgroungColor: CustomColors.setColor(style: .accentColor),
             backgroungImage: nil,
             cornerRadius: 15) { [weak self] in
                 if let enteredText = self?.guessWordTextField.text {
@@ -87,7 +87,7 @@ final class FeedController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(named: "mint")
+        view.backgroundColor = CustomColors.setColor(style: .backgroundColor)
         
         setupFeedViews()
     }

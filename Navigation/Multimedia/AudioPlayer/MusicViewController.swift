@@ -24,6 +24,7 @@ class MusicViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Music"
         navigationController?.navigationBar.topItem?.title = "Back"
+        navigationController?.navigationBar.tintColor = CustomColors.setColor(style: .textColor)
         
         setupUI()
     }

@@ -66,7 +66,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             backgroundColor: UIColor.systemGray6,
             placeholder: "Email or phone")
         
-        textField.tintColor = UIColor(named: "periwinkleBlue")
+        textField.tintColor = CustomColors.setColor(style: .accentColor)
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
         
@@ -82,7 +82,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         textField.isSecureTextEntry = true
         textField.returnKeyType = UIReturnKeyType.done
-        textField.tintColor = UIColor(named: "periwinkleBlue")
+        textField.tintColor = CustomColors.setColor(style: .accentColor)
         
         return textField
     }()
@@ -92,8 +92,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let button = CustomButton(
             title: "Log In",
             titleColor: .white,
-            backgroungColor: nil,
-            backgroungImage: bluePixel,
+            backgroungColor: CustomColors.setColor(style: .accentColor),
+            backgroungImage: nil,
             cornerRadius: 10) { [self] in
                 self.presenter?.didLoginPressed(username: userNameField.text ?? "", password: passwordField.text ?? "")
             }
@@ -108,7 +108,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let view = UIActivityIndicatorView(style: .large)
         view.toAutoLayout()
         view.isHidden = true
-        view.color = .systemBlue
+        view.color = CustomColors.setColor(style: .accentColor)
         return view
     }()
     
@@ -117,8 +117,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let button = CustomButton(
             title: "Pick the password",
             titleColor: .white,
-            backgroungColor: nil,
-            backgroungImage: bluePixel,
+            backgroungColor: CustomColors.setColor(style: .accentColor),
+            backgroungImage: nil,
             cornerRadius: 10) { [self] in
                 self.presenter?.didPickPasswordPressed(username: userNameField.text ?? "")
             }
