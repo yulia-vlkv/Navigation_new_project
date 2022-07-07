@@ -16,3 +16,14 @@
 1. URLSession. URLSessionDataTask
 2. JSON. Codable. Модели данных
 3. REST API. HTTP(s)
+
+# Хранение данных, работа с базами данных
+1. UserDefaults, Keychain, On-demand Resources
+2. Базы данных. Realm
+3. Core Data: начало работы
+4. CoreData. Стэк CoreData
+5. CoreData. Оптимизации. Работа в многопоточной среде.
+6. FetchResultController
+
+# Другое
+3. Light/Dark тема
