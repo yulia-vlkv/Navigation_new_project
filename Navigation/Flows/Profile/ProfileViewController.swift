@@ -66,7 +66,7 @@ class ProfileViewController: UIViewController {
         tableView.toAutoLayout()
         
         #if DEBUG
-        tableView.backgroundColor = UIColor(named: "mint")
+        tableView.backgroundColor = CustomColors.setColor(style: .backgroundColor)
         #else
         tableView.backgroundColor = .systemGray6
         #endif
@@ -120,29 +120,26 @@ extension ProfileViewController: UITableViewDataSource {
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellID_01", for: indexPath)
             cell.textLabel?.text = "Music"
-            cell.backgroundColor = .white
             cell.textLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-            cell.textLabel?.textColor = .black
+            cell.textLabel?.textColor = CustomColors.setColor(style: .textColor)
             cell.accessoryView = UIImageView(image: UIImage(systemName: "arrow.forward"))
-            cell.accessoryView?.tintColor = .black
+            cell.accessoryView?.tintColor = CustomColors.setColor(style: .textColor)
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellID_02", for: indexPath)
             cell.textLabel?.text = "Video"
-            cell.backgroundColor = .white
             cell.textLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-            cell.textLabel?.textColor = .black
+            cell.textLabel?.textColor = CustomColors.setColor(style: .textColor)
             cell.accessoryView = UIImageView(image: UIImage(systemName: "arrow.forward"))
-            cell.accessoryView?.tintColor = .black
+            cell.accessoryView?.tintColor = CustomColors.setColor(style: .textColor)
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "CellID_03", for: indexPath)
             cell.textLabel?.text = "Audio Recorder"
-            cell.backgroundColor = .white
             cell.textLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-            cell.textLabel?.textColor = .black
+            cell.textLabel?.textColor = CustomColors.setColor(style: .textColor)
             cell.accessoryView = UIImageView(image: UIImage(systemName: "arrow.forward"))
-            cell.accessoryView?.tintColor = .black
+            cell.accessoryView?.tintColor = CustomColors.setColor(style: .textColor)
             return cell
         default:
             let cell: PostTableViewCell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell

@@ -19,7 +19,7 @@ final class CustomPlayerButton: UIButton {
         
         let image = UIImage(systemName: image)
         self.setImage(image, for: .normal)
-        self.tintColor = .systemBlue
+        self.tintColor = CustomColors.setColor(style: .accentColor)
         self.backgroundColor = .clear
         self.clipsToBounds = true
         self.toAutoLayout()

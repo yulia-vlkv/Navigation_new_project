@@ -14,7 +14,7 @@ class PhotosTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "Photos"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.textColor = .black
+        label.textColor = CustomColors.setColor(style: .textColor)
         label.textAlignment = .left
         label.toAutoLayout()
         return label
@@ -22,7 +22,7 @@ class PhotosTableViewCell: UITableViewCell {
     
     private let arrow: UIImageView = {
         let image = UIImageView(image: UIImage(systemName: "arrow.forward"))
-        image.tintColor = .black
+        image.tintColor = CustomColors.setColor(style: .textColor)
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.toAutoLayout()
@@ -60,8 +60,6 @@ class PhotosTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        contentView.backgroundColor = .white
         
         contentView.addSubview(photoLabel)
         contentView.addSubview(arrow)

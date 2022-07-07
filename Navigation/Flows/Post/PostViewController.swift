@@ -25,7 +25,7 @@ class PostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemPurple
+        view.backgroundColor = CustomColors.setColor(style: .accentColor)
         
     }
 }

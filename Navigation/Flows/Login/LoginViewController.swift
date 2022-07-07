@@ -30,14 +30,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private let scroll: UIScrollView = {
         let scroll = UIScrollView()
-        scroll.backgroundColor = .white
+        scroll.backgroundColor = CustomColors.setColor(style: .accentColor)
         scroll.toAutoLayout()
         return scroll
     }()
     
     private let mainView: UIView = {
         let mainView = UIView()
-        mainView.backgroundColor = .white
+//        mainView.backgroundColor = .white
         mainView.toAutoLayout()
         return mainView
     }()
@@ -51,9 +51,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private let logInView: UIView = {
         let logInView = UIView()
-        logInView.layer.cornerRadius = 10
-        logInView.layer.borderWidth = 0.5
-        logInView.layer.borderColor = UIColor.lightGray.cgColor
         logInView.clipsToBounds = true
         logInView.toAutoLayout()
         return logInView
@@ -62,28 +59,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     private let userNameField: UITextField = {
         let textField = CustomTextField(
             font: UIFont.systemFont(ofSize: 16),
-            textColor: .black,
-            backgroundColor: UIColor.systemGray6,
             placeholder: "Email or phone")
-        
-        textField.tintColor = UIColor(named: "periwinkleBlue")
-        textField.layer.borderColor = UIColor.lightGray.cgColor
-        textField.layer.borderWidth = 0.5
-        
         return textField
     }()
     
     private let passwordField: UITextField = {
         let textField = CustomTextField(
             font: UIFont.systemFont(ofSize: 16),
-            textColor: .black,
-            backgroundColor: UIColor.systemGray6,
             placeholder: "Password")
         
         textField.isSecureTextEntry = true
         textField.returnKeyType = UIReturnKeyType.done
-        textField.tintColor = UIColor(named: "periwinkleBlue")
-        
         return textField
     }()
     
@@ -91,9 +77,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let bluePixel = UIImage(named: "bluePixel")
         let button = CustomButton(
             title: "Log In",
-            titleColor: .white,
-            backgroungColor: nil,
-            backgroungImage: bluePixel,
+            titleColor: CustomColors.setColor(style: .accentColor),
+            backgroungColor: CustomColors.setColor(style: .reverseAccentColor),
+            backgroungImage: nil,
             cornerRadius: 10) { [self] in
                 self.presenter?.didLoginPressed(username: userNameField.text ?? "", password: passwordField.text ?? "")
             }
@@ -108,7 +94,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let view = UIActivityIndicatorView(style: .large)
         view.toAutoLayout()
         view.isHidden = true
-        view.color = .systemBlue
+        view.color = CustomColors.setColor(style: .accentColor)
         return view
     }()
     
@@ -116,9 +102,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let bluePixel = UIImage(named: "bluePixel")
         let button = CustomButton(
             title: "Pick the password",
-            titleColor: .white,
-            backgroungColor: nil,
-            backgroungImage: bluePixel,
+            titleColor: CustomColors.setColor(style: .accentColor),
+            backgroungColor: CustomColors.setColor(style: .reverseAccentColor),
+            backgroungImage: nil,
             cornerRadius: 10) { [self] in
                 self.presenter?.didPickPasswordPressed(username: userNameField.text ?? "")
             }

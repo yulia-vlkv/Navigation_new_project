@@ -16,15 +16,6 @@ class PhotosViewController: UIViewController {
     weak var coordinator: ProfileCoordinator?
     var presenter: PhotosPresenter?
     
-    //    init(coordinator: ProfileCoordinator){
-    //        super.init(nibName: nil, bundle: nil)
-    //        self.coordinator = coordinator
-    //    }
-    
-    //    required init?(coder: NSCoder) {
-    //        fatalError("init(coder:) has not been implemented")
-    //    }
-    
     func configure(with images: [UIImage]) {
         arrayOfPublishedPhotos = images
         
@@ -33,19 +24,15 @@ class PhotosViewController: UIViewController {
         photoCollectionView.insertItems(at: [indexPath])
     }
     
-    //    private let facade = ImagePublisherFacade()
     private var arrayOfPublishedPhotos: [UIImage] = []
     let layout = UICollectionViewFlowLayout()
     lazy var photoCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     private let collectionCellID = "collectionCellID"
-    //    let processor = ImageProcessor()
-    //    var arrayOfPhotos = allPhotos.photoArray
     
     let indicator: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(style: .large)
         view.toAutoLayout()
         view.isHidden = true
-        view.color = .cyan
         return view
     }()
     
@@ -55,8 +42,8 @@ class PhotosViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Photo Gallery"
         navigationController?.navigationBar.topItem?.title = "Back"
+        navigationController?.navigationBar.tintColor = CustomColors.setColor(style: .textColor)
         
-        photoCollectionView.backgroundColor = .white
         setupCollectionView()
         
         setupIndicator()

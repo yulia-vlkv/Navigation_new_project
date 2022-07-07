@@ -42,7 +42,7 @@ class AudioRecorderViewController: UIViewController, AVAudioRecorderDelegate {
     
     private let recorderLabel: UILabel = {
        let label = UILabel()
-        label.textColor = .black
+        label.textColor = CustomColors.setColor(style: .textColor)
         label.text = "Ready to record"
         label.font = .systemFont(ofSize: 18, weight: .semibold)
         label.toAutoLayout()
@@ -51,7 +51,7 @@ class AudioRecorderViewController: UIViewController, AVAudioRecorderDelegate {
     
     private let noRecorderLabel: UILabel = {
        let label = UILabel()
-        label.textColor = .black
+        label.textColor = CustomColors.setColor(style: .textColor)
         label.text = "Sorry, can't record without permission"
         label.font = .systemFont(ofSize: 18, weight: .semibold)
         label.toAutoLayout()
@@ -74,13 +74,14 @@ class AudioRecorderViewController: UIViewController, AVAudioRecorderDelegate {
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Audio Recorder"
         navigationController?.navigationBar.topItem?.title = "Back"
+        navigationController?.navigationBar.tintColor = CustomColors.setColor(style: .textColor)
         
         self.presenter?.requestRecordPermission()
     }
     
     func loadRecordingUI(){
         view.addSubviews(recorderLabel, recorderStack)
-        view.backgroundColor = UIColor(named: "mint")
+        view.backgroundColor = CustomColors.setColor(style: .backgroundColor)
         
         recorderStack.addArrangedSubview(recordButton)
         recorderStack.addArrangedSubview(stopButton)
@@ -100,7 +101,7 @@ class AudioRecorderViewController: UIViewController, AVAudioRecorderDelegate {
     
     func loadFailUI(){
         view.addSubview(noRecorderLabel)
-        view.backgroundColor = UIColor(named: "mint")
+        view.backgroundColor = CustomColors.setColor(style: .backgroundColor)
         
         let constraints = [
             noRecorderLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),

@@ -88,6 +88,8 @@
 		EFCCFEF226DA6905007B4EBA /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCCFEF126DA6905007B4EBA /* CurrentUserService.swift */; };
 		EFCCFEF526DA6B5B007B4EBA /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCCFEF426DA6B5B007B4EBA /* TestUserService.swift */; };
 		EFCCFEF726DA71A5007B4EBA /* addSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCCFEF626DA71A5007B4EBA /* addSubviews.swift */; };
+		EFE03F97287729DA00B831A8 /* CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE03F96287729DA00B831A8 /* CustomColors.swift */; };
+		EFE03F9A28772A0500B831A8 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE03F9928772A0500B831A8 /* ColorExtension.swift */; };
 		EFE64ED0271BF9C0009C8CC2 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE64ECF271BF9C0009C8CC2 /* CustomButton.swift */; };
 		EFE64ED2271C4277009C8CC2 /* CustomTextFiled.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE64ED1271C4277009C8CC2 /* CustomTextFiled.swift */; };
 /* End PBXBuildFile section */
@@ -172,6 +174,7 @@
 		EF5894E92829179E006D9A64 /* PlanetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetModel.swift; sourceTree = "<group>"; };
 		EF5894EB28292BB9006D9A64 /* ResidentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResidentModel.swift; sourceTree = "<group>"; };
 		EF8B724E272585D80069457D /* TextFieldChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldChecker.swift; sourceTree = "<group>"; };
+		EFA6F2C42871D62E00CB36E2 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		EFA9642A28151AAD0011DF91 /* VideoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPresenter.swift; sourceTree = "<group>"; };
 		EFA9642C28151AC10011DF91 /* MusicPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPresenter.swift; sourceTree = "<group>"; };
 		EFA9642F28151ADD0011DF91 /* PhotosPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPresenter.swift; sourceTree = "<group>"; };
@@ -200,6 +203,8 @@
 		EFCCFEF126DA6905007B4EBA /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		EFCCFEF426DA6B5B007B4EBA /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		EFCCFEF626DA71A5007B4EBA /* addSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addSubviews.swift; sourceTree = "<group>"; };
+		EFE03F96287729DA00B831A8 /* CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColors.swift; sourceTree = "<group>"; };
+		EFE03F9928772A0500B831A8 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		EFE64ECF271BF9C0009C8CC2 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		EFE64ED1271C4277009C8CC2 /* CustomTextFiled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFiled.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -249,6 +254,8 @@
 		060782B0250CE27700A87020 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				060782BA250CE27A00A87020 /* Assets.xcassets */,
+				EFE03F95287729C600B831A8 /* Colors */,
 				EFA964282809AEE80011DF91 /* Library */,
 				EFA964262809AE880011DF91 /* Flows */,
 				EF1B137227E38DC80070A9A0 /* Multimedia */,
@@ -256,7 +263,6 @@
 				EF25DCCC26A6B87400577166 /* Models */,
 				060782B1250CE27700A87020 /* AppDelegate.swift */,
 				060782B3250CE27700A87020 /* SceneDelegate.swift */,
-				060782BA250CE27A00A87020 /* Assets.xcassets */,
 				EF1B137727E3972C0070A9A0 /* Music */,
 				060782BC250CE27A00A87020 /* LaunchScreen.storyboard */,
 				060782BF250CE27A00A87020 /* Info.plist */,
@@ -550,6 +556,16 @@
 			path = UserData;
 			sourceTree = "<group>";
 		};
+		EFE03F95287729C600B831A8 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				EFE03F96287729DA00B831A8 /* CustomColors.swift */,
+				EFE03F9928772A0500B831A8 /* ColorExtension.swift */,
+			);
+			name = Colors;
+			path = ..;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -632,6 +648,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 060782A5250CE27700A87020;
 			packageReferences = (
@@ -729,6 +746,7 @@
 				EF1B139327E4BBD00070A9A0 /* VideoViewController.swift in Sources */,
 				EF1B137427E38E250070A9A0 /* AudioPlayerViewController.swift in Sources */,
 				EF5894E628227459006D9A64 /* AppConfiguration.swift in Sources */,
+				EFE03F97287729DA00B831A8 /* CustomColors.swift in Sources */,
 				EFA96439281677620011DF91 /* PhotosViewModuleFactory.swift in Sources */,
 				EF50FD4F285475230097C44E /* FavouriteCoordinator.swift in Sources */,
 				EFAFCFFE26F3915400C74923 /* LogInChecker.swift in Sources */,
@@ -738,6 +756,7 @@
 				EF50FD57285493C80097C44E /* FavouriteDataManager.swift in Sources */,
 				EF25DCBD26A2FCAA00577166 /* ProfileTableHeaderView.swift in Sources */,
 				EF3D5A6927E5BEFE007BF7D3 /* FeedPresenter.swift in Sources */,
+				EFE03F9A28772A0500B831A8 /* ColorExtension.swift in Sources */,
 				EFA9642D28151AC20011DF91 /* MusicPresenter.swift in Sources */,
 				EFA9643E2816AAAA0011DF91 /* AudioRecorderPresenter.swift in Sources */,
 				EF50FD4D285475120097C44E /* FavouriteViewModuleFactory.swift in Sources */,
@@ -814,6 +833,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				060782BD250CE27A00A87020 /* Base */,
+				EFA6F2C42871D62E00CB36E2 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -825,6 +845,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -886,6 +907,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

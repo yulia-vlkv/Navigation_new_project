@@ -48,7 +48,6 @@ class FavouriteViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        view.backgroundColor = .cyan
         setUpTableView()
         setNavBar()
     }
@@ -76,7 +75,7 @@ class FavouriteViewController: UIViewController {
     private func setNavBar() {
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Favourites"
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.tintColor = CustomColors.setColor(style: .textColor)
         let filterButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapFilterButton))
         let removeFilterButton =  UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(didTapRemoveFilterButton))
         
@@ -84,7 +83,7 @@ class FavouriteViewController: UIViewController {
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .systemBlue
+        appearance.backgroundColor = CustomColors.setColor(style: .accentColor)
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
