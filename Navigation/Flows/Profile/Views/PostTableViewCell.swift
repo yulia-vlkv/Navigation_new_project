@@ -33,7 +33,7 @@ class PostTableViewCell: UITableViewCell {
     let authorLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.textColor = .black
+        label.textColor = CustomColors.setColor(style: .textColor)
         label.textAlignment = .left
         label.numberOfLines = 2
         label.toAutoLayout()
@@ -60,7 +60,7 @@ class PostTableViewCell: UITableViewCell {
     private let likesLabel: UILabel = {
         let likes = UILabel()
         likes.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        likes.textColor = .black
+        likes.textColor = CustomColors.setColor(style: .textColor)
         likes.toAutoLayout()
         return likes
     }()
@@ -68,7 +68,7 @@ class PostTableViewCell: UITableViewCell {
     private let viewsLabel: UILabel = {
         let views = UILabel()
         views.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        views.textColor = .black
+        views.textColor = CustomColors.setColor(style: .textColor)
         views.toAutoLayout()
         return views
     }()

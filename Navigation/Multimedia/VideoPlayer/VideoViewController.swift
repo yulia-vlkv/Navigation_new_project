@@ -25,6 +25,7 @@ class VideoViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Video"
         navigationController?.navigationBar.topItem?.title = "Back"
+        navigationController?.navigationBar.tintColor = CustomColors.setColor(style: .textColor)
         
         setupUI()
     }

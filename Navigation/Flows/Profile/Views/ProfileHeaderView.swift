@@ -18,8 +18,8 @@ class ProfileHeaderView: UIView {
     private lazy var logoutButton: CustomButton = {
         let button = CustomButton(
             title: "Log out",
-            titleColor: .white,
-            backgroungColor: UIColor.systemBlue,
+            titleColor: CustomColors.setColor(style: .reverseAccentColor),
+            backgroungColor: CustomColors.setColor(style: .accentColor),
             backgroungImage: nil,
             cornerRadius: 15) { [self] in
                 self.logoutHandler?()
@@ -32,7 +32,7 @@ class ProfileHeaderView: UIView {
         let label = UILabel()
         label.text = "Time till break: 0"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .gray
+        label.textColor = CustomColors.setColor(style: .textColor)
         label.toAutoLayout()
         return label
     }()
@@ -43,7 +43,7 @@ class ProfileHeaderView: UIView {
         image.contentMode = .scaleAspectFill
         image.layer.borderWidth = 3
         image.layer.cornerRadius = 55
-        image.layer.borderColor = UIColor.white.cgColor
+        image.layer.borderColor = CustomColors.setColor(style: .accentColor).cgColor
         image.clipsToBounds = true
         image.toAutoLayout()
         return image
@@ -53,7 +53,7 @@ class ProfileHeaderView: UIView {
         let label = UILabel()
         label.text = "Gavryusha the Cat"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.textColor = .black
+        label.textColor = CustomColors.setColor(style: .textColor)
         label.toAutoLayout()
         return label
     }()
@@ -62,7 +62,7 @@ class ProfileHeaderView: UIView {
         let label = UILabel()
         label.text = "pew pew madafakas"
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .gray
+        label.textColor = CustomColors.setColor(style: .textColor)
         label.toAutoLayout()
         return label
     }()
@@ -70,8 +70,8 @@ class ProfileHeaderView: UIView {
     private lazy var statusButton: UIButton = {
         let button = CustomButton(
             title: "Set status",
-            titleColor: .white,
-            backgroungColor: UIColor.systemBlue,
+            titleColor: CustomColors.setColor(style: .reverseAccentColor),
+            backgroungColor: CustomColors.setColor(style: .accentColor),
             backgroungImage: nil,
             cornerRadius: 14) 
         { [self] in self.userStatus.text = statusText }
@@ -84,19 +84,8 @@ class ProfileHeaderView: UIView {
     }()
     
     private let statusField: UITextField = {
-        let textField = UITextField()
-        
-        textField.layer.backgroundColor = UIColor.white.cgColor
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.black.cgColor
-        textField.layer.cornerRadius = 12
-        textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        textField.textColor = .black
-        textField.textAlignment = .natural
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
-        textField.leftViewMode = .always
-        textField.placeholder = "Today I feel like..."
-        textField.toAutoLayout()
+        let textField = CustomTextField(font: UIFont.systemFont(ofSize: 15, weight: .regular),
+                                        placeholder: "Today I feel like...")
         textField.addTarget(ProfileHeaderView.self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
         return textField
     }()

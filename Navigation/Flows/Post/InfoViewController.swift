@@ -30,8 +30,8 @@ class InfoViewController: UIViewController {
         label.adjustsFontSizeToFitWidth = true
         label.lineBreakMode = .byTruncatingMiddle
         label.numberOfLines = 2
-        label.textColor = .darkGray
-        label.backgroundColor = UIColor(named: "mint")
+        label.textColor = CustomColors.setColor(style: .textColor)
+        label.backgroundColor = CustomColors.setColor(style: .backgroundColor)
         label.layer.cornerRadius = 15
         label.layer.masksToBounds = true
         label.toAutoLayout()
@@ -44,8 +44,8 @@ class InfoViewController: UIViewController {
         label.adjustsFontSizeToFitWidth = true
         label.lineBreakMode = .byTruncatingMiddle
         label.numberOfLines = 2
-        label.textColor = .darkGray
-        label.backgroundColor = UIColor(named: "mint")
+        label.textColor = CustomColors.setColor(style: .textColor)
+        label.backgroundColor = CustomColors.setColor(style: .backgroundColor)
         label.layer.cornerRadius = 15
         label.layer.masksToBounds = true
         label.toAutoLayout()
@@ -55,7 +55,7 @@ class InfoViewController: UIViewController {
     private lazy var button: UIButton = {
         let button = CustomButton(
             title: "Detele this post",
-            titleColor: .black,
+            titleColor: CustomColors.setColor(style: .reverseTextColor),
             backgroungColor: .clear,
             backgroungImage: nil,
             cornerRadius: 15) {
@@ -183,7 +183,7 @@ extension InfoViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == 0 else { return nil }
         let headerView = UITableViewHeaderFooterView()
-        headerView.contentView.backgroundColor = UIColor(named: "mint")
+        headerView.contentView.backgroundColor = CustomColors.setColor(style: .backgroundColor)
         headerView.textLabel?.text = "Residents:"
         return headerView
     }
@@ -199,8 +199,8 @@ extension InfoViewController: UITableViewDataSource, UITableViewDelegate {
 
         cell.textLabel?.text = self.networkService.textLabelForRow(index: indexPath.row)
         cell.textLabel?.font = .systemFont(ofSize: 14)
-        cell.textLabel?.textColor = .black
-        cell.backgroundColor = UIColor(named: "mint")
+        cell.textLabel?.textColor = CustomColors.setColor(style: .textColor)
+        cell.backgroundColor = CustomColors.setColor(style: .backgroundColor)
         
         return cell
     }

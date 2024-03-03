@@ -64,7 +64,7 @@ class AudioPlayerViewController: UIViewController {
     private let trackNameLabel: UILabel = {
        let label = UILabel()
         label.numberOfLines = 2
-        label.textColor = .black
+        label.textColor = CustomColors.setColor(style: .textColor)
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 27, weight: .semibold)
         label.toAutoLayout()
@@ -74,7 +74,7 @@ class AudioPlayerViewController: UIViewController {
     private let artistNameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        label.textColor = .black
+        label.textColor = CustomColors.setColor(style: .textColor)
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 20, weight: .regular)
         label.toAutoLayout()
@@ -136,7 +136,7 @@ class AudioPlayerViewController: UIViewController {
     }
     
     private func setupUI(){
-        view.backgroundColor = UIColor(named: "mint")
+        view.backgroundColor = CustomColors.setColor(style: .backgroundColor)
         view.addSubviews(trackInfoStack, playerStack)
         trackInfoStack.addArrangedSubview(albumCover)
         trackInfoStack.addArrangedSubview(trackNameLabel)
